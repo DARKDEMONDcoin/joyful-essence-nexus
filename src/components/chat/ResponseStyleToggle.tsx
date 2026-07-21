@@ -6,6 +6,10 @@ import {
   STYLE_LABELS_AR,
   type ResponseStyle,
 } from "@/lib/responseStyle";
+import {
+  glassModelMenu,
+  glassModelMenuStyle,
+} from "@/components/model-picker/glassModelMenuStyles";
 
 /**
  * Compact toggle showing the current reply style and letting the user swap
