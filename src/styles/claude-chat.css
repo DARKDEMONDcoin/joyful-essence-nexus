@@ -19,7 +19,7 @@
   background-blend-mode: luminosity;
   backdrop-filter: blur(4px) !important;
   border: none !important;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1) !important;
+  box-shadow: inset 0 1px 1px var(--overlay-white-10) !important;
   position: relative;
   overflow: hidden;
 }
@@ -38,10 +38,10 @@
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.45) 0%,
-    rgba(255, 255, 255, 0.15) 20%,
+    var(--overlay-white-15) 20%,
     rgba(255, 255, 255, 0) 40%,
     rgba(255, 255, 255, 0) 60%,
-    rgba(255, 255, 255, 0.15) 80%,
+    var(--overlay-white-15) 80%,
     rgba(255, 255, 255, 0.45) 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -79,12 +79,12 @@
  * ───────────────────────────────────────────────────────────── */
 @media (min-width: 768px) {
   [data-skin="claude"] .chat-composer-frame {
-    background: rgba(0, 0, 0, 0.22) !important;
+    background: var(--overlay-black-22) !important;
     backdrop-filter: blur(18px) saturate(130%) !important;
     box-shadow:
       inset 0 1px 1px rgba(255, 255, 255, 0.16),
       0 0 0 1px rgba(255, 255, 255, 0.16),
-      0 18px 50px -12px rgba(0, 0, 0, 0.55) !important;
+      0 18px 50px -12px var(--overlay-black-55) !important;
   }
 
   [data-skin="claude"] .chat-composer-frame::before {
@@ -93,8 +93,8 @@
       180deg,
       rgba(255, 255, 255, 0.72) 0%,
       rgba(255, 255, 255, 0.35) 20%,
-      rgba(255, 255, 255, 0.08) 45%,
-      rgba(255, 255, 255, 0.08) 55%,
+      var(--overlay-white-08) 45%,
+      var(--overlay-white-08) 55%,
       rgba(255, 255, 255, 0.35) 80%,
       rgba(255, 255, 255, 0.72) 100%
     );
@@ -102,15 +102,15 @@
 
   /* Stronger liquid-glass surface when the composer opts in inside a chat. */
   [data-skin="claude"] .chat-composer-frame.chat-composer-liquid {
-    background: rgba(0, 0, 0, 0.22) !important;
+    background: var(--overlay-black-22) !important;
     backdrop-filter: blur(22px) saturate(150%) brightness(1.1) !important;
     box-shadow:
       inset 0 0 4px 0 rgba(250, 250, 250, 0.5),
       inset 0 1px 0 rgba(255, 255, 255, 0.22),
-      0 12px 40px -12px rgba(0, 0, 0, 0.55) !important;
+      0 12px 40px -12px var(--overlay-black-55) !important;
   }
   [data-skin="claude"] .chat-composer-frame.chat-composer-liquid::before {
-    background: radial-gradient(120% 50% at 50% -10%, rgba(255, 255, 255, 0.25), transparent 60%);
+    background: radial-gradient(120% 50% at 50% -10%, var(--overlay-white-25), transparent 60%);
     mix-blend-mode: screen;
     opacity: 0.65;
   }
@@ -120,7 +120,7 @@
 [data-skin="claude"] [data-tier-trigger]:hover,
 [data-skin="claude"] [data-testid="modes-toggle"]:hover,
 [data-skin="claude"] [data-plus-trigger]:hover {
-  background: rgba(255, 255, 255, 0.05) !important;
+  background: var(--overlay-white-05) !important;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -142,7 +142,7 @@
     border-left: 0 !important;
     border-radius: 16px !important;
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.18),
+      inset 0 1px 0 var(--overlay-white-18),
       0 22px 60px -18px rgba(0, 0, 0, 0.7) !important;
     color: hsl(var(--brand-parchment)) !important;
   }
@@ -166,13 +166,13 @@
 [data-radix-popper-content-wrapper] [data-tier-menu] [role="menuitem"][data-highlighted],
 [data-radix-popper-content-wrapper] [data-tier-menu] [role="menuitem"]:hover,
 [data-radix-popper-content-wrapper] [data-tier-menu] [role="menuitem"].active-menu-item {
-  background: rgba(255, 255, 255, 0.10) !important;
-  border-color: rgba(255, 255, 255, 0.18) !important;
+  background: var(--overlay-white-10) !important;
+  border-color: var(--overlay-white-18) !important;
 }
 
 /* Active / selected row — subtle primary tint */
 [data-radix-popper-content-wrapper] [data-tier-menu] [role="menuitem"][data-state="checked"] {
-  background: rgba(255, 255, 255, 0.14) !important;
+  background: var(--overlay-white-14) !important;
   border-color: rgba(255, 255, 255, 0.22) !important;
 }
 
@@ -322,7 +322,7 @@
   }
   [data-skin="claude"] [data-plus-menu] button:hover,
   [data-skin="claude"] [data-plus-menu] [role="menuitem"]:hover {
-    background: rgba(255, 255, 255, 0.06) !important;
+    background: var(--overlay-white-06) !important;
   }
 
   /* Center greeting — Claude serif */
@@ -410,8 +410,8 @@
   backdrop-filter: blur(22px) saturate(140%);
   border: 1px solid rgba(255, 255, 255, 0.09);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 10px 30px -12px rgba(0, 0, 0, 0.55);
+    inset 0 1px 0 var(--overlay-white-08),
+    0 10px 30px -12px var(--overlay-black-55);
 }
 
 /* Kill the negative side margins + bottom gap on the chips row
@@ -460,10 +460,10 @@
   background-blend-mode: normal !important;
   backdrop-filter: none !important;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.10),
-    0 0 0 1px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 var(--overlay-white-10),
+    0 0 0 1px var(--overlay-white-08),
     0 8px 18px -12px rgba(0, 0, 0, 0.85) !important;
-  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  border: 1px solid var(--overlay-white-10) !important;
   color: rgba(255, 255, 255, 0.94) !important;
 }
 [data-skin="claude"] [data-chips-row] button::before {
@@ -476,11 +476,11 @@
 }
 [data-skin="claude"] [data-chips-row] button[aria-pressed="true"] {
   background: rgba(30, 41, 59, 0.98) !important;
-  border-color: rgba(255, 255, 255, 0.18) !important;
+  border-color: var(--overlay-white-18) !important;
   color: #fff !important;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.14),
-    0 0 0 1px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 var(--overlay-white-14),
+    0 0 0 1px var(--overlay-white-08),
     0 10px 20px -12px rgba(0, 0, 0, 0.9) !important;
 }
 
@@ -488,13 +488,13 @@
   /* Match the actual chat-composer-liquid input recipe exactly */
   [data-skin="claude"] [data-chips-row] button {
     position: relative;
-    background: rgba(0, 0, 0, 0.22) !important;
+    background: var(--overlay-black-22) !important;
     backdrop-filter: blur(22px) saturate(150%) brightness(1.1) !important;
     border: 0 !important;
     box-shadow:
       inset 0 0 4px 0 rgba(250, 250, 250, 0.5),
       inset 0 1px 0 rgba(255, 255, 255, 0.22),
-      0 12px 40px -12px rgba(0, 0, 0, 0.55) !important;
+      0 12px 40px -12px var(--overlay-black-55) !important;
     color: rgba(255, 255, 255, 0.96) !important;
   }
   [data-skin="claude"] [data-chips-row] button::before {
@@ -503,22 +503,22 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: radial-gradient(120% 50% at 50% -10%, rgba(255, 255, 255, 0.25), transparent 60%) !important;
+    background: radial-gradient(120% 50% at 50% -10%, var(--overlay-white-25), transparent 60%) !important;
     mix-blend-mode: screen;
     opacity: 0.65;
     pointer-events: none;
     z-index: 1;
   }
   [data-skin="claude"] [data-chips-row] button:hover {
-    background: rgba(0, 0, 0, 0.22) !important;
+    background: var(--overlay-black-22) !important;
   }
   [data-skin="claude"] [data-chips-row] button[aria-pressed="true"] {
-    background: rgba(0, 0, 0, 0.22) !important;
+    background: var(--overlay-black-22) !important;
     color: #fff !important;
     box-shadow:
       inset 0 0 4px 0 rgba(250, 250, 250, 0.5),
       inset 0 1px 0 rgba(255, 255, 255, 0.22),
-      0 12px 40px -12px rgba(0, 0, 0, 0.55) !important;
+      0 12px 40px -12px var(--overlay-black-55) !important;
   }
 }
 

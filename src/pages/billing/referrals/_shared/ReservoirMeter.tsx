@@ -38,7 +38,7 @@ export function ReservoirMeter({
         className="reservoir-meter__tube"
         style={{
           borderColor: `${GOLD}55`,
-          boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.04), 0 0 24px -8px ${GOLD}30`,
+          boxShadow: `inset 0 0 0 1px var(--overlay-white-04), 0 0 24px -8px ${GOLD}30`,
         }}
       >
         {/* Water column */}

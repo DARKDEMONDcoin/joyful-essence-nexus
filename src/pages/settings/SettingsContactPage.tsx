@@ -156,12 +156,12 @@ const css = `
   display: flex; align-items: center; gap: 14px;
   padding: 16px 18px; text-decoration: none; color: #f2eee7;
 }
-.ct-mail:hover { background: rgba(255,255,255,0.03); }
+.ct-mail:hover { background: var(--overlay-white-03); }
 .ct-mail-ic {
   width: 38px; height: 38px; border-radius: 12px;
   display: grid; place-items: center;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--overlay-white-05);
+  border: 1px solid var(--overlay-white-08);
 }
 .ct-mail-body { flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .ct-mail-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.5); }
@@ -170,7 +170,7 @@ const css = `
   display: inline-flex; align-items: center; gap: 4px;
   font-size: 11.5px; color: rgba(255,255,255,0.5);
   padding: 4px 10px; border-radius: 999px;
-  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  background: var(--overlay-white-04); border: 1px solid var(--overlay-white-08);
 }
 .ct-form { padding: 16px; display: flex; flex-direction: column; gap: 14px; }
 .ct-textarea { resize: none; min-height: 128px; padding-top: 12px; padding-bottom: 12px; line-height: 1.5; }
@@ -183,7 +183,7 @@ const css = `
   border: 1px solid rgba(52,199,89,0.3);
 }
 .ct-success-title { margin: 0; font-size: 17px; font-weight: 600; color: #f2eee7; }
-.ct-success-body { margin: 8px 0 0; font-size: 13.5px; line-height: 1.55; color: rgba(255,255,255,0.6); }
+.ct-success-body { margin: 8px 0 0; font-size: 13.5px; line-height: 1.55; color: var(--overlay-white-60); }
 .ct-success-body b { color: #f2eee7; font-weight: 500; }
 .ct-success-again {
   margin-top: 18px; background: transparent; border: 0;

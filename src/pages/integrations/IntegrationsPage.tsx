@@ -206,7 +206,7 @@ const css = `
 }
 .ig-stat-sep {
   width: 1px; align-self: stretch;
-  background: linear-gradient(180deg, transparent, rgba(255,255,255,0.14), transparent);
+  background: linear-gradient(180deg, transparent, var(--overlay-white-14), transparent);
 }
 
 .ig-search {
@@ -226,11 +226,11 @@ const css = `
 .ig-cats::-webkit-scrollbar { display: none; }
 .ig-cat {
   flex-shrink: 0; height: 32px; padding: 0 14px; border-radius: 999px;
-  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
-  color: rgba(255,255,255,0.7); font: inherit; font-size: 12.5px; font-weight: 500;
+  background: var(--overlay-white-04); border: 1px solid var(--overlay-white-08);
+  color: var(--overlay-white-70); font: inherit; font-size: 12.5px; font-weight: 500;
   cursor: pointer; transition: transform 150ms, background-color 150ms;
 }
-.ig-cat:hover { background: rgba(255,255,255,0.06); color: #f2eee7; }
+.ig-cat:hover { background: var(--overlay-white-06); color: #f2eee7; }
 .ig-cat:active { transform: scale(0.96); }
 .ig-cat.is-active { background: #f2eee7; color: #14161a; border-color: transparent; }
 
@@ -240,7 +240,7 @@ const css = `
 }
 .ig-row + .ig-row::before {
   content: ""; position: absolute; top: 0; left: 14px; right: 14px; height: 1px;
-  background: rgba(255,255,255,0.06);
+  background: var(--overlay-white-06);
 }
 .ig-row-main {
   flex: 1; display: flex; align-items: center; gap: 12px;

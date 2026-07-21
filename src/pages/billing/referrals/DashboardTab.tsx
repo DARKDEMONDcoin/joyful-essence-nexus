@@ -89,7 +89,7 @@ export default function DashboardTab() {
                 key={s.label}
                 className="py-2"
                 style={{
-                  borderLeft: i === 0 ? undefined : "1px solid rgba(255,255,255,0.12)",
+                  borderLeft: i === 0 ? undefined : "1px solid var(--overlay-white-12)",
                   paddingLeft: i === 0 ? 0 : "1.25rem",
                   paddingRight: "1.25rem",
                 }}
@@ -99,7 +99,7 @@ export default function DashboardTab() {
                 </div>
                 <div
                   className="text-[26px] font-light tracking-tight tabular-nums text-white"
-                  style={{ textShadow: "0 2px 20px rgba(0,0,0,0.35)" }}
+                  style={{ textShadow: "0 2px 20px var(--overlay-black-35)" }}
                 >
                   {s.value}
                 </div>
@@ -128,7 +128,7 @@ export default function DashboardTab() {
             <SectionLabel>Referral Progress</SectionLabel>
             <div
               className="mt-4 text-[40px] font-light tracking-tight tabular-nums text-white"
-              style={{ textShadow: "0 2px 20px rgba(0,0,0,0.35)" }}
+              style={{ textShadow: "0 2px 20px var(--overlay-black-35)" }}
             >
               {signups} <span className="text-white/45">/ {progressTarget}</span>
             </div>
@@ -142,7 +142,7 @@ export default function DashboardTab() {
                   width: `${progressPct}%`,
                   background:
                     "linear-gradient(to right, rgba(255,255,255,0.5), #ffffff)",
-                  boxShadow: "0 0 12px rgba(255,255,255,0.25)",
+                  boxShadow: "0 0 12px var(--overlay-white-25)",
                 }}
               />
             </div>
@@ -181,7 +181,7 @@ export default function DashboardTab() {
                     className="px-3 py-1 text-[11px] font-medium rounded-full transition"
                     style={{
                       backgroundColor: active ? "#ffffff" : "transparent",
-                      color: active ? "#0a0a0a" : "rgba(255,255,255,0.7)",
+                      color: active ? "#0a0a0a" : "var(--overlay-white-70)",
                     }}
                   >
                     {label}
@@ -201,7 +201,7 @@ export default function DashboardTab() {
                 <thead>
                   <tr
                     className="text-[10px] uppercase tracking-widest text-white/55"
-                    style={{ borderBottom: "1px solid rgba(255,255,255,0.12)" }}
+                    style={{ borderBottom: "1px solid var(--overlay-white-12)" }}
                   >
                     <th className="px-6 py-3 font-medium">Referral</th>
                     <th className="px-6 py-3 font-medium">Date</th>
@@ -214,7 +214,7 @@ export default function DashboardTab() {
                     <tr
                       key={r.id}
                       className="transition-colors hover:bg-white/5"
-                      style={{ borderBottom: i < refs.length - 1 ? "1px solid rgba(255,255,255,0.08)" : undefined }}
+                      style={{ borderBottom: i < refs.length - 1 ? "1px solid var(--overlay-white-08)" : undefined }}
                     >
                       <td className="px-6 py-3.5 text-[13.5px] text-white">Friend #{i + 1}</td>
                       <td className="px-6 py-3.5 text-[13px] text-white/55">
@@ -226,14 +226,14 @@ export default function DashboardTab() {
                           style={
                             r.status === "approved" || r.status === "active"
                               ? {
-                                  backgroundColor: "rgba(255,255,255,0.12)",
+                                  backgroundColor: "var(--overlay-white-12)",
                                   color: "#ffffff",
-                                  border: "1px solid rgba(255,255,255,0.2)",
+                                  border: "1px solid var(--overlay-white-20)",
                                 }
                               : {
-                                  backgroundColor: "rgba(255,255,255,0.06)",
+                                  backgroundColor: "var(--overlay-white-06)",
                                   color: "rgba(255,255,255,0.75)",
-                                  border: "1px solid rgba(255,255,255,0.15)",
+                                  border: "1px solid var(--overlay-white-15)",
                                 }
                           }
                         >
@@ -260,7 +260,7 @@ export default function DashboardTab() {
                   <li
                     key={e.id}
                     className="flex items-center justify-between px-6 py-3.5"
-                    style={{ borderBottom: i < earns.length - 1 ? "1px solid rgba(255,255,255,0.08)" : undefined }}
+                    style={{ borderBottom: i < earns.length - 1 ? "1px solid var(--overlay-white-08)" : undefined }}
                   >
                     <div>
                       <p className="text-[13.5px] font-medium text-white">{e.source_action}</p>
@@ -290,7 +290,7 @@ export default function DashboardTab() {
                   <li
                     key={w.id}
                     className="flex items-center justify-between px-6 py-3.5"
-                    style={{ borderBottom: i < wds.length - 1 ? "1px solid rgba(255,255,255,0.08)" : undefined }}
+                    style={{ borderBottom: i < wds.length - 1 ? "1px solid var(--overlay-white-08)" : undefined }}
                   >
                     <div>
                       <p
@@ -305,9 +305,9 @@ export default function DashboardTab() {
                     <span
                       className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium"
                       style={{
-                        backgroundColor: "rgba(255,255,255,0.06)",
-                        color: "rgba(255,255,255,0.8)",
-                        border: "1px solid rgba(255,255,255,0.15)",
+                        backgroundColor: "var(--overlay-white-06)",
+                        color: "var(--overlay-white-80)",
+                        border: "1px solid var(--overlay-white-15)",
                       }}
                     >
                       {statusLabel(w.status)}

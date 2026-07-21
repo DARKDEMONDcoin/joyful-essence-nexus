@@ -128,7 +128,7 @@ const ModelSection = ({
               </div>
             )}
             <div className="absolute inset-0 flex items-center justify-center px-6">
-              <p className="font-display text-white text-[10vw] md:text-[3.4vw] font-black uppercase leading-[0.9] tracking-tight text-center drop-shadow-[0_4px_24px_rgba(0,0,0,0.55)]">
+              <p className="font-display text-white text-[10vw] md:text-[3.4vw] font-black uppercase leading-[0.9] tracking-tight text-center drop-shadow-[0_4px_24px_var(--overlay-black-55)]">
                 {model.name}
               </p>
             </div>
@@ -429,7 +429,7 @@ const AIChatLandingPage = () => {
 
         {/* CAPABILITIES */}
         <section className="relative overflow-hidden border-t border-white/5 py-24 md:py-32 bg-gradient-to-br from-red-700 via-red-600 to-rose-800 text-white">
-          <div className="pointer-events-none absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.25),transparent_50%),radial-gradient(circle_at_80%_80%,rgba(0,0,0,0.35),transparent_55%)]" />
+          <div className="pointer-events-none absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_20%_20%,var(--overlay-white-25),transparent_50%),radial-gradient(circle_at_80%_80%,var(--overlay-black-35),transparent_55%)]" />
           <div className="relative mx-auto max-w-7xl px-6">
             <motion.h2
               {...fadeUp}

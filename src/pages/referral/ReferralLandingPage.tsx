@@ -133,9 +133,9 @@ const ReferralLandingPage = () => {
             className="relative overflow-hidden rounded-[28px] border border-white/10 p-6 text-center backdrop-blur-xl"
             style={{
               background:
-                "linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)",
+                "linear-gradient(180deg, var(--overlay-white-06) 0%, rgba(255,255,255,0.02) 100%)",
               boxShadow:
-                "inset 0 1px 0 rgba(255,255,255,0.08), 0 20px 60px -20px rgba(0,0,0,0.6)",
+                "inset 0 1px 0 var(--overlay-white-08), 0 20px 60px -20px rgba(0,0,0,0.6)",
             }}
           >
             {/* Avatar */}

@@ -2167,7 +2167,7 @@ const ChatPage = () => {
             borderBottom: 0,
             borderLeft: 0,
             boxShadow:
-              "inset 0 1px 0 rgba(255,255,255,0.18), 0 22px 60px -18px rgba(0,0,0,0.7)",
+              "inset 0 1px 0 var(--overlay-white-18), 0 22px 60px -18px rgba(0,0,0,0.7)",
           }}
         >
           {renderPlusContent()}

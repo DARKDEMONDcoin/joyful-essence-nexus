@@ -475,7 +475,7 @@ const PricingPage = () => {
           backdrop-filter: blur(4px);
           -webkit-backdrop-filter: blur(4px);
           border: none;
-          box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+          box-shadow: inset 0 1px 1px var(--overlay-white-10);
           position: relative;
           overflow: hidden;
           transition: background .25s ease, transform .15s ease, box-shadow .25s ease;
@@ -487,17 +487,17 @@ const PricingPage = () => {
           border-radius: inherit;
           padding: 1.4px;
           background: linear-gradient(180deg,
-            rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%,
+            rgba(255,255,255,0.45) 0%, var(--overlay-white-15) 20%,
             rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
-            rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);
+            var(--overlay-white-15) 80%, rgba(255,255,255,0.45) 100%);
           -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
           -webkit-mask-composite: xor;
           mask-composite: exclude;
           pointer-events: none;
         }
         .liquid-glass:hover {
-          background: rgba(255, 255, 255, 0.04);
-          box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.15);
+          background: var(--overlay-white-04);
+          box-shadow: inset 0 1px 2px var(--overlay-white-15);
         }
         .liquid-glass:active { transform: scale(0.98); }
 
@@ -505,8 +505,8 @@ const PricingPage = () => {
           background: rgba(10, 10, 10, 0.7);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+          border: 1px solid var(--overlay-white-08);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 var(--overlay-white-10);
         }
 
         .pricing-card-glass {
@@ -546,7 +546,7 @@ const PricingPage = () => {
           background: rgba(16, 16, 18, 0.6);
           backdrop-filter: blur(14px);
           -webkit-backdrop-filter: blur(14px);
-          border: 1px solid rgba(255,255,255,0.06);
+          border: 1px solid var(--overlay-white-06);
         }
 
         .hero-vignette {
@@ -647,11 +647,11 @@ const PricingPage = () => {
               </div>
               <div
                 className="hidden md:block w-px self-stretch"
-                style={{ background: "rgba(255,255,255,0.12)" }}
+                style={{ background: "var(--overlay-white-12)" }}
               />
               <div
                 className="h-px w-full md:hidden"
-                style={{ background: "rgba(255,255,255,0.12)" }}
+                style={{ background: "var(--overlay-white-12)" }}
               />
               <div className="flex gap-4 sm:gap-5 font-garamond tabular-nums" dir="ltr">
                 {[
@@ -718,15 +718,15 @@ const PricingPage = () => {
               onClick={() => setIsYearly((v) => !v)}
               className="relative w-14 h-7 rounded-full border border-white/40 backdrop-blur-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               style={{
-                background: "rgba(255,255,255,0.18)",
-                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.35), 0 4px 16px rgba(255,255,255,0.08)",
+                background: "var(--overlay-white-18)",
+                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.35), 0 4px 16px var(--overlay-white-08)",
               }}
             >
               <span
                 className="absolute top-1/2 left-1 w-5 h-5 rounded-full transition-transform duration-300"
                 style={{
                   background: "rgba(255,255,255,0.95)",
-                  boxShadow: "0 2px 8px rgba(255,255,255,0.4), inset 0 1px 0 rgba(255,255,255,0.9)",
+                  boxShadow: "0 2px 8px rgba(255,255,255,0.4), inset 0 1px 0 var(--overlay-white-90)",
                   transform: `translateY(-50%) translateX(${isYearly ? "26px" : "0px"})`,
                 }}
               />
@@ -836,7 +836,7 @@ const PricingPage = () => {
                     className="h-px w-full my-7"
                     style={{
                       background:
-                        "linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent)",
+                        "linear-gradient(90deg, transparent, var(--overlay-white-18), transparent)",
                     }}
                   />
 

@@ -442,7 +442,7 @@ const ResearchPreviewPage = () => {
               </SheetTrigger>
               <SheetContent
                 side="bottom"
-                className="mx-auto flex max-h-[62dvh] w-full max-w-[39rem] flex-col overflow-hidden rounded-t-[2rem] border border-white/40 bg-white/30 px-6 pb-[max(env(safe-area-inset-bottom),1.5rem)] pt-3 shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.6)] backdrop-blur-2xl backdrop-saturate-150 dark:border-white/10 dark:bg-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.08)] sm:max-w-lg"
+                className="mx-auto flex max-h-[62dvh] w-full max-w-[39rem] flex-col overflow-hidden rounded-t-[2rem] border border-white/40 bg-white/30 px-6 pb-[max(env(safe-area-inset-bottom),1.5rem)] pt-3 shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_1px_0_var(--overlay-white-60)] backdrop-blur-2xl backdrop-saturate-150 dark:border-white/10 dark:bg-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_0_var(--overlay-white-08)] sm:max-w-lg"
                 dir={isRtl ? "rtl" : "ltr"}
               >
                 <div className="mx-auto mb-6 h-1 w-11 shrink-0 rounded-full bg-foreground/25" />
@@ -495,7 +495,7 @@ const ResearchPreviewPage = () => {
             <DropdownMenuContent
               align={isRtl ? "start" : "end"}
               sideOffset={10}
-              className="w-60 overflow-hidden rounded-2xl border border-white/40 bg-white/30 p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.6)] backdrop-blur-2xl backdrop-saturate-150 dark:border-white/10 dark:bg-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.08)]"
+              className="w-60 overflow-hidden rounded-2xl border border-white/40 bg-white/30 p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_1px_0_var(--overlay-white-60)] backdrop-blur-2xl backdrop-saturate-150 dark:border-white/10 dark:bg-white/10 dark:shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_0_var(--overlay-white-08)]"
             >
               <DropdownMenuItem
                 onClick={handleCopy}

@@ -258,7 +258,7 @@ export default function SeoLandingPage() {
             <Link
               to="/"
               className="h-9 sm:h-12 px-3 sm:px-5 flex items-center gap-2 rounded-[10px] sm:rounded-[14px] backdrop-blur-md"
-              style={{ background: "rgba(255,255,255,0.15)" }}
+              style={{ background: "var(--overlay-white-15)" }}
             >
               <SynapseXLogo size={16} />
               <span className="text-[13px] sm:text-[16px] font-medium tracking-tight text-white">
@@ -268,7 +268,7 @@ export default function SeoLandingPage() {
           )}
           <motion.div
             className="h-9 sm:h-12 rounded-[10px] sm:rounded-[14px] backdrop-blur-md flex items-center overflow-hidden"
-            style={{ background: "rgba(255,255,255,0.15)" }}
+            style={{ background: "var(--overlay-white-15)" }}
             animate={{ width: menuOpen ? 260 : 40 }}
             transition={{ type: "spring", stiffness: 350, damping: 28 }}
           >
@@ -616,7 +616,7 @@ export default function SeoLandingPage() {
           <div className="md:w-1/2 p-10 sm:p-16 flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-2 mb-8">
-                <SynapseXLogo size={18} color="rgba(255,255,255,0.7)" />
+                <SynapseXLogo size={18} color="var(--overlay-white-70)" />
                 <span className="text-[15px] font-medium text-white/70 tracking-tight">
                   Megsy AI
                 </span>

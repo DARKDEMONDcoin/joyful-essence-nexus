@@ -468,7 +468,7 @@ const ReferralsPage = () => {
         >
           <header
             className="sticky top-0 z-40"
-            style={{ backgroundColor: "#0a0a0a", borderBottom: "1px solid rgba(255,255,255,0.08)" }}
+            style={{ backgroundColor: "#0a0a0a", borderBottom: "1px solid var(--overlay-white-08)" }}
           >
             <div className="mx-auto flex h-14 w-full items-center justify-between px-4">
               <MobileSidebarButton
@@ -520,7 +520,7 @@ const ReferralsPage = () => {
             className="relative w-full max-w-sm overflow-hidden rounded-2xl p-6 pf-noise-overlay"
             style={{
               backgroundColor: "#0a0a0a",
-              border: "1px solid rgba(255,255,255,0.08)",
+              border: "1px solid var(--overlay-white-08)",
             }}
             onClick={(e) => e.stopPropagation()}
           >

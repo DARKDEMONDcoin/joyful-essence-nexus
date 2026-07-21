@@ -139,8 +139,8 @@ const BillingPage = () => {
                     borderRadius: 999,
                     fontSize: 12.5,
                     fontWeight: 500,
-                    border: `1px solid ${active ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.14)"}`,
-                    background: active ? "rgba(255,255,255,0.16)" : "rgba(255,255,255,0.04)",
+                    border: `1px solid ${active ? "rgba(255,255,255,0.55)" : "var(--overlay-white-14)"}`,
+                    background: active ? "rgba(255,255,255,0.16)" : "var(--overlay-white-04)",
                     color: "#fff",
                     cursor: "pointer",
                   }}
@@ -152,7 +152,7 @@ const BillingPage = () => {
           </div>
         </div>
         <div>
-          <label style={{ fontSize: 12, color: "rgba(255,255,255,0.7)", display: "block", marginBottom: 6 }}>
+          <label style={{ fontSize: 12, color: "var(--overlay-white-70)", display: "block", marginBottom: 6 }}>
             How can we improve?
           </label>
           <textarea
@@ -164,8 +164,8 @@ const BillingPage = () => {
               width: "100%",
               padding: "10px 12px",
               borderRadius: 12,
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.12)",
+              background: "var(--overlay-white-04)",
+              border: "1px solid var(--overlay-white-12)",
               color: "#fff",
               fontSize: 13,
               resize: "vertical",
@@ -205,10 +205,10 @@ const BillingPage = () => {
                     fontWeight: 600,
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.8)",
+                    color: "var(--overlay-white-80)",
                     padding: "4px 10px",
                     borderRadius: 999,
-                    background: "rgba(255,255,255,0.08)",
+                    background: "var(--overlay-white-08)",
                   }}
                 >
                   {plan}

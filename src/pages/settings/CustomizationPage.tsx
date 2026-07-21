@@ -102,7 +102,7 @@ const css = `
 .ap-preview {
   padding: 20px 18px 16px;
   display: flex; flex-direction: column; gap: 8px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid var(--overlay-white-05);
   position: relative;
 }
 .ap-preview-name {
@@ -111,7 +111,7 @@ const css = `
   letter-spacing: 0.18em; color: var(--ac); text-transform: uppercase;
 }
 .ap-bubble { max-width: 78%; padding: 10px 14px; border-radius: 16px; font-size: 13px; }
-.ap-in { align-self: flex-start; background: rgba(255,255,255,0.05); color: #f4ebde; border-bottom-left-radius: 4px; }
+.ap-in { align-self: flex-start; background: var(--overlay-white-05); color: #f4ebde; border-bottom-left-radius: 4px; }
 .ap-out {
   align-self: flex-end; background: var(--ac); color: #0a0a0a; font-weight: 500;
   border-bottom-right-radius: 4px; transition: background-color 250ms ease;
@@ -133,8 +133,8 @@ const css = `
 .ap-composer-hint { margin: 0; font-size: 12.5px; color: rgba(235,220,205,0.55); }
 .ap-seg {
   display: flex; gap: 4px; padding: 4px;
-  background: rgba(0,0,0,0.35); border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.05);
+  background: var(--overlay-black-35); border-radius: 999px;
+  border: 1px solid var(--overlay-white-05);
 }
 .ap-seg-btn {
   flex: 1; height: 38px; border: 0; background: transparent;

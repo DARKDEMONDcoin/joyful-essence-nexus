@@ -166,8 +166,8 @@ export function MobileModeChips({
                   isDesktopChat
                     ? `relative shrink-0 inline-flex items-center gap-1.5 h-9 px-3.5 rounded-full text-[12.5px] font-semibold overflow-hidden select-none border backdrop-blur-2xl saturate-150 transition-colors mode-chip-btn ${
                         active
-                          ? "text-foreground border-border bg-transparent shadow-[0_6px_20px_rgba(255,255,255,0.12)]"
-                          : "text-foreground border-border bg-transparent shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_6px_18px_rgba(0,0,0,0.35)]"
+                          ? "text-foreground border-border bg-transparent shadow-[0_6px_20px_var(--overlay-white-12)]"
+                          : "text-foreground border-border bg-transparent shadow-[inset_0_1px_0_var(--overlay-white-08),0_6px_18px_var(--overlay-black-35)]"
                       }`
                     : `relative shrink-0 inline-flex items-center gap-1.5 h-9 px-3.5 rounded-full text-[12.5px] font-semibold border overflow-hidden select-none transition-colors mode-chip-btn ${
                         active
@@ -185,7 +185,7 @@ export function MobileModeChips({
                   animate={{
                     backgroundColor: pressing
                       ? active
-                        ? "rgba(255,255,255,0.18)"
+                        ? "var(--overlay-white-18)"
                         : "rgba(127,127,127,0.22)"
                       : "rgba(127,127,127,0)",
                     boxShadow: longFired

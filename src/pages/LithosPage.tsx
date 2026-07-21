@@ -41,11 +41,11 @@ function RevealLayer({
     if (!ctx) return;
     ctx.clearRect(0, 0, c.width, c.height);
     const g = ctx.createRadialGradient(cursorX, cursorY, 0, cursorX, cursorY, SPOTLIGHT_R);
-    g.addColorStop(0, "rgba(255,255,255,1)");
-    g.addColorStop(0.4, "rgba(255,255,255,1)");
+    g.addColorStop(0, "var(--overlay-white-100)");
+    g.addColorStop(0.4, "var(--overlay-white-100)");
     g.addColorStop(0.6, "rgba(255,255,255,0.75)");
     g.addColorStop(0.75, "rgba(255,255,255,0.4)");
-    g.addColorStop(0.88, "rgba(255,255,255,0.12)");
+    g.addColorStop(0.88, "var(--overlay-white-12)");
     g.addColorStop(1, "rgba(255,255,255,0)");
     ctx.fillStyle = g;
     ctx.beginPath();

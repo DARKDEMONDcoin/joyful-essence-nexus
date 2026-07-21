@@ -99,26 +99,26 @@ html.lenis body {
   /* ── Overlay tokens (glass/sidebar/profile shell) ─────────────
      Centralized rgba constants so we don't scatter hex/rgba in TSX.
      Naming: --overlay-{white|black}-{opacity*100}. */
-  --overlay-white-03: rgba(255, 255, 255, 0.03);
-  --overlay-white-04: rgba(255, 255, 255, 0.04);
-  --overlay-white-05: rgba(255, 255, 255, 0.05);
-  --overlay-white-06: rgba(255, 255, 255, 0.06);
-  --overlay-white-08: rgba(255, 255, 255, 0.08);
-  --overlay-white-10: rgba(255, 255, 255, 0.10);
-  --overlay-white-12: rgba(255, 255, 255, 0.12);
-  --overlay-white-14: rgba(255, 255, 255, 0.14);
+  --overlay-white-03: var(--overlay-white-03);
+  --overlay-white-04: var(--overlay-white-04);
+  --overlay-white-05: var(--overlay-white-05);
+  --overlay-white-06: var(--overlay-white-06);
+  --overlay-white-08: var(--overlay-white-08);
+  --overlay-white-10: var(--overlay-white-10);
+  --overlay-white-12: var(--overlay-white-12);
+  --overlay-white-14: var(--overlay-white-14);
   --overlay-white-16: rgba(255, 255, 255, 0.16);
   --overlay-white-22: rgba(255, 255, 255, 0.22);
   --overlay-white-45: rgba(255, 255, 255, 0.45);
-  --overlay-white-60: rgba(255, 255, 255, 0.60);
+  --overlay-white-60: var(--overlay-white-60);
   --overlay-white-62: rgba(255, 255, 255, 0.62);
-  --overlay-white-70: rgba(255, 255, 255, 0.70);
+  --overlay-white-70: var(--overlay-white-70);
   --overlay-white-92: rgba(255, 255, 255, 0.92);
   --overlay-white-95: rgba(255, 255, 255, 0.95);
   --overlay-white-100: #ffffff;
-  --overlay-black-22: rgba(0, 0, 0, 0.22);
+  --overlay-black-22: var(--overlay-black-22);
   --overlay-black-50: rgba(0, 0, 0, 0.50);
-  --overlay-black-55: rgba(0, 0, 0, 0.55);
+  --overlay-black-55: var(--overlay-black-55);
   --page-bg: #000000;
 
 
@@ -352,7 +352,7 @@ html:not(.dark) .ambient-bg__blob { opacity: 0.10; }
     90deg,
     rgba(255, 255, 255, 0.65) 0%,
     rgba(255, 255, 255, 0.65) 35%,
-    rgba(255, 255, 255, 1) 50%,
+    var(--overlay-white-100) 50%,
     rgba(255, 255, 255, 0.65) 65%,
     rgba(255, 255, 255, 0.65) 100%
   );
@@ -952,20 +952,20 @@ body {
   .ios26-glass {
     position: relative;
     isolation: isolate;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.1));
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), var(--overlay-white-10));
     -webkit-backdrop-filter: blur(10px) saturate(150%) brightness(1.04);
     backdrop-filter: blur(10px) saturate(150%) brightness(1.04);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.85),
-      inset 0 -1px 0 rgba(255, 255, 255, 0.18),
+      inset 0 -1px 0 var(--overlay-white-18),
       inset 0 0 0 1px rgba(255, 255, 255, 0.32),
       0 1px 2px rgba(0, 0, 0, 0.05),
-      0 18px 40px -16px rgba(0, 0, 0, 0.35);
+      0 18px 40px -16px var(--overlay-black-35);
   }
   .ios26-glass-strong {
     position: relative;
     isolation: isolate;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.14));
+    background: linear-gradient(180deg, var(--overlay-white-30), var(--overlay-white-14));
     -webkit-backdrop-filter: blur(12px) saturate(155%) brightness(1.05);
     backdrop-filter: blur(12px) saturate(155%) brightness(1.05);
     box-shadow:
@@ -977,11 +977,11 @@ body {
   }
   .dark .ios26-glass,
   .dark .ios26-glass-strong {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+    background: linear-gradient(180deg, var(--overlay-white-10), var(--overlay-white-04));
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.2),
-      inset 0 -1px 0 rgba(255, 255, 255, 0.05),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+      inset 0 1px 0 var(--overlay-white-20),
+      inset 0 -1px 0 var(--overlay-white-05),
+      inset 0 0 0 1px var(--overlay-white-10),
       0 18px 40px -16px rgba(0, 0, 0, 0.6);
   }
   /* Auto specular highlight + chromatic edge (no JSX changes needed) */
@@ -994,8 +994,8 @@ body {
     border-radius: inherit;
     background:
       radial-gradient(140% 70% at 50% -20%, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0) 55%),
-      radial-gradient(60% 100% at 0% 50%, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 60%),
-      radial-gradient(60% 100% at 100% 50%, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 60%);
+      radial-gradient(60% 100% at 0% 50%, var(--overlay-white-18), rgba(255, 255, 255, 0) 60%),
+      radial-gradient(60% 100% at 100% 50%, var(--overlay-white-18), rgba(255, 255, 255, 0) 60%);
     mix-blend-mode: screen;
     opacity: 0.95;
     z-index: 0;
@@ -1004,8 +1004,8 @@ body {
   .dark .ios26-glass-strong::before {
     background:
       radial-gradient(140% 70% at 50% -20%, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 55%),
-      radial-gradient(60% 100% at 0% 50%, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0) 60%),
-      radial-gradient(60% 100% at 100% 50%, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0) 60%);
+      radial-gradient(60% 100% at 0% 50%, var(--overlay-white-06), rgba(255, 255, 255, 0) 60%),
+      radial-gradient(60% 100% at 100% 50%, var(--overlay-white-06), rgba(255, 255, 255, 0) 60%);
     opacity: 0.7;
   }
   .ios26-glass::after,
@@ -1044,7 +1044,7 @@ body {
   .ios26-chip {
     @apply rounded-full px-3 py-1.5 text-xs font-medium transition-all;
     position: relative;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.25));
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), var(--overlay-white-25));
     -webkit-backdrop-filter: blur(14px) saturate(160%);
     backdrop-filter: blur(14px) saturate(160%);
     box-shadow:
@@ -1053,17 +1053,17 @@ body {
       0 4px 10px -4px rgba(0, 0, 0, 0.18);
   }
   .ios26-chip:hover {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.35));
+    background: linear-gradient(180deg, var(--overlay-white-70), rgba(255, 255, 255, 0.35));
   }
   .dark .ios26-chip {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
+    background: linear-gradient(180deg, var(--overlay-white-14), var(--overlay-white-05));
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.18),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+      inset 0 1px 0 var(--overlay-white-18),
+      inset 0 0 0 1px var(--overlay-white-08),
       0 4px 10px -4px rgba(0, 0, 0, 0.5);
   }
   .dark .ios26-chip:hover {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.08));
+    background: linear-gradient(180deg, var(--overlay-white-20), var(--overlay-white-08));
   }
   .ios26-chip--active {
     background: color-mix(in oklab, hsl(var(--primary)) 18%, transparent);
@@ -1304,7 +1304,7 @@ body {
 }
 .fancy-btn::before {
   --space: 1px;
-  background: linear-gradient(177.95deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(177.95deg, var(--overlay-white-25) 0%, rgba(255, 255, 255, 0) 100%);
 }
 .fancy-btn::after {
   --space: 2px;
@@ -2571,7 +2571,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   max-width: calc(100vw - 32px);
   background: rgba(20, 20, 22, 0.72);
   color: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--overlay-white-08);
   border-radius: 999px;
   display: flex;
   flex-direction: row;
@@ -2586,7 +2586,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   overflow: visible;
   box-shadow:
     0 18px 50px -26px rgba(0, 0, 0, 0.65),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    inset 0 1px 0 var(--overlay-white-04);
   backdrop-filter: blur(18px) saturate(160%);
   -webkit-backdrop-filter: blur(18px) saturate(160%);
 }
@@ -2617,7 +2617,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   font-size: 0.72rem;
   line-height: 1.35;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--overlay-white-60);
   margin: 0;
   flex: 1 1 auto;
 }
@@ -2642,7 +2642,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   height: 30px;
   padding: 0 14px;
   background: linear-gradient(180deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.85) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid var(--overlay-white-14);
   color: hsl(var(--primary-foreground));
   cursor: pointer;
   font-size: 0.78rem;
@@ -2659,9 +2659,9 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   width: auto;
   height: 30px;
   padding: 0 12px;
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--overlay-white-05);
+  color: var(--overlay-white-70);
+  border: 1px solid var(--overlay-white-08);
   cursor: pointer;
   font-size: 0.78rem;
   font-weight: 600;
@@ -2672,7 +2672,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
 
 .declineButton:hover {
   background: rgba(255, 255, 255, 0.09);
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--overlay-white-90);
 }
 
 .acceptButton:hover {
@@ -2884,7 +2884,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   bottom: -10px;
   width: 2px;
   height: 2px;
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--overlay-white-30);
   border-radius: 50%;
   animation: sidebar-float infinite ease-in-out;
 }
@@ -3103,7 +3103,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   -webkit-backdrop-filter: blur(50px);
   backdrop-filter: blur(50px);
   border: none;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05), inset 0 1px 1px var(--overlay-white-15);
   position: relative;
   overflow: hidden;
 }
@@ -3116,10 +3116,10 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.5) 0%,
-    rgba(255, 255, 255, 0.2) 20%,
+    var(--overlay-white-20) 20%,
     rgba(255, 255, 255, 0) 40%,
     rgba(255, 255, 255, 0) 60%,
-    rgba(255, 255, 255, 0.2) 80%,
+    var(--overlay-white-20) 80%,
     rgba(255, 255, 255, 0.5) 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -3140,7 +3140,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   border: none;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 1px var(--overlay-white-10);
   position: relative;
   overflow: hidden;
 }
@@ -3155,10 +3155,10 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.45) 0%,
-    rgba(255, 255, 255, 0.15) 20%,
+    var(--overlay-white-15) 20%,
     rgba(255, 255, 255, 0) 40%,
     rgba(255, 255, 255, 0) 60%,
-    rgba(255, 255, 255, 0.15) 80%,
+    var(--overlay-white-15) 80%,
     rgba(255, 255, 255, 0.45) 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -3171,7 +3171,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.2s ease;
 }
 .liquid-glass-button:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--overlay-white-05);
 }
 .liquid-glass-button:active {
   transform: scale(0.97);
@@ -3191,7 +3191,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   background-blend-mode: luminosity;
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 1px var(--overlay-white-10);
 }
 .liquid-glass-hover::before {
   content: '';
@@ -3202,10 +3202,10 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.45) 0%,
-    rgba(255, 255, 255, 0.15) 20%,
+    var(--overlay-white-15) 20%,
     rgba(255, 255, 255, 0) 40%,
     rgba(255, 255, 255, 0) 60%,
-    rgba(255, 255, 255, 0.15) 80%,
+    var(--overlay-white-15) 80%,
     rgba(255, 255, 255, 0.45) 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -3771,7 +3771,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
     linear-gradient(135deg, #f5c24a 0%, #d4af37 45%, #b8860b 100%);
   color: #1a1200;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 1px 0 var(--overlay-white-60),
     0 0 0 1px rgba(255, 215, 0, 0.15),
     0 6px 18px -6px rgba(212, 175, 55, 0.55),
     0 0 22px -4px rgba(255, 215, 0, 0.35);
@@ -3893,7 +3893,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   border: none;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 1px var(--overlay-white-10);
   position: relative;
   overflow: hidden;
 }
@@ -3906,10 +3906,10 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.45) 0%,
-    rgba(255, 255, 255, 0.15) 20%,
+    var(--overlay-white-15) 20%,
     rgba(255, 255, 255, 0) 40%,
     rgba(255, 255, 255, 0) 60%,
-    rgba(255, 255, 255, 0.15) 80%,
+    var(--overlay-white-15) 80%,
     rgba(255, 255, 255, 0.45) 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -3934,13 +3934,13 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
     0 4px 10px -4px rgba(0, 0, 0, 0.18);
 }
 .liquid-chip:hover {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.7));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), var(--overlay-white-70));
 }
 .dark .liquid-chip {
   background: linear-gradient(180deg, rgba(36, 36, 38, 0.82), rgba(18, 18, 20, 0.66));
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.24),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+    inset 0 0 0 1px var(--overlay-white-12),
     0 4px 10px -4px rgba(0, 0, 0, 0.5);
 }
 .dark .liquid-chip:hover {
@@ -3956,15 +3956,15 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
       130% 100% at 50% -10%,
       rgba(255, 255, 255, 0.55),
       rgba(255, 255, 255, 0.28) 55%,
-      rgba(255, 255, 255, 0.18) 100%
+      var(--overlay-white-18) 100%
     ),
     linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.26));
   -webkit-backdrop-filter: blur(18px) saturate(155%) brightness(1.05);
   backdrop-filter: blur(18px) saturate(155%) brightness(1.05);
   box-shadow:
     inset 0 1.5px 0 rgba(255, 255, 255, 0.75),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.12),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 var(--overlay-white-12),
+    inset 0 0 0 1px var(--overlay-white-30),
     0 1px 0 rgba(255, 255, 255, 0.5),
     0 24px 56px -20px rgba(0, 0, 0, 0.28),
     0 6px 14px -8px rgba(0, 0, 0, 0.18);
@@ -3973,15 +3973,15 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   background:
     radial-gradient(
       130% 100% at 50% -10%,
-      rgba(255, 255, 255, 0.18),
-      rgba(255, 255, 255, 0.08) 55%,
-      rgba(255, 255, 255, 0.05) 100%
+      var(--overlay-white-18),
+      var(--overlay-white-08) 55%,
+      var(--overlay-white-05) 100%
     ),
     linear-gradient(180deg, rgba(40, 40, 44, 0.55), rgba(20, 20, 24, 0.42));
   box-shadow:
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+    inset 0 1.5px 0 var(--overlay-white-20),
+    inset 0 -1px 0 var(--overlay-white-06),
+    inset 0 0 0 1px var(--overlay-white-14),
     0 24px 56px -20px rgba(0, 0, 0, 0.65),
     0 6px 14px -8px rgba(0, 0, 0, 0.45);
 }
@@ -3993,16 +3993,16 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   border-radius: inherit;
   background:
     radial-gradient(140% 70% at 50% -20%, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0) 55%),
-    radial-gradient(60% 100% at 0% 50%, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 60%),
-    radial-gradient(60% 100% at 100% 50%, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 60%);
+    radial-gradient(60% 100% at 0% 50%, var(--overlay-white-18), rgba(255, 255, 255, 0) 60%),
+    radial-gradient(60% 100% at 100% 50%, var(--overlay-white-18), rgba(255, 255, 255, 0) 60%);
   mix-blend-mode: screen;
   opacity: 0.95;
 }
 .dark .liquid-glass-pro__shine {
   background:
     radial-gradient(140% 70% at 50% -20%, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 55%),
-    radial-gradient(60% 100% at 0% 50%, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0) 60%),
-    radial-gradient(60% 100% at 100% 50%, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0) 60%);
+    radial-gradient(60% 100% at 0% 50%, var(--overlay-white-06), rgba(255, 255, 255, 0) 60%),
+    radial-gradient(60% 100% at 100% 50%, var(--overlay-white-06), rgba(255, 255, 255, 0) 60%);
   opacity: 0.7;
 }
 /* chromatic aberration along edges */
@@ -4015,8 +4015,8 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.55) 0%,
-    rgba(255, 255, 255, 0.18) 35%,
-    rgba(255, 255, 255, 0.1) 65%,
+    var(--overlay-white-18) 35%,
+    var(--overlay-white-10) 65%,
     rgba(255, 255, 255, 0.32) 100%
   );
   -webkit-mask:
@@ -4034,9 +4034,9 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.22) 0%,
-    rgba(255, 255, 255, 0.06) 40%,
-    rgba(255, 255, 255, 0.04) 70%,
-    rgba(255, 255, 255, 0.14) 100%
+    var(--overlay-white-06) 40%,
+    var(--overlay-white-04) 70%,
+    var(--overlay-white-14) 100%
   );
   opacity: 0.55;
 }
@@ -4066,7 +4066,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   box-shadow:
     inset 0 0 4px 0 rgba(250, 250, 250, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.22),
-    0 12px 40px -12px rgba(0, 0, 0, 0.55);
+    0 12px 40px -12px var(--overlay-black-55);
 }
 /* Subtle top specular — softened per iOS 26.4 Reduce Bright Effects */
 .composer-liquid-glass::before {
@@ -4075,7 +4075,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background: radial-gradient(120% 50% at 50% -10%, rgba(255, 255, 255, 0.25), transparent 60%);
+  background: radial-gradient(120% 50% at 50% -10%, var(--overlay-white-25), transparent 60%);
   mix-blend-mode: screen;
   opacity: 0.65;
   z-index: 1;
@@ -4107,12 +4107,12 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
  * hit these. White-tinted on dark composer surface.
  * ========================================================================= */
 .ios26-glass-chip {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: var(--overlay-white-08);
+  border: 1px solid var(--overlay-white-14);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   backdrop-filter: blur(20px) saturate(180%);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 1px 0 var(--overlay-white-18),
     inset 0 -1px 0 rgba(0, 0, 0, 0.18),
     0 2px 8px rgba(0, 0, 0, 0.25);
   color: rgba(255, 255, 255, 0.95);
@@ -4122,7 +4122,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
     box-shadow 160ms ease;
 }
 .ios26-glass-chip:hover {
-  background: rgba(255, 255, 255, 0.14);
+  background: var(--overlay-white-14);
 }
 .ios26-glass-chip:active {
   transform: scale(0.96);
@@ -4130,7 +4130,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
 .ios26-glass-chip[data-active="true"],
 .ios26-glass-chip.is-active {
   background: rgba(255, 255, 255, 0.22);
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: var(--overlay-white-30);
 }
 
 /* =========================================================================
@@ -4167,7 +4167,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
       hsl(var(--section-accent) / 0.45) 0%,
       hsl(var(--section-accent) / 0) 70%
     ),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+    linear-gradient(180deg, var(--overlay-white-10), var(--overlay-white-04));
   border: 1px solid hsl(var(--section-accent) / 0.45);
   -webkit-backdrop-filter: blur(22px) saturate(180%);
   backdrop-filter: blur(22px) saturate(180%);
@@ -4190,7 +4190,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   pointer-events: none;
   background: radial-gradient(
     60% 100% at 50% 0%,
-    rgba(255, 255, 255, 0.18),
+    var(--overlay-white-18),
     rgba(255, 255, 255, 0) 70%
   );
   opacity: 0.6;
@@ -4213,7 +4213,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
 .btn-glass-accent:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 var(--overlay-white-12);
 }
 
 /* Accent ring used on the active model card in the picker. */
@@ -4226,7 +4226,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
 
 .ios26-glass-menu {
   background: rgba(22, 22, 26, 0.62);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--overlay-white-12);
   -webkit-backdrop-filter: blur(24px) saturate(170%);
   backdrop-filter: blur(24px) saturate(170%);
   box-shadow:
@@ -4491,7 +4491,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
 .megsy-oil-sheen {
   opacity: 0.62;
   background:
-    linear-gradient(105deg, transparent 0 24%, rgba(255, 255, 255, 0.18) 38%, transparent 54% 100%),
+    linear-gradient(105deg, transparent 0 24%, var(--overlay-white-18) 38%, transparent 54% 100%),
     radial-gradient(ellipse at 50% 50%, rgba(255, 210, 170, 0.16), transparent 55%);
   mix-blend-mode: overlay;
 }
@@ -4501,7 +4501,7 @@ html[dir="rtl"] .prose-chat.lang-ar :is(code, kbd, samp) {
   background-image:
     repeating-radial-gradient(
       circle at 30% 30%,
-      rgba(255, 255, 255, 0.08) 0 1px,
+      var(--overlay-white-08) 0 1px,
       transparent 1px 7px
     ),
     linear-gradient(to bottom, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.44));
@@ -5061,9 +5061,9 @@ html[data-section="chat"] body .settings-desktop-canvas h6,
   font-weight: 700;
   font-size: 13px;
   color: #fff;
-  background: rgba(255, 255, 255, 0.18);
+  background: var(--overlay-white-18);
   border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 0 1px var(--overlay-white-08);
 }
 .step-card-text {
   flex: 1;
@@ -5182,15 +5182,15 @@ html[data-section="chat"] body .settings-desktop-canvas h6,
   pointer-events: none;
   background-image:
     radial-gradient(1.2px 1.2px at 20px 30px, rgba(255,255,255,0.35), transparent),
-    radial-gradient(1px 1px at 50px 80px, rgba(255,255,255,0.25), transparent),
-    radial-gradient(1.5px 1.5px at 120px 40px, rgba(255,255,255,0.30), transparent),
-    radial-gradient(1px 1px at 180px 120px, rgba(255,255,255,0.20), transparent),
+    radial-gradient(1px 1px at 50px 80px, var(--overlay-white-25), transparent),
+    radial-gradient(1.5px 1.5px at 120px 40px, var(--overlay-white-30), transparent),
+    radial-gradient(1px 1px at 180px 120px, var(--overlay-white-20), transparent),
     radial-gradient(1.3px 1.3px at 250px 90px, rgba(255,255,255,0.28), transparent),
-    radial-gradient(1px 1px at 300px 60px, rgba(255,255,255,0.18), transparent),
+    radial-gradient(1px 1px at 300px 60px, var(--overlay-white-18), transparent),
     radial-gradient(1.4px 1.4px at 80px 180px, rgba(255,255,255,0.22), transparent),
-    radial-gradient(1px 1px at 160px 200px, rgba(255,255,255,0.15), transparent),
-    radial-gradient(1.2px 1.2px at 220px 160px, rgba(255,255,255,0.25), transparent),
-    radial-gradient(1px 1px at 350px 140px, rgba(255,255,255,0.18), transparent);
+    radial-gradient(1px 1px at 160px 200px, var(--overlay-white-15), transparent),
+    radial-gradient(1.2px 1.2px at 220px 160px, var(--overlay-white-25), transparent),
+    radial-gradient(1px 1px at 350px 140px, var(--overlay-white-18), transparent);
   background-size: 400px 250px, 350px 300px, 420px 220px, 380px 280px, 360px 260px, 330px 310px, 410px 240px, 370px 290px, 340px 270px, 390px 230px;
   animation: auth-stars-shift 60s linear infinite;
 }
@@ -5357,12 +5357,12 @@ svg {
   /* Desktop: turn the composer surface into liquid glass */
   .chat-composer-frame,
   [data-theme="dark"] .chat-composer-frame {
-    background: rgba(255, 255, 255, 0.06) !important;
+    background: var(--overlay-white-06) !important;
     border: 1px solid rgba(255, 255, 255, 0.16) !important;
     border-radius: 26px !important;
     box-shadow:
       inset 1px 1px 1px 0 rgba(255, 255, 255, 0.28),
-      inset -1px -1px 1px 0 rgba(255, 255, 255, 0.14),
+      inset -1px -1px 1px 0 var(--overlay-white-14),
       0 14px 40px rgba(0, 0, 0, 0.38) !important;
     backdrop-filter: blur(28px) saturate(200%) brightness(1.05) !important;
   }
@@ -5467,7 +5467,7 @@ button[data-testid="mobile-composer-plus"]:hover {
     box-shadow:
       inset 0 0 4px 0 rgba(250, 250, 250, 0.5),
       inset 0 1px 0 rgba(255, 255, 255, 0.22),
-      0 12px 40px -12px rgba(0, 0, 0, 0.55) !important;
+      0 12px 40px -12px var(--overlay-black-55) !important;
     overflow: hidden;
   }
   .chat-composer-frame.chat-composer-liquid::before {
@@ -5476,7 +5476,7 @@ button[data-testid="mobile-composer-plus"]:hover {
     inset: 0;
     border-radius: inherit;
     pointer-events: none;
-    background: radial-gradient(120% 50% at 50% -10%, rgba(255, 255, 255, 0.25), transparent 60%);
+    background: radial-gradient(120% 50% at 50% -10%, var(--overlay-white-25), transparent 60%);
     mix-blend-mode: screen;
     opacity: 0.65;
     z-index: 1;
@@ -5497,21 +5497,21 @@ button[data-testid="mobile-composer-plus"]:hover {
   border: none !important;
   box-shadow:
     4px 4px 4px rgba(0, 0, 0, 0.05),
-    inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
+    inset 0 1px 1px var(--overlay-white-15) !important;
   overflow: hidden;
   isolation: isolate;
 }
 
 .mobile-more-glass-menu {
   position: fixed !important;
-  background: rgba(255, 255, 255, 0.03) !important;
+  background: var(--overlay-white-03) !important;
   background-blend-mode: luminosity;
   -webkit-backdrop-filter: blur(30px) saturate(140%) !important;
   backdrop-filter: blur(30px) saturate(140%) !important;
   border: none !important;
   box-shadow:
     4px 4px 4px rgba(0, 0, 0, 0.05),
-    inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
+    inset 0 1px 1px var(--overlay-white-15) !important;
   overflow: hidden;
   isolation: isolate;
   contain: paint;
@@ -5535,10 +5535,10 @@ button[data-testid="mobile-composer-plus"]:hover {
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.5) 0%,
-    rgba(255, 255, 255, 0.2) 20%,
+    var(--overlay-white-20) 20%,
     rgba(255, 255, 255, 0) 40%,
     rgba(255, 255, 255, 0) 60%,
-    rgba(255, 255, 255, 0.2) 80%,
+    var(--overlay-white-20) 80%,
     rgba(255, 255, 255, 0.5) 100%
   );
   -webkit-mask:
@@ -5554,10 +5554,10 @@ button[data-testid="mobile-composer-plus"]:hover {
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.45) 0%,
-    rgba(255, 255, 255, 0.15) 20%,
+    var(--overlay-white-15) 20%,
     rgba(255, 255, 255, 0) 40%,
     rgba(255, 255, 255, 0) 60%,
-    rgba(255, 255, 255, 0.15) 80%,
+    var(--overlay-white-15) 80%,
     rgba(255, 255, 255, 0.45) 100%
   );
 }
@@ -5599,12 +5599,12 @@ button[data-testid="mobile-composer-plus"]:hover {
 /* Merged glass pill grouping premium + new chat + more, matches composer glass */
 .mobile-header-glass-pill {
   position: relative;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--overlay-white-03);
   -webkit-backdrop-filter: blur(30px) saturate(140%);
   backdrop-filter: blur(30px) saturate(140%);
   box-shadow:
     4px 4px 4px rgba(0, 0, 0, 0.05),
-    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    inset 0 1px 1px var(--overlay-white-15);
   isolation: isolate;
   overflow: hidden;
 }
@@ -5617,10 +5617,10 @@ button[data-testid="mobile-composer-plus"]:hover {
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.45) 0%,
-    rgba(255, 255, 255, 0.15) 20%,
+    var(--overlay-white-15) 20%,
     rgba(255, 255, 255, 0) 40%,
     rgba(255, 255, 255, 0) 60%,
-    rgba(255, 255, 255, 0.15) 80%,
+    var(--overlay-white-15) 80%,
     rgba(255, 255, 255, 0.45) 100%
   );
   -webkit-mask:
@@ -6127,7 +6127,7 @@ body.app-fullscreen-active .mobile-sidebar-trigger {
   -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
   backdrop-filter: blur(24px) saturate(180%) !important;
   border: none !important;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
+  box-shadow: inset 0 1px 1px var(--overlay-white-15) !important;
   color: hsl(0 0% 98%) !important;
   contain: paint;
   isolation: isolate;
@@ -6150,10 +6150,10 @@ body.app-fullscreen-active .mobile-sidebar-trigger {
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.45) 0%,
-    rgba(255, 255, 255, 0.15) 20%,
+    var(--overlay-white-15) 20%,
     rgba(255, 255, 255, 0) 40%,
     rgba(255, 255, 255, 0) 60%,
-    rgba(255, 255, 255, 0.15) 80%,
+    var(--overlay-white-15) 80%,
     rgba(255, 255, 255, 0.45) 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -6179,7 +6179,7 @@ body.app-fullscreen-active .mobile-sidebar-trigger {
   -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
   backdrop-filter: blur(24px) saturate(180%) !important;
   border: none !important;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
+  box-shadow: inset 0 1px 1px var(--overlay-white-15) !important;
   min-height: 64px;
   overflow: hidden;
   position: relative;
@@ -6453,7 +6453,7 @@ body[data-chat-mode="code"]          .chat-aurora { --aurora-accent-1:#22d3ee; -
   backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(50px);
   border: none;
-  box-shadow: 4px 4px 4px rgba(0,0,0,0.05), inset 0 1px 1px rgba(255,255,255,0.15);
+  box-shadow: 4px 4px 4px rgba(0,0,0,0.05), inset 0 1px 1px var(--overlay-white-15);
   position: relative;
   overflow: hidden;
 }
@@ -6464,10 +6464,10 @@ body[data-chat-mode="code"]          .chat-aurora { --aurora-accent-1:#22d3ee; -
   padding: 1.4px;
   background: linear-gradient(180deg,
     rgba(255,255,255,0.5) 0%,
-    rgba(255,255,255,0.2) 20%,
+    var(--overlay-white-20) 20%,
     rgba(255,255,255,0) 40%,
     rgba(255,255,255,0) 60%,
-    rgba(255,255,255,0.2) 80%,
+    var(--overlay-white-20) 80%,
     rgba(255,255,255,0.5) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -6502,7 +6502,7 @@ body[data-chat-mode="code"]          .chat-aurora { --aurora-accent-1:#22d3ee; -
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border: none;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 1px var(--overlay-white-10);
   position: relative;
   overflow: hidden;
 }
@@ -6513,9 +6513,9 @@ body[data-chat-mode="code"]          .chat-aurora { --aurora-accent-1:#22d3ee; -
   border-radius: inherit;
   padding: 1.4px;
   background: linear-gradient(180deg,
-    rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%,
+    rgba(255,255,255,0.45) 0%, var(--overlay-white-15) 20%,
     rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
-    rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);
+    var(--overlay-white-15) 80%, rgba(255,255,255,0.45) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;
@@ -6601,8 +6601,8 @@ body[data-chat-mode="code"]          .chat-aurora { --aurora-accent-1:#22d3ee; -
   height: 14px;
   width: 100%;
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--overlay-white-04);
+  border: 1px solid var(--overlay-white-06);
   overflow: hidden;
 }
 .status-pipe-fill {
@@ -6797,7 +6797,7 @@ html[dir="rtl"] .keep-ltr {
     background: rgba(0, 0, 0, 0.32) !important;
     backdrop-filter: blur(22px) saturate(160%) !important;
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.18),
+      inset 0 1px 0 var(--overlay-white-18),
       0 22px 60px -18px rgba(0, 0, 0, 0.7) !important;
     color: hsl(var(--brand-parchment)) !important;
     padding: 0.5rem !important;

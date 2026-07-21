@@ -337,7 +337,7 @@ const css = `
 .mem-hero-body span { font-size: 12.5px; color: rgba(235,220,205,0.5); }
 .mem-stats {
   display: flex; align-items: center; gap: 8px; margin-top: 16px;
-  padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.05);
+  padding-top: 16px; border-top: 1px solid var(--overlay-white-05);
 }
 .mem-stats > div { flex: 1; display: flex; flex-direction: column; gap: 4px; text-align: center; }
 .mem-stats span { font-family: "Space Grotesk", sans-serif; font-size: 22px; font-weight: 600; color: #f4ebde; letter-spacing: -0.02em; }
@@ -374,7 +374,7 @@ const css = `
 }
 .mem-item + .mem-item::before {
   content: ""; position: absolute; top: 0; left: 18px; right: 18px; height: 1px;
-  background: rgba(255,255,255,0.05);
+  background: var(--overlay-white-05);
 }
 .mem-item-body { flex: 1; min-width: 0; }
 .mem-item-body p { margin: 0; font-size: 14px; font-weight: 500; color: #f4ebde; }

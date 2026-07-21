@@ -271,7 +271,7 @@ export default function SkillsSettingsPage() {
   const INK_SOFT = "rgba(255,255,255,0.55)";
   const INK_MUTE = "rgba(255,255,255,0.38)";
   const CARD_BG = "rgba(20,20,50,0.55)";
-  const CARD_BORDER = "rgba(255,255,255,0.06)";
+  const CARD_BORDER = "var(--overlay-white-06)";
   const HEADING = { fontFamily: "'Space Grotesk', system-ui, sans-serif" };
   const BODY = { fontFamily: "'DM Sans', system-ui, sans-serif" };
 
@@ -362,7 +362,7 @@ export default function SkillsSettingsPage() {
                 onClick={() => fileInputRef.current?.click()}
                 disabled={importing}
                 className="inline-flex items-center gap-1.5 h-9 px-4 rounded-full text-[12.5px] font-medium text-white/85 transition hover:bg-white/[0.06] disabled:opacity-50"
-                style={{ border: `1px solid ${CARD_BORDER}`, backgroundColor: "rgba(255,255,255,0.03)" }}
+                style={{ border: `1px solid ${CARD_BORDER}`, backgroundColor: "var(--overlay-white-03)" }}
               >
                 <Paperclip className="w-3.5 h-3.5" strokeWidth={2} /> Import .zip
               </button>
@@ -395,7 +395,7 @@ export default function SkillsSettingsPage() {
                 <span
                   className="min-w-[18px] h-[18px] inline-flex items-center justify-center text-[10px] font-bold px-1.5 rounded-full"
                   style={{
-                    backgroundColor: active ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.06)",
+                    backgroundColor: active ? "var(--overlay-white-20)" : "var(--overlay-white-06)",
                     color: active ? "#fff" : INK_MUTE,
                   }}
                 >
@@ -586,7 +586,7 @@ function SkillCardIndigo({
           <div className="flex items-center gap-2">
             <span
               className="h-1.5 w-1.5 rounded-full"
-              style={{ backgroundColor: enabled ? indigo : "rgba(255,255,255,0.2)" }}
+              style={{ backgroundColor: enabled ? indigo : "var(--overlay-white-20)" }}
             />
             <p className="text-[14px] font-semibold text-white truncate" style={heading}>
               {skill.name}
@@ -617,7 +617,7 @@ function SkillCardIndigo({
               {skill.triggers.length > 4 && (
                 <span
                   className="inline-flex items-center h-5 px-1.5 rounded text-[10.5px] font-medium"
-                  style={{ backgroundColor: "rgba(255,255,255,0.06)", color: inkMute }}
+                  style={{ backgroundColor: "var(--overlay-white-06)", color: inkMute }}
                 >
                   +{skill.triggers.length - 4}
                 </span>
