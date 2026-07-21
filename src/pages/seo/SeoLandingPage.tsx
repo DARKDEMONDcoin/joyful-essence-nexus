@@ -1,3 +1,4 @@
+/** @doc SEO landing page — marketing surface for SEO features. */
 /**
  * SynapseX-inspired SEO landing template used for every /:slug page defined
  * in src/data/seoPages.ts. Preserves the exact section structure, motion

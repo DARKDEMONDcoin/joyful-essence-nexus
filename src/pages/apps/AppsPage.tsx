@@ -1,3 +1,4 @@
+/** @doc Apps directory — browse and launch Megsy apps. */
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { m as motion } from "framer-motion";

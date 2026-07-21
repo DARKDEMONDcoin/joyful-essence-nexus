@@ -1,3 +1,4 @@
+/** @doc AppSumo OAuth callback handler — links AppSumo accounts to Megsy users. */
 /**
  * AppSumo OAuth bridge.
  *

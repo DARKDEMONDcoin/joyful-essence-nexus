@@ -1,3 +1,4 @@
+/** @doc Operator Orchestrator — coordinates Megsy operator agents. */
 // Operator Orchestrator — Megsy-native implementation.
 // Fully powered by our own services (Alibaba DashScope / OpenRouter via the
 // shared llm-router). No external Manus / third-party agent runtimes.

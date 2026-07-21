@@ -1,3 +1,4 @@
+/** @doc AppSumo webhook — processes purchase/refund lifecycle events. */
 /**
  * AppSumo Licensing API webhook.
  *
