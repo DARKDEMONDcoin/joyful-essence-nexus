@@ -1,0 +1,10 @@
+import { SEO_SLUGS } from "../src/data/seoPages.ts";
+import fs from "fs";
+const lines = SEO_SLUGS.map(s => `  <url><loc>https://megsyai.com/${s}</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>`).join("\n");
+const path = "public/sitemap.xml";
+const xml = fs.readFileSync(path, "utf8");
+const start = xml.indexOf("<!-- SEO PAGES START -->");
+const end = xml.indexOf("<!-- SEO PAGES END -->");
+const out = xml.slice(0, start) + "<!-- SEO PAGES START -->\n" + lines + "\n  " + xml.slice(end);
+fs.writeFileSync(path, out);
+console.log("Wrote", SEO_SLUGS.length, "slugs");

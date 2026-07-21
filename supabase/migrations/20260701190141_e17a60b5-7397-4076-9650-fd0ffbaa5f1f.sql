@@ -1,0 +1,2 @@
+INSERT INTO public.subscriptions (user_id, plan, status, current_period_end, amount_cents, currency)
+VALUES ('53567264-8684-43af-b021-71ff62952345', 'pro', 'active', now() + interval '30 days', 0, 'USD');

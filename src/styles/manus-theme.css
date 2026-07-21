@@ -1,0 +1,159 @@
+/* ─────────────────────────────────────────────────────────────
+   Manus Theme — desktop chat shell.
+   Scoped to [data-shell="manus"]. Activates only at md+ so mobile
+   keeps its existing dark blue gradient surface untouched.
+
+   Direction: warm cream paper + ink black, Instrument Serif accent
+   headings, hairline borders, single ink accent. Inspired by manus.im.
+   ───────────────────────────────────────────────────────────── */
+
+@media (min-width: 768px) {
+  [data-shell="manus"] {
+    /* Override the global semantic tokens just for this subtree so every
+       shadcn component (cards, buttons, popovers, inputs) inherits the
+       warm cream palette without touching individual components. */
+    --background: 36 33% 98%;       /* #FDFCFB cream */
+    --foreground: 60 7% 9%;          /* #1A1A17 ink */
+    --card: 0 0% 100%;
+    --card-foreground: 60 7% 9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 60 7% 9%;
+    --primary: 60 7% 9%;
+    --primary-foreground: 36 33% 98%;
+    --secondary: 40 14% 95%;         /* #F3F2EE */
+    --secondary-foreground: 60 7% 9%;
+    --muted: 40 14% 95%;
+    --muted-foreground: 40 4% 45%;   /* stone-500 */
+    --accent: 40 14% 95%;
+    --accent-foreground: 60 7% 9%;
+    --border: 40 10% 88%;            /* stone-200 */
+    --input: 40 10% 88%;
+    --ring: 60 7% 9%;
+    --radius: 0.75rem;
+
+    background-color: hsl(36 33% 98%);
+    color: hsl(60 7% 9%);
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  /* Hide the mobile blue gradient on desktop when manus theme is active */
+  [data-shell="manus"] .chat-mobile-blue-bg,
+  [data-shell="manus"] .chat-ambient-glow {
+    display: none !important;
+  }
+
+  /* Sidebar — recolor to warm parchment instead of dark surface */
+  [data-shell="manus"] aside.bg-sidebar,
+  [data-shell="manus"] [data-sidebar] {
+    background-color: hsl(36 33% 98%) !important;
+    color: hsl(60 7% 9%) !important;
+    border-right-color: hsl(40 10% 90%) !important;
+  }
+  [data-shell="manus"] aside.bg-sidebar * {
+    border-color: hsl(40 10% 90%);
+  }
+
+  /* Editorial serif treatment for greetings and large display text */
+  [data-shell="manus"] h1,
+  [data-shell="manus"] h2,
+  [data-shell="manus"] .manus-serif,
+  [data-shell="manus"] [class*="text-3xl"],
+  [data-shell="manus"] [class*="text-4xl"],
+  [data-shell="manus"] [class*="text-5xl"] {
+    font-family: "Instrument Serif", ui-serif, Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  /* Mono caption helper */
+  [data-shell="manus"] .manus-mono,
+  [data-shell="manus"] code,
+  [data-shell="manus"] kbd {
+    font-family: ui-monospace, "JetBrains Mono", SFMono-Regular, Menlo,
+      Consolas, monospace;
+  }
+
+  /* Hairline borders globally inside the shell */
+  [data-shell="manus"] .border,
+  [data-shell="manus"] .border-t,
+  [data-shell="manus"] .border-b,
+  [data-shell="manus"] .border-l,
+  [data-shell="manus"] .border-r,
+  [data-shell="manus"] .border-border,
+  [data-shell="manus"] .border-border\/70,
+  [data-shell="manus"] .border-border\/50,
+  [data-shell="manus"] .border-border\/40,
+  [data-shell="manus"] .border-border\/30 {
+    border-color: hsl(40 10% 90%);
+  }
+
+  /* Composer card — bright white on cream, ink submit */
+  [data-shell="manus"] .composer-card,
+  [data-shell="manus"] .chat-composer-frame {
+    background: #ffffff !important;
+    border: 1px solid hsl(40 10% 88%) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.06);
+  }
+  [data-shell="manus"] .composer-card textarea,
+  [data-shell="manus"] .chat-composer-frame textarea {
+    color: hsl(60 7% 9%) !important;
+    caret-color: hsl(60 7% 9%);
+  }
+  [data-shell="manus"] .composer-card textarea::placeholder {
+    color: hsl(40 4% 55%) !important;
+  }
+
+  /* User message bubble — ink on cream pair (high contrast) */
+  [data-shell="manus"] [data-role="user"],
+  [data-shell="manus"] .user-bubble {
+    background: hsl(60 7% 9%) !important;
+    color: hsl(36 33% 98%) !important;
+  }
+
+  /* Soft scrollbars matching the cream palette */
+  [data-shell="manus"] ::-webkit-scrollbar { width: 10px; height: 10px; }
+  [data-shell="manus"] ::-webkit-scrollbar-thumb {
+    background: hsl(40 6% 80%);
+    border-radius: 999px;
+    border: 2px solid hsl(36 33% 98%);
+  }
+  [data-shell="manus"] ::-webkit-scrollbar-track { background: transparent; }
+
+  /* Floating Megsy "computer" canvas card — right side of the workspace */
+  [data-shell="manus"] .manus-canvas {
+    background: #ffffff;
+    border: 1px solid hsl(40 10% 90%);
+    border-radius: 18px;
+    box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Pill running indicator */
+  [data-shell="manus"] .manus-running-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    background: hsl(40 14% 96%);
+    border: 1px solid hsl(40 10% 90%);
+    border-radius: 999px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: hsl(40 4% 35%);
+  }
+  [data-shell="manus"] .manus-running-pill::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: #10b981;
+    animation: manus-pulse 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes manus-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(0.85); }
+}

@@ -1,0 +1,15 @@
+{
+  "actorSpecification": 1,
+  "name": "openrouter-bridge",
+  "title": "OpenRouter Bridge",
+  "version": "1.0",
+  "buildTag": "latest",
+  "meta": { "templateId": "js-empty" },
+  "input": { "type": "object", "schemaVersion": 1, "properties": {} },
+  "webServerSchema": {
+    "openapi": "3.0.0",
+    "info": { "title": "OpenRouter Bridge", "version": "1.0" },
+    "paths": {}
+  },
+  "dockerfile": "./Dockerfile"
+}

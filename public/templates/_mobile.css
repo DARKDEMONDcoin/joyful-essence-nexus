@@ -1,0 +1,142 @@
+/* ============================================================
+   Global Mobile Responsiveness Layer for All Templates
+   Injected into every template's index.html
+   Targets phones (<= 768px) and small phones (<= 480px)
+   ============================================================ */
+
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    -webkit-text-size-adjust: 100% !important;
+    cursor: auto !important;
+  }
+
+  body {
+    font-size: 15px !important;
+    line-height: 1.55 !important;
+  }
+
+  /* Typography scale */
+  h1, .h1, [class*="hero-title"], [class*="title-xl"], [class*="display"] {
+    font-size: clamp(32px, 9vw, 56px) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.02em !important;
+    word-wrap: break-word !important;
+  }
+  h2, .h2, [class*="section-title"], [class*="title-lg"] {
+    font-size: clamp(26px, 7vw, 40px) !important;
+    line-height: 1.1 !important;
+  }
+  h3, .h3, [class*="title-md"] {
+    font-size: clamp(20px, 5vw, 28px) !important;
+    line-height: 1.2 !important;
+  }
+  p, li, .text, [class*="body"], [class*="paragraph"], [class*="description"], [class*="subtitle"] {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Containers / sections */
+  section, .section, header, footer, main, .container, .wrapper, .content,
+  [class*="container"], [class*="wrapper"], [class*="section"] {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    max-width: 100% !important;
+  }
+
+  .hero, [class*="hero"] {
+    min-height: auto !important;
+    padding-top: 80px !important;
+    padding-bottom: 60px !important;
+    text-align: center !important;
+  }
+
+  /* Grids → single column */
+  [class*="grid"], [style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Flex rows → wrap or stack */
+  [class*="row"], [class*="flex-row"], [class*="cols"], [class*="columns"] {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+  }
+
+  /* Navigation */
+  nav, header nav, [class*="navbar"], [class*="nav-bar"], [class*="header"] {
+    padding: 12px 16px !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
+  nav ul, [class*="nav-links"], [class*="menu"] {
+    flex-wrap: wrap !important;
+    gap: 10px 14px !important;
+    justify-content: center !important;
+    font-size: 13px !important;
+  }
+
+  /* Hide heavy decorative / desktop-only bits if present */
+  [class*="desktop-only"], [data-desktop-only], .cursor-follower, .custom-cursor {
+    display: none !important;
+  }
+
+  /* Buttons & CTAs */
+  button, .btn, [class*="button"], [class*="cta"], a.button, a.btn {
+    min-height: 44px !important;
+    padding: 12px 18px !important;
+    font-size: 14px !important;
+    width: auto !important;
+    max-width: 100% !important;
+  }
+  .cta-group, [class*="cta-group"], [class*="actions"] {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .cta-group > *, [class*="cta-group"] > *, [class*="actions"] > * {
+    width: 100% !important;
+  }
+
+  /* Images & media */
+  img, video, canvas, svg, iframe {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Cards */
+  .card, [class*="card"] {
+    padding: 18px !important;
+    border-radius: 14px !important;
+  }
+
+  /* Fixed/absolute decorative elements that break mobile */
+  [style*="position: fixed"]:not(nav):not(header):not([class*="nav"]):not([class*="header"]):not(#water-canvas):not(canvas) {
+    /* keep canvases — clamp other decorative fixed boxes */
+  }
+
+  /* Tables become scrollable */
+  table { display: block; overflow-x: auto; width: 100% !important; }
+
+  /* Forms */
+  input, textarea, select {
+    width: 100% !important;
+    font-size: 16px !important; /* prevents iOS zoom */
+    padding: 12px 14px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  h1, .h1, [class*="hero-title"], [class*="display"] {
+    font-size: clamp(28px, 10vw, 42px) !important;
+  }
+  section, .section, header, footer, main,
+  [class*="container"], [class*="wrapper"], [class*="section"] {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .hero, [class*="hero"] {
+    padding-top: 64px !important;
+    padding-bottom: 44px !important;
+  }
+}

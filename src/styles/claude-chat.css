@@ -1,0 +1,524 @@
+/**
+ * Claude-style skin for /chat.
+ * Glass uses the canonical lightweight `.liquid-glass` recipe:
+ *   bg rgba(255,255,255,0.01) · blur(4px) · inset 0 1px 1px rgba(255,255,255,.1)
+ *   + gradient-masked border via ::before.
+ */
+
+/* ─────────────────────────────────────────────────────────────
+ * Shared liquid-glass recipe — applied to chat glass controls.
+ * Scope: `[data-skin="claude"]` (desktop + mobile).
+ * ───────────────────────────────────────────────────────────── */
+[data-skin="claude"] .chat-composer-frame,
+[data-skin="claude"] .composer-card,
+[data-skin="claude"] [data-tier-trigger],
+[data-skin="claude"] [data-testid="modes-toggle"],
+[data-skin="claude"] [data-plus-trigger],
+[data-skin="claude"] [data-plus-menu] {
+  background: rgba(255, 255, 255, 0.01) !important;
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(4px) !important;
+  border: none !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+[data-skin="claude"] .chat-composer-frame::before,
+[data-skin="claude"] .composer-card::before,
+[data-skin="claude"] [data-tier-trigger]::before,
+[data-skin="claude"] [data-testid="modes-toggle"]::before,
+[data-skin="claude"] [data-plus-trigger]::before,
+[data-skin="claude"] [data-plus-menu]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.15) 20%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.15) 80%,
+    rgba(255, 255, 255, 0.45) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Neutralize the solid wrapper that boxes the composer on desktop
+   (`md:p-[1px] md:bg-border/60`) so the glass shows the background
+   through instead of sitting inside an opaque gray frame. */
+[data-skin="claude"] div:has(> .chat-composer-frame) {
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Keep interactive content above the masked border layer */
+[data-skin="claude"] .chat-composer-frame > *,
+[data-skin="claude"] [data-tier-trigger] > *,
+[data-skin="claude"] [data-testid="modes-toggle"] > *,
+[data-skin="claude"] [data-plus-trigger] > *,
+[data-skin="claude"] [data-plus-menu] > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ─────────────────────────────────────────────────────────────
+ * Main composer frame (desktop ≥ md) — stronger visible glass edge.
+ * The shared recipe above gives a hairline gradient; here we
+ * thicken the border so the bar reads clearly against the
+ * video/cloud background without losing the liquid feel.
+ * ───────────────────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  [data-skin="claude"] .chat-composer-frame {
+    background: rgba(0, 0, 0, 0.22) !important;
+    backdrop-filter: blur(18px) saturate(130%) !important;
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.16),
+      0 0 0 1px rgba(255, 255, 255, 0.16),
+      0 18px 50px -12px rgba(0, 0, 0, 0.55) !important;
+  }
+
+  [data-skin="claude"] .chat-composer-frame::before {
+    padding: 2px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.72) 0%,
+      rgba(255, 255, 255, 0.35) 20%,
+      rgba(255, 255, 255, 0.08) 45%,
+      rgba(255, 255, 255, 0.08) 55%,
+      rgba(255, 255, 255, 0.35) 80%,
+      rgba(255, 255, 255, 0.72) 100%
+    );
+  }
+
+  /* Stronger liquid-glass surface when the composer opts in inside a chat. */
+  [data-skin="claude"] .chat-composer-frame.chat-composer-liquid {
+    background: rgba(0, 0, 0, 0.22) !important;
+    backdrop-filter: blur(22px) saturate(150%) brightness(1.1) !important;
+    box-shadow:
+      inset 0 0 4px 0 rgba(250, 250, 250, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22),
+      0 12px 40px -12px rgba(0, 0, 0, 0.55) !important;
+  }
+  [data-skin="claude"] .chat-composer-frame.chat-composer-liquid::before {
+    background: radial-gradient(120% 50% at 50% -10%, rgba(255, 255, 255, 0.25), transparent 60%);
+    mix-blend-mode: screen;
+    opacity: 0.65;
+  }
+}
+
+/* Hover: brighten the faint fill slightly */
+[data-skin="claude"] [data-tier-trigger]:hover,
+[data-skin="claude"] [data-testid="modes-toggle"]:hover,
+[data-skin="claude"] [data-plus-trigger]:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+ * Desktop menus — one exact surface for +, model, popover/dropdown menus.
+ * ───────────────────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  [data-plus-menu],
+  [data-tier-menu],
+  [data-media-settings-menu],
+  [data-radix-popper-content-wrapper] [data-tier-menu],
+  [data-radix-popper-content-wrapper] [data-media-settings-menu],
+  [data-radix-popper-content-wrapper] .unified-menu-surface,
+  .unified-menu-surface {
+    background: rgba(0, 0, 0, 0.32) !important;
+    backdrop-filter: blur(22px) saturate(160%) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.22) !important;
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+    border-left: 0 !important;
+    border-radius: 16px !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.18),
+      0 22px 60px -18px rgba(0, 0, 0, 0.7) !important;
+    color: hsl(var(--brand-parchment)) !important;
+  }
+
+  [data-plus-menu]::before,
+  [data-tier-menu]::before,
+  [data-media-settings-menu]::before,
+  .unified-menu-surface::before {
+    content: none !important;
+    display: none !important;
+  }
+}
+
+/* Keep the menu items glassy, not solid dark. */
+[data-radix-popper-content-wrapper] [data-tier-menu] [role="menuitem"] {
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.92) !important;
+  border-color: transparent !important;
+}
+
+[data-radix-popper-content-wrapper] [data-tier-menu] [role="menuitem"][data-highlighted],
+[data-radix-popper-content-wrapper] [data-tier-menu] [role="menuitem"]:hover,
+[data-radix-popper-content-wrapper] [data-tier-menu] [role="menuitem"].active-menu-item {
+  background: rgba(255, 255, 255, 0.10) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+/* Active / selected row — subtle primary tint */
+[data-radix-popper-content-wrapper] [data-tier-menu] [role="menuitem"][data-state="checked"] {
+  background: rgba(255, 255, 255, 0.14) !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+/* On desktop give the model list a bit more vertical room so it
+   does not need to scroll when all tiers fit. */
+@media (min-width: 768px) {
+  [data-radix-popper-content-wrapper] [data-tier-menu],
+  [data-radix-popper-content-wrapper] [data-media-settings-menu] {
+    max-height: min(480px, calc(100vh - 64px)) !important;
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+ * Desktop-only chrome (≥ md). Mobile untouched.
+ * ───────────────────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  [data-skin="claude"] {
+    background-color: #000 !important;
+    color: #ECECEC !important;
+    --user-bubble: #1F1F1F;
+    --user-bubble-text: #ECECEC;
+  }
+
+  /* Sidebar — keep transparent so the chat sidebar's unified glass shows through */
+  [data-skin="claude"] > aside[data-chat-sidebar="true"] {
+    background: transparent !important;
+    border-right-color: transparent !important;
+  }
+  [data-skin="claude"] > aside:not([data-chat-sidebar="true"]) {
+    background: #0B0B0B !important;
+    border-right-color: #1A1A1A !important;
+  }
+  [data-skin="claude"] > aside * {
+    --sidebar: 0 0% 4%;
+    --sidebar-background: 0 0% 4%;
+  }
+
+  /* Main chat surface */
+  [data-skin="claude"] .chat-surface-dark { background: #000 !important; }
+  [data-skin="claude"] .chat-surface-dark[data-chat-main="true"] { background: #000 !important; }
+  [data-skin="claude"] .chat-surface-dark[data-chat-main="true"][data-chat-empty="true"] { background: transparent !important; }
+
+  /* Assistant prose — Claude serif */
+  [data-skin="claude"] .prose-chat,
+  [data-skin="claude"] .prose-chat * {
+    font-family: 'Instrument Serif', 'Source Serif 4', Georgia, ui-serif, serif !important;
+  }
+  [data-skin="claude"] .prose-chat {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: #ECECEC;
+    letter-spacing: 0.005em;
+  }
+  [data-skin="claude"] .prose-chat code,
+  [data-skin="claude"] .prose-chat pre,
+  [data-skin="claude"] .prose-chat pre * {
+    font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, monospace !important;
+  }
+
+  /* User bubble */
+  [data-skin="claude"] .user-bubble {
+    background: #1F1F1F !important;
+    color: #ECECEC !important;
+    border: 1px solid #2A2A2A;
+    border-radius: 1.25rem !important;
+    box-shadow: none !important;
+  }
+
+  [data-skin="claude"] [aria-pressed="true"] > span.bg-white\/95 {
+    background-color: #1A1A1A !important;
+    color: #ECECEC !important;
+  }
+
+  /* Model selection pill / plus / modes sizing */
+  [data-skin="claude"] [data-tier-trigger] {
+    height: 2.25rem !important;
+    padding: 0 0.85rem 0 0.5rem !important;
+    border-radius: 9999px !important;
+  }
+  [data-skin="claude"] [data-testid="modes-toggle"],
+  [data-skin="claude"] [data-plus-trigger] {
+    border-radius: 9999px !important;
+  }
+
+  /* Chips row — single horizontal strip with overflow scroll */
+  [data-skin="claude"] [data-chips-row] {
+    margin-top: 0.7rem !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+  [data-skin="claude"] [data-chips-row]::-webkit-scrollbar { display: none !important; }
+  [data-skin="claude"] [data-chips-row] > div,
+  [data-skin="claude"] [data-chips-row] [data-no-swipe-open] {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    padding: 0.25rem !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  [data-skin="claude"] [data-chips-row] [data-no-swipe-open]::-webkit-scrollbar { display: none !important; }
+  [data-skin="claude"] [data-chips-row] button {
+    order: 0 !important;
+    flex: 0 0 auto !important;
+    height: 2.25rem !important;
+    padding: 0 1rem !important;
+    margin: 0 !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.005em;
+  }
+  [data-skin="claude"] [data-chips-row] > button:nth-child(n+5) { order: 0 !important; }
+  [data-skin="claude"] [data-chips-row]::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  /* Plus menu sizing (glass handled by shared recipe) */
+  [data-skin="claude"] [data-plus-menu] {
+    margin-left: 0.5rem !important;
+    width: 300px !important;
+    max-height: min(52vh, 430px) !important;
+    color: #ECECEC !important;
+    border-radius: 16px !important;
+    padding: 0.35rem !important;
+  }
+  [data-skin="claude"] [data-plus-menu] button,
+  [data-skin="claude"] [data-plus-menu] [role="menuitem"] {
+    background: transparent !important;
+    color: #ECECEC !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0.5rem !important;
+    padding: 0.48rem 0.6rem !important;
+    font-weight: 500 !important;
+    min-height: 2.25rem !important;
+  }
+  [data-skin="claude"] [data-plus-menu] svg { color: #D1A18D !important; }
+  [data-skin="claude"] [data-plus-menu] .bg-surface-4,
+  [data-skin="claude"] [data-plus-menu] .h-\[1\.5px\] {
+    background: #2A2A2A !important;
+  }
+  [data-skin="claude"] [data-plus-menu] button:hover,
+  [data-skin="claude"] [data-plus-menu] [role="menuitem"]:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+  }
+
+  /* Center greeting — Claude serif */
+  [data-skin="claude"] h1[data-greeting] {
+    font-family: 'Instrument Serif', 'Source Serif 4', Georgia, ui-serif, serif !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.015em !important;
+    font-size: 64px !important;
+    line-height: 1.05 !important;
+    color: #FAF7F2 !important;
+    transform: none !important;
+    opacity: 1 !important;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  [data-skin="claude"] h1[data-greeting] span {
+    color: #E08968 !important;
+    font-style: italic;
+  }
+
+  /* Remove upgrade / Pro CTAs — keep the sidebar credits balance visible */
+  [data-skin="claude"] aside button[title*="Upgrade" i],
+  [data-skin="claude"] aside a[aria-label*="Upgrade" i],
+  [data-skin="claude"] aside [title*="Upgrade" i],
+  [data-skin="claude"] [aria-label="Unlock Pro"],
+  [data-skin="claude"] [aria-label*="Upgrade" i],
+  [data-skin="claude"] a[aria-label="Upgrade Megsy"] {
+    display: none !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+ * Mobile chips strip → glass pills (sizing only; glass shared above).
+ * ───────────────────────────────────────────────────────────── */
+@media (max-width: 767.98px) {
+  [data-skin="claude"] [data-tier-trigger],
+  [data-skin="claude"] [data-testid="modes-toggle"],
+  [data-skin="claude"] [data-plus-trigger] {
+    border-radius: 9999px !important;
+  }
+
+  [data-skin="claude"] [data-chips-row] {
+    margin: 0 0 0.35rem 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  [data-skin="claude"] [data-chips-row] [data-no-swipe-open] {
+    gap: 0.45rem !important;
+    padding: 0.15rem 0.1rem 0.25rem !important;
+    mask-image: none !important;
+  }
+}
+
+/* User preference: + and model selector triggers must stay text/icon-only. */
+[data-skin="claude"] [data-plus-trigger],
+[data-skin="claude"] [data-tier-trigger],
+[data-skin="claude"] [data-model-trigger],
+[data-skin="claude"] [data-plus-trigger]:hover,
+[data-skin="claude"] [data-tier-trigger]:hover,
+[data-skin="claude"] [data-model-trigger]:hover {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+[data-skin="claude"] [data-plus-trigger]::before,
+[data-skin="claude"] [data-tier-trigger]::before,
+[data-skin="claude"] [data-model-trigger]::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+ * Composer shell (mobile only via `md:contents`) — a single
+ * gray liquid-glass container that wraps the mode chips row
+ * AND the composer input, so they read as one surface.
+ * ───────────────────────────────────────────────────────────── */
+.composer-shell {
+  position: relative;
+  padding: 8px 8px 8px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(22px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 10px 30px -12px rgba(0, 0, 0, 0.55);
+}
+
+/* Kill the negative side margins + bottom gap on the chips row
+   so it sits cleanly inside the shell. */
+.composer-shell [data-chips-row] {
+  margin: 0 0 4px 0 !important;
+}
+.composer-shell [data-chips-row] > div {
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+  padding-bottom: 2px !important;
+}
+
+/* Flatten the inner composer frame so the shell owns the border
+   and background on mobile. */
+.composer-shell > div:last-child,
+.composer-shell .chat-composer-frame {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+.composer-shell .chat-composer-frame::before {
+  display: none !important;
+}
+
+/* Mobile chips inside the unified shell: no visible border. */
+.composer-shell [data-chips-row] button {
+  border: none !important;
+  box-shadow: none !important;
+}
+.composer-shell [data-chips-row] button::before {
+  display: none !important;
+  content: none !important;
+}
+.composer-shell [data-chips-row] button[aria-pressed="true"] {
+  background: hsl(var(--foreground)) !important;
+  color: hsl(var(--background)) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+ * Chip buttons — mobile: dark solid; desktop: glass like composer.
+ * ───────────────────────────────────────────────────────────── */
+[data-skin="claude"] [data-chips-row] button {
+  background: rgba(8, 12, 22, 0.96) !important;
+  background-blend-mode: normal !important;
+  backdrop-filter: none !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.10),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 8px 18px -12px rgba(0, 0, 0, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  color: rgba(255, 255, 255, 0.94) !important;
+}
+[data-skin="claude"] [data-chips-row] button::before {
+  display: none !important;
+  content: none !important;
+}
+[data-skin="claude"] [data-chips-row] button:hover {
+  background: rgba(15, 23, 42, 0.98) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+}
+[data-skin="claude"] [data-chips-row] button[aria-pressed="true"] {
+  background: rgba(30, 41, 59, 0.98) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  color: #fff !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 10px 20px -12px rgba(0, 0, 0, 0.9) !important;
+}
+
+@media (min-width: 768px) {
+  /* Match the actual chat-composer-liquid input recipe exactly */
+  [data-skin="claude"] [data-chips-row] button {
+    position: relative;
+    background: rgba(0, 0, 0, 0.22) !important;
+    backdrop-filter: blur(22px) saturate(150%) brightness(1.1) !important;
+    border: 0 !important;
+    box-shadow:
+      inset 0 0 4px 0 rgba(250, 250, 250, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22),
+      0 12px 40px -12px rgba(0, 0, 0, 0.55) !important;
+    color: rgba(255, 255, 255, 0.96) !important;
+  }
+  [data-skin="claude"] [data-chips-row] button::before {
+    display: none !important;
+    content: '' !important;
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(120% 50% at 50% -10%, rgba(255, 255, 255, 0.25), transparent 60%) !important;
+    mix-blend-mode: screen;
+    opacity: 0.65;
+    pointer-events: none;
+    z-index: 1;
+  }
+  [data-skin="claude"] [data-chips-row] button:hover {
+    background: rgba(0, 0, 0, 0.22) !important;
+  }
+  [data-skin="claude"] [data-chips-row] button[aria-pressed="true"] {
+    background: rgba(0, 0, 0, 0.22) !important;
+    color: #fff !important;
+    box-shadow:
+      inset 0 0 4px 0 rgba(250, 250, 250, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22),
+      0 12px 40px -12px rgba(0, 0, 0, 0.55) !important;
+  }
+}
+
