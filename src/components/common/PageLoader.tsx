@@ -62,7 +62,7 @@ const PageLoader = () => {
           }
         }
         .shimmer {
-          background-image: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.16), rgba(255,255,255,0.06));
+          background-image: linear-gradient(90deg, var(--overlay-white-06), rgba(255,255,255,0.16), var(--overlay-white-06));
           background-size: 220% 100%;
           animation: loader_shimmer 1.25s ease-in-out infinite;
         }

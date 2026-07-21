@@ -22,7 +22,7 @@ export default function VelorahHero() {
           background: rgba(255, 255, 255, 0.01);
           background-blend-mode: luminosity;
           backdrop-filter: blur(4px);
-          box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+          box-shadow: inset 0 1px 1px var(--overlay-white-10);
           position: relative;
           overflow: hidden;
           transition: transform 0.3s ease;
@@ -36,10 +36,10 @@ export default function VelorahHero() {
           padding: 1.4px;
           background: linear-gradient(180deg,
             rgba(255,255,255,0.45) 0%,
-            rgba(255,255,255,0.15) 20%,
+            var(--overlay-white-15) 20%,
             rgba(255,255,255,0) 40%,
             rgba(255,255,255,0) 60%,
-            rgba(255,255,255,0.15) 80%,
+            var(--overlay-white-15) 80%,
             rgba(255,255,255,0.45) 100%);
           mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
           mask-composite: exclude;

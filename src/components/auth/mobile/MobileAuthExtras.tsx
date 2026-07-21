@@ -42,8 +42,8 @@ const TopBar = ({ onBack }: { onBack: () => void }) => (
       aria-label={authT("back")}
       className="mt-4 w-9 h-9 rounded-full grid place-items-center text-white/85 active:scale-95 transition-transform"
       style={{
-        background: "rgba(255,255,255,0.06)",
-        border: "1px solid rgba(255,255,255,0.12)",
+        background: "var(--overlay-white-06)",
+        border: "1px solid var(--overlay-white-12)",
         backdropFilter: "blur(10px)",
         WebkitBackdropFilter: "blur(10px)",
       }}
@@ -120,8 +120,8 @@ export default function MobileAuthExtras(p: Props) {
   };
 
   const fieldStyle = {
-    background: "rgba(255,255,255,0.05)",
-    border: "1px solid rgba(255,255,255,0.12)",
+    background: "var(--overlay-white-05)",
+    border: "1px solid var(--overlay-white-12)",
     backdropFilter: "blur(10px)",
     WebkitBackdropFilter: "blur(10px)",
   } as const;

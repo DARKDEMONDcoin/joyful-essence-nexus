@@ -314,9 +314,9 @@ const LandingNavbar = () => {
           background: scrolled ? "rgba(15,15,18,0.78)" : "rgba(15,15,18,0.55)",
           backdropFilter: "blur(16px) saturate(160%)",
           WebkitBackdropFilter: "blur(16px) saturate(160%)",
-          border: "1px solid rgba(255,255,255,0.14)",
+          border: "1px solid var(--overlay-white-14)",
           boxShadow:
-            "inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -1px 0 rgba(0,0,0,0.25), 0 18px 50px rgba(0,0,0,0.35)",
+            "inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -1px 0 rgba(0,0,0,0.25), 0 18px 50px var(--overlay-black-35)",
         }}
       >
         {/* Logo */}
@@ -367,9 +367,9 @@ const LandingNavbar = () => {
                           background: "rgba(8,8,10,0.96)",
                           backdropFilter: "blur(16px) saturate(160%)",
                           WebkitBackdropFilter: "blur(16px) saturate(160%)",
-                          border: "1px solid rgba(255,255,255,0.08)",
+                          border: "1px solid var(--overlay-white-08)",
                           boxShadow:
-                            "0 25px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08)",
+                            "0 25px 60px rgba(0,0,0,0.6), inset 0 1px 0 var(--overlay-white-08)",
                         }}
                       >
                         <div className="flex gap-10">
@@ -519,8 +519,8 @@ const LandingNavbar = () => {
             background: "rgba(20,20,22,0.92)",
             backdropFilter: "blur(14px) saturate(160%)",
             WebkitBackdropFilter: "blur(14px) saturate(160%)",
-            border: "1px solid rgba(255,255,255,0.12)",
-            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.18), 0 18px 50px rgba(0,0,0,0.4)",
+            border: "1px solid var(--overlay-white-12)",
+            boxShadow: "inset 0 1px 0 var(--overlay-white-18), 0 18px 50px rgba(0,0,0,0.4)",
           }}
         >
           {navItems.map((item) =>

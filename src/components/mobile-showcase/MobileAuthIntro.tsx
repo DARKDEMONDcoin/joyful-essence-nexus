@@ -238,8 +238,8 @@ export default function MobileAuthIntro({
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="w-full h-[52px] rounded-full overflow-hidden"
             style={{
-              background: "rgba(255,255,255,0.06)",
-              border: "1px solid rgba(255,255,255,0.14)",
+              background: "var(--overlay-white-06)",
+              border: "1px solid var(--overlay-white-14)",
               backdropFilter: "blur(10px)",
               WebkitBackdropFilter: "blur(10px)",
             }}
@@ -302,8 +302,8 @@ export default function MobileAuthIntro({
                 <div
                   className="rounded-full px-5 h-[52px] flex items-center gap-2"
                   style={{
-                    background: "rgba(255,255,255,0.06)",
-                    border: "1px solid rgba(255,255,255,0.14)",
+                    background: "var(--overlay-white-06)",
+                    border: "1px solid var(--overlay-white-14)",
                     backdropFilter: "blur(10px)",
                     WebkitBackdropFilter: "blur(10px)",
                   }}

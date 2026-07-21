@@ -113,7 +113,7 @@ const StickyFeatureTabs = () => {
               style={{
                 backgroundColor: card.bg,
                 color: card.fg,
-                boxShadow: "0 20px 45px -12px rgba(0,0,0,0.55)",
+                boxShadow: "0 20px 45px -12px var(--overlay-black-55)",
                 marginTop: i % 2 === 1 ? "1.75rem" : 0,
               }}
               className="relative flex flex-col justify-between rounded-ios-lg p-6 md:p-7 min-h-[240px] md:min-h-[280px] transition-shadow"
