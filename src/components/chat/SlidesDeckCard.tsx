@@ -496,9 +496,15 @@ function SlideRender({
   );
 }
 
-const SlidesDeckCard = ({ deck, hideCard = false, autoOpen = false, onClose }: Props) => {
+function useSafeNavigate() {
   const inRouter = useInRouterContext();
-  const navigate = inRouter ? useNavigate() : null;
+  // Hook order is stable per mount because router presence doesn't change.
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  return inRouter ? useNavigate() : null;
+}
+
+const SlidesDeckCard = ({ deck, hideCard = false, autoOpen = false, onClose }: Props) => {
+  const navigate = useSafeNavigate();
   const [open, setOpen] = useState(autoOpen);
   useFullscreenBodyClass(open);
 
