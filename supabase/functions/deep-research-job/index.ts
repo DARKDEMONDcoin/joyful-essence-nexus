@@ -1289,12 +1289,24 @@ Deno.serve(async (req) => {
     const action = body?.action || "start";
 
     // ── Internal self-invocations (service-role authenticated). Bypass user auth.
+    // Constant-time compare of the secret header to avoid timing-oracle leaks,
+    // and the secret is no longer echoed inside the request body.
+    const internalHeader = req.headers.get("x-internal-invoke") || "";
+    const internalOk =
+      internalHeader.length === SERVICE_ROLE.length &&
+      (() => {
+        let diff = 0;
+        for (let i = 0; i < internalHeader.length; i++) {
+          diff |= internalHeader.charCodeAt(i) ^ SERVICE_ROLE.charCodeAt(i);
+        }
+        return diff === 0;
+      })();
     if (
       (action === "write_section" ||
         action === "finalize" ||
         action === "watchdog" ||
         action === "tick") &&
-      body?.__internal === SERVICE_ROLE &&
+      internalOk &&
       body?.jobId
     ) {
       if (action === "write_section") {
@@ -1310,6 +1322,7 @@ Deno.serve(async (req) => {
       }
       return json({ accepted: true });
     }
+
 
     // Public actions require user JWT.
     const authHeader = req.headers.get("Authorization") || "";
