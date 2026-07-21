@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { m as motion, AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useInRouterContext } from "react-router-dom";
 import {
   ChevronLeft,
   ChevronRight,
@@ -497,7 +497,8 @@ function SlideRender({
 }
 
 const SlidesDeckCard = ({ deck, hideCard = false, autoOpen = false, onClose }: Props) => {
-  const navigate = useNavigate();
+  const inRouter = useInRouterContext();
+  const navigate = inRouter ? useNavigate() : null;
   const [open, setOpen] = useState(autoOpen);
   useFullscreenBodyClass(open);
 
@@ -507,7 +508,11 @@ const SlidesDeckCard = ({ deck, hideCard = false, autoOpen = false, onClose }: P
       return;
     }
     const id = stashSlidesDeckForPreview(deck);
-    navigate(`/slides/preview/${id}`);
+    if (navigate) {
+      navigate(`/slides/preview/${id}`);
+    } else {
+      window.location.assign(`/slides/preview/${id}`);
+    }
   };
 
   const closePreview = () => {
