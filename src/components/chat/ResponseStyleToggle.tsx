@@ -56,7 +56,7 @@ export function ResponseStyleToggle({ className = "" }: { className?: string }) 
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.05] hover:bg-white/[0.10] active:scale-95 px-2.5 py-1 text-xs text-white/85 hover:text-white transition-all backdrop-blur-md"
+        className="inline-flex items-center gap-1.5 rounded-full border border-border/40 bg-card/60 hover:bg-accent hover:text-accent-foreground active:scale-95 px-2.5 py-1 text-xs text-foreground/85 hover:text-foreground transition-all backdrop-blur-md"
         title="أسلوب الرد"
         aria-label={`أسلوب الرد: ${STYLE_LABELS_AR[current]}`}
         aria-haspopup="listbox"
@@ -68,7 +68,8 @@ export function ResponseStyleToggle({ className = "" }: { className?: string }) 
       {open && (
         <div
           role="listbox"
-          className="absolute bottom-full mb-2 right-0 z-50 min-w-[180px] rounded-2xl border border-white/10 bg-neutral-900/95 p-1.5 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-bottom-2 duration-150"
+          style={glassModelMenuStyle}
+          className={`${glassModelMenu.panel} absolute bottom-full mb-2 right-0 min-w-[180px] animate-in fade-in slide-in-from-bottom-2 duration-150`}
         >
           {ORDER.map((s) => {
             const I = ICONS[s];
@@ -84,14 +85,11 @@ export function ResponseStyleToggle({ className = "" }: { className?: string }) 
                   setCurrent(s);
                   setOpen(false);
                 }}
-                className={
-                  "flex w-full items-center gap-2 rounded-xl px-2.5 py-2 text-xs text-right text-white/85 hover:bg-white/10 transition " +
-                  (selected ? "bg-white/[0.06]" : "")
-                }
+                className={glassModelMenu.item(selected, "text-xs text-right")}
               >
                 <I className="h-4 w-4 shrink-0 opacity-80" />
                 <span className="flex-1">{STYLE_LABELS_AR[s]}</span>
-                {selected && <Check className="h-3.5 w-3.5 text-emerald-400" />}
+                {selected && <Check className="h-3.5 w-3.5 text-primary" />}
               </button>
             );
           })}
