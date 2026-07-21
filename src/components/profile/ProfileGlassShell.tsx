@@ -245,12 +245,12 @@ const ngCss = `
   background-color: rgba(255,255,255,0.01);
   background-blend-mode: luminosity;
   backdrop-filter: blur(4px);
-  box-shadow: inset 0 1px 1px rgba(255,255,255,0.10);
+  box-shadow: inset 0 1px 1px var(--overlay-white-10);
   border-radius: 24px;
   overflow: hidden;
 }
 .liquid-glass-selected {
-  background-color: rgba(255,255,255,0.12);
+  background-color: var(--overlay-white-12);
   backdrop-filter: blur(8px);
   box-shadow: inset 0 1px 2px rgba(255,255,255,0.20);
 }
@@ -260,12 +260,12 @@ const ngCss = `
   border-radius: inherit;
   padding: 1.4px;
   background: linear-gradient(180deg,
-    rgba(255,255,255,0.45) 0%,
+    var(--overlay-white-45) 0%,
     rgba(255,255,255,0.15) 20%,
     rgba(255,255,255,0) 40%,
     rgba(255,255,255,0) 60%,
     rgba(255,255,255,0.15) 80%,
-    rgba(255,255,255,0.45) 100%);
+    var(--overlay-white-45) 100%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
           mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
@@ -274,12 +274,12 @@ const ngCss = `
 }
 .liquid-glass-selected::before {
   background: linear-gradient(180deg,
-    rgba(255,255,255,0.6) 0%,
+    var(--overlay-white-60) 0%,
     rgba(255,255,255,0.25) 20%,
     rgba(255,255,255,0) 40%,
     rgba(255,255,255,0) 60%,
     rgba(255,255,255,0.25) 80%,
-    rgba(255,255,255,0.6) 100%);
+    var(--overlay-white-60) 100%);
 }
 
 /* --- Card --- */
@@ -306,15 +306,15 @@ const ngCss = `
 .ng-row + .ng-row::before {
   content: "";
   position: absolute; top: 0; left: 60px; right: 20px;
-  height: 1px; background: rgba(255,255,255,0.07);
+  height: 1px; background: var(--overlay-white-08);
 }
-.ng-row:active { background: rgba(255,255,255,0.06); }
+.ng-row:active { background: var(--overlay-white-06); }
 /* Clean glass icons — no bg, no border, soft luminous drop-shadow */
 .ng-row-icon {
   width: 30px; height: 30px;
   display: inline-flex; align-items: center; justify-content: center;
   flex-shrink: 0;
-  color: rgba(255,255,255,0.95);
+  color: var(--overlay-white-95);
   background: transparent;
   border: 0;
   filter:
@@ -328,7 +328,7 @@ const ngCss = `
 .ng-row-label { font-size: 15.5px; font-weight: 500; color: #ffffff; letter-spacing: 0.005em; }
 .ng-row-hint { font-size: 12.5px; color: rgba(255,255,255,0.55); line-height: 1.4; }
 .ng-row-trailing {
-  font-size: 13px; color: rgba(255,255,255,0.6);
+  font-size: 13px; color: var(--overlay-white-60);
   flex-shrink: 0; max-width: 55%;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
@@ -350,7 +350,7 @@ const ngCss = `
 .ng-field-label {
   padding-left: 6px;
   font-size: 12px; font-weight: 500;
-  color: rgba(255,255,255,0.6);
+  color: var(--overlay-white-60);
   letter-spacing: 0.02em;
 }
 .ng-input {

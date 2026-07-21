@@ -418,7 +418,7 @@ const AppSidebar = ({
   };
 
   // Cartoon palette (mirrors ReferralsPage)
-  const PAGE_BG = "#000000";
+  const PAGE_BG = "var(--page-bg)";
   const SURFACE = "hsl(var(--surface-1))";
   const SURFACE_2 = "hsl(var(--surface-3))";
   const BORDER = "hsl(var(--surface-4))";
@@ -449,7 +449,7 @@ const AppSidebar = ({
   // Desktop — EXACT same glass recipe as the chat composer input (chat-composer-frame).
   const desktopGlassStyle: React.CSSProperties = {
     ["--section-accent" as any]: sectionAccent.hsl,
-    backgroundColor: "rgba(0, 0, 0, 0.22)",
+    backgroundColor: "var(--overlay-black-22)",
     backgroundImage: "none",
     backdropFilter: "blur(22px) saturate(1.5) brightness(1.1)",
     WebkitBackdropFilter: "blur(22px) saturate(1.5) brightness(1.1)" as any,
@@ -457,23 +457,23 @@ const AppSidebar = ({
     fontFamily: cartoonFont,
     border: "0",
     boxShadow:
-      "inset 0 0 4px 0 rgba(250, 250, 250, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.22), 0 12px 40px -12px rgba(0, 0, 0, 0.55)",
+      "inset 0 0 4px 0 rgba(250, 250, 250, 0.5), inset 0 1px 0 0 var(--overlay-white-22), 0 12px 40px -12px var(--overlay-black-55)",
   };
 
   // Active nav item — soft accent-tinted glass capsule
   const activeItemStyle: React.CSSProperties = {
     background:
       "linear-gradient(180deg, hsl(var(--section-accent) / 0.18), hsl(var(--section-accent) / 0.06))",
-    color: "#ffffff",
+    color: "var(--overlay-white-100)",
     border: "1px solid hsl(var(--section-accent) / 0.28)",
     boxShadow:
-      "inset 0 1px 0 rgba(255,255,255,0.12), 0 0 0 1px hsl(var(--section-accent) / 0.05), 0 6px 18px -10px hsl(var(--section-accent) / 0.55)",
+      "inset 0 1px 0 var(--overlay-white-12), 0 0 0 1px hsl(var(--section-accent) / 0.05), 0 6px 18px -10px hsl(var(--section-accent) / 0.55)",
     fontWeight: 600,
   };
 
   // Inactive nav item — dim glass hover
   const inactiveItemStyle: React.CSSProperties = {
-    color: "rgba(255,255,255,0.62)",
+    color: "var(--overlay-white-62)",
     backgroundColor: "transparent",
     border: "1px solid transparent",
   };
@@ -491,7 +491,7 @@ const AppSidebar = ({
       {/* HEADER — brand + collapse */}
       <div
         className={`relative shrink-0 h-14 px-3 flex items-center ${isCollapsed ? "justify-center" : "justify-between"}`}
-        style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
+        style={{ borderBottom: "1px solid var(--overlay-white-06)" }}
       >
 
         {!isCollapsed && (
@@ -542,11 +542,11 @@ const AppSidebar = ({
                 onFocus={() => prefetchRoute(path)}
                 title={label}
                 aria-label={label}
-                className="relative w-10 h-10 grid place-items-center rounded-xl transition-all duration-200 hover:bg-[rgba(255,255,255,0.05)] active:scale-95"
+                className="relative w-10 h-10 grid place-items-center rounded-xl transition-all duration-200 hover:bg-[var(--overlay-white-05)] active:scale-95"
                 style={{
-                  color: active ? "#ffffff" : "rgba(255,255,255,0.60)",
-                  backgroundColor: active ? "rgba(255,255,255,0.10)" : "transparent",
-                  boxShadow: active ? "inset 0 0 0 1px rgba(255,255,255,0.16)" : "none",
+                  color: active ? "var(--overlay-white-100)" : "var(--overlay-white-60)",
+                  backgroundColor: active ? "var(--overlay-white-10)" : "transparent",
+                  boxShadow: active ? "inset 0 0 0 1px var(--overlay-white-16)" : "none",
                 }}
               >
                 <Icon size={18} strokeWidth={2} />
@@ -562,19 +562,19 @@ const AppSidebar = ({
               onFocus={() => prefetchRoute(path)}
               initial={false}
               animate={{
-                color: active ? "#ffffff" : "rgba(255,255,255,0.60)",
-                backgroundColor: active ? "rgba(255,255,255,0.08)" : "transparent",
+                color: active ? "var(--overlay-white-100)" : "var(--overlay-white-60)",
+                backgroundColor: active ? "var(--overlay-white-08)" : "transparent",
               }}
-              whileHover={{ backgroundColor: "rgba(255,255,255,0.04)" }}
+              whileHover={{ backgroundColor: "var(--overlay-white-04)" }}
               whileTap={{ scale: 0.985 }}
               className="group relative w-full h-10 pl-3 pr-3 flex items-center gap-3 rounded-xl transition-shadow"
               style={{
-                boxShadow: active ? "inset 0 0 0 1px rgba(255,255,255,0.12)" : "none",
+                boxShadow: active ? "inset 0 0 0 1px var(--overlay-white-12)" : "none",
               }}
             >
               <span
                 className="shrink-0 transition-colors duration-200 group-hover:text-white"
-                style={{ color: active ? "#ffffff" : "rgba(255,255,255,0.70)" }}
+                style={{ color: active ? "var(--overlay-white-100)" : "var(--overlay-white-70)" }}
               >
                 <Icon size={17} strokeWidth={2} />
               </span>
@@ -629,7 +629,7 @@ const AppSidebar = ({
                 onClick={() => navigateSmoothly("/gallery")}
                 onMouseEnter={() => prefetchRoute("/gallery")}
                 style={active ? activeItemStyle : undefined}
-                whileHover={{ backgroundColor: "rgba(255,255,255,0.04)" }}
+                whileHover={{ backgroundColor: "var(--overlay-white-04)" }}
                 whileTap={{ scale: 0.985 }}
                 className={`w-full h-10 px-3 flex items-center gap-3 rounded-xl border border-transparent transition-colors ${
                   active
@@ -667,14 +667,14 @@ const AppSidebar = ({
             <button
               onClick={handleNewChat}
               style={{
-                background: "rgba(255,255,255,0.06)",
-                color: "#ffffff",
-                border: "1px solid rgba(255,255,255,0.14)",
+                background: "var(--overlay-white-06)",
+                color: "var(--overlay-white-100)",
+                border: "1px solid var(--overlay-white-14)",
                 boxShadow:
-                  "inset 0 1px 1px rgba(255,255,255,0.12), 0 8px 20px -8px rgba(0,0,0,0.5)",
+                  "inset 0 1px 1px var(--overlay-white-12), 0 8px 20px -8px var(--overlay-black-50)",
                 fontWeight: 600,
               }}
-              className="w-full h-11 px-4 flex items-center justify-between rounded-2xl transition-all duration-300 hover:bg-[rgba(255,255,255,0.10)] active:scale-[0.98] text-[13.5px] tracking-tight"
+              className="w-full h-11 px-4 flex items-center justify-between rounded-2xl transition-all duration-300 hover:bg-[var(--overlay-white-10)] active:scale-[0.98] text-[13.5px] tracking-tight"
               title={isBuildMode ? "New project" : "New chat"}
             >
               <span>{isBuildMode ? "New project" : "New chat"}</span>
@@ -784,7 +784,7 @@ const AppSidebar = ({
       </AnimatePresence>
 
       {/* FOOTER — user pill (cartoon sticker) */}
-      <div className="shrink-0 p-2" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+      <div className="shrink-0 p-2" style={{ borderTop: "1px solid var(--overlay-white-06)" }}>
         {!currentUserId ? (
           <AnimatePresence mode="wait" initial={false}>
             {isCollapsed ? (
@@ -799,12 +799,12 @@ const AppSidebar = ({
                 <button
                   onClick={() => navigateSmoothly("/auth")}
                   style={{
-                    background: "rgba(255,255,255,0.06)",
-                    color: "#ffffff",
-                    border: "1px solid rgba(255,255,255,0.14)",
-                    boxShadow: "inset 0 1px 1px rgba(255,255,255,0.10)",
+                    background: "var(--overlay-white-06)",
+                    color: "var(--overlay-white-100)",
+                    border: "1px solid var(--overlay-white-14)",
+                    boxShadow: "inset 0 1px 1px var(--overlay-white-10)",
                   }}
-                  className="w-11 h-11 grid place-items-center rounded-2xl transition-all duration-300 hover:bg-[rgba(255,255,255,0.10)] active:scale-95"
+                  className="w-11 h-11 grid place-items-center rounded-2xl transition-all duration-300 hover:bg-[var(--overlay-white-10)] active:scale-95"
                   title="Log in"
                   aria-label="Log in"
                 >
@@ -820,14 +820,14 @@ const AppSidebar = ({
                 transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
                 onClick={() => navigateSmoothly("/auth")}
                 style={{
-                  background: "rgba(255,255,255,0.06)",
-                  color: "#ffffff",
-                  border: "1px solid rgba(255,255,255,0.14)",
+                  background: "var(--overlay-white-06)",
+                  color: "var(--overlay-white-100)",
+                  border: "1px solid var(--overlay-white-14)",
                   boxShadow:
-                    "inset 0 1px 1px rgba(255,255,255,0.12), 0 8px 20px -8px rgba(0,0,0,0.5)",
+                    "inset 0 1px 1px var(--overlay-white-12), 0 8px 20px -8px var(--overlay-black-50)",
                   fontWeight: 600,
                 }}
-                className="w-full h-11 px-3 flex items-center justify-center gap-2 rounded-2xl text-[13.5px] tracking-tight transition-all duration-300 hover:bg-[rgba(255,255,255,0.10)] active:scale-[0.98]"
+                className="w-full h-11 px-3 flex items-center justify-center gap-2 rounded-2xl text-[13.5px] tracking-tight transition-all duration-300 hover:bg-[var(--overlay-white-10)] active:scale-[0.98]"
               >
                 <LogIn className="w-4 h-4" strokeWidth={2} />
                 <span>Log in</span>
@@ -848,11 +848,11 @@ const AppSidebar = ({
                 <button
                   onClick={() => navigateSmoothly("/settings")}
                   style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(255,255,255,0.12)",
+                    background: "var(--overlay-white-04)",
+                    border: "1px solid var(--overlay-white-12)",
                     color: TEXT,
                   }}
-                  className="w-11 h-11 rounded-2xl grid place-items-center text-[12px] font-semibold overflow-hidden transition-all duration-300 hover:bg-[rgba(255,255,255,0.08)]"
+                  className="w-11 h-11 rounded-2xl grid place-items-center text-[12px] font-semibold overflow-hidden transition-all duration-300 hover:bg-[var(--overlay-white-08)]"
                   title={displayName}
                 >
                   {displayAvatar ? (
@@ -871,14 +871,14 @@ const AppSidebar = ({
                 transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
                 className="flex items-center gap-1.5 p-1.5 rounded-2xl"
                 style={{
-                  background: "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(255,255,255,0.07)",
-                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04), 0 6px 18px -12px rgba(0,0,0,0.55)",
+                  background: "var(--overlay-white-03)",
+                  border: "1px solid var(--overlay-white-08)",
+                  boxShadow: "inset 0 1px 0 var(--overlay-white-04), 0 6px 18px -12px var(--overlay-black-55)",
                 }}
               >
                 <button
                   onClick={() => navigateSmoothly("/settings")}
-                  className="group flex-1 min-w-0 flex items-center gap-3 px-2 py-1.5 rounded-xl text-left transition-colors hover:bg-[rgba(255,255,255,0.045)]"
+                  className="group flex-1 min-w-0 flex items-center gap-3 px-2 py-1.5 rounded-xl text-left transition-colors hover:bg-[var(--overlay-white-04)]"
                   title="Account settings"
                 >
                   {displayAvatar ? (
@@ -886,15 +886,15 @@ const AppSidebar = ({
                       src={displayAvatar}
                       alt=""
                       className="w-9 h-9 rounded-xl object-cover shrink-0"
-                      style={{ border: "1px solid rgba(255,255,255,0.10)" }}
+                      style={{ border: "1px solid var(--overlay-white-10)" }}
                     />
                   ) : (
                     <div
                       className="w-9 h-9 rounded-xl grid place-items-center text-[13px] shrink-0"
                       style={{
-                        background: "linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.05))",
-                        color: "#fff",
-                        border: "1px solid rgba(255,255,255,0.10)",
+                        background: "linear-gradient(135deg, var(--overlay-white-14), var(--overlay-white-05))",
+                        color: "var(--overlay-white-100)",
+                        border: "1px solid var(--overlay-white-10)",
                         fontWeight: 700,
                       }}
                     >
@@ -904,7 +904,7 @@ const AppSidebar = ({
                   <div className="flex-1 min-w-0 flex flex-col gap-1">
                     <span
                       className="text-[13.5px] truncate leading-none tracking-tight"
-                      style={{ color: "rgba(255,255,255,0.95)", fontWeight: 600 }}
+                      style={{ color: "var(--overlay-white-95)", fontWeight: 600 }}
                     >
                       {displayName}
                     </span>
@@ -925,10 +925,10 @@ const AppSidebar = ({
                     color: "#052e16",
                     border: "1px solid rgba(120, 231, 178, 0.55)",
                     boxShadow:
-                      "inset 0 1px 0 rgba(255,255,255,0.45), 0 0 20px -4px rgba(120,231,178,0.45)",
+                      "inset 0 1px 0 var(--overlay-white-45), 0 0 20px -4px rgba(120,231,178,0.45)",
                     fontWeight: 700,
                   }}
-                  className="shrink-0 flex items-center gap-1.5 h-8 pl-2.5 pr-3.5 rounded-full text-[12px] whitespace-nowrap transition-all duration-200 hover:brightness-110 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.5),0_0_24px_-4px_rgba(120,231,178,0.55)] active:scale-95"
+                  className="shrink-0 flex items-center gap-1.5 h-8 pl-2.5 pr-3.5 rounded-full text-[12px] whitespace-nowrap transition-all duration-200 hover:brightness-110 hover:shadow-[inset_0_1px_0_var(--overlay-white-45),0_0_24px_-4px_rgba(120,231,178,0.55)] active:scale-95"
                   title="Upgrade plan"
                 >
                   <span>Upgrade</span>
@@ -1074,14 +1074,14 @@ const AppSidebar = ({
             <div
               className="flex-1 min-w-0 flex items-center gap-1.5 p-1 rounded-full backdrop-blur-md"
               style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)",
-                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
+                background: "var(--overlay-white-04)",
+                border: "1px solid var(--overlay-white-08)",
+                boxShadow: "inset 0 1px 0 var(--overlay-white-04)",
               }}
             >
               <button
                 onClick={() => navigateSmoothly("/settings")}
-                className="flex-1 min-w-0 flex items-center gap-2 px-1 py-0.5 rounded-full text-left transition-colors hover:bg-[rgba(255,255,255,0.04)]"
+                className="flex-1 min-w-0 flex items-center gap-2 px-1 py-0.5 rounded-full text-left transition-colors hover:bg-[var(--overlay-white-04)]"
                 title="Settings"
               >
                 {displayAvatar ? (
@@ -1089,15 +1089,15 @@ const AppSidebar = ({
                     src={displayAvatar}
                     alt=""
                     className="w-8 h-8 rounded-full object-cover shrink-0"
-                    style={{ border: "1px solid rgba(255,255,255,0.12)" }}
+                    style={{ border: "1px solid var(--overlay-white-12)" }}
                   />
                 ) : (
                   <div
                     className="w-8 h-8 rounded-full grid place-items-center text-[12px] shrink-0"
                     style={{
-                      background: "linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06))",
-                      color: "#fff",
-                      border: "1px solid rgba(255,255,255,0.12)",
+                      background: "linear-gradient(135deg, var(--overlay-white-14), var(--overlay-white-06))",
+                      color: "var(--overlay-white-100)",
+                      border: "1px solid var(--overlay-white-12)",
                       fontWeight: 700,
                     }}
                   >
@@ -1106,7 +1106,7 @@ const AppSidebar = ({
                 )}
                 <span
                   className="text-[13.5px] truncate tracking-tight"
-                  style={{ color: "rgba(255,255,255,0.92)", fontWeight: 600 }}
+                  style={{ color: "var(--overlay-white-92)", fontWeight: 600 }}
                 >
                   {displayName}
                 </span>
