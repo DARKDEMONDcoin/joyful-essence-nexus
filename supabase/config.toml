@@ -1,69 +1,54 @@
 project_id = "ltgampdtawuefwwayncx"
 
 
+# User-callable functions (require a valid JWT — anon key or user token).
 [functions.chat-alibaba]
-verify_jwt = false
+verify_jwt = true
 
 [functions.chat-slides-stream]
-verify_jwt = false
+verify_jwt = true
 
 [functions.slides-api]
-verify_jwt = false
+verify_jwt = true
 
 [functions.slides-export-pptx]
-verify_jwt = false
+verify_jwt = true
 
 [functions.deep-research-job]
-verify_jwt = false
+verify_jwt = true
 
 [functions.docs-generate]
-verify_jwt = false
-
-[functions.telegram-tasks-bot]
-verify_jwt = false
+verify_jwt = true
 
 [functions.kimi-coder]
-verify_jwt = false
-
-[functions.kashier-webhook]
-verify_jwt = false
-
-
-
-[functions.send-scheduled-messages]
-verify_jwt = false
+verify_jwt = true
 
 [functions.crawl-url]
-verify_jwt = false
+verify_jwt = true
 
 [functions.create-scheduled-message]
-verify_jwt = false
-
-[functions.parallel-webhook]
-verify_jwt = false
-
-[functions.parallel-run]
-verify_jwt = false
+verify_jwt = true
 
 [functions.pipedream-connect]
-verify_jwt = false
+verify_jwt = true
 
 [functions.oauth-github-connect]
-verify_jwt = false
+verify_jwt = true
 
 [functions.oauth-supabase-connect]
-verify_jwt = false
+verify_jwt = true
 
 [functions.supabase-oauth-start]
-verify_jwt = false
+verify_jwt = true
 
 [functions.github-push]
-verify_jwt = false
+verify_jwt = true
 
 [functions.supabase-link-manager]
-verify_jwt = false
+verify_jwt = true
 
-[functions.telegram-keys-bot]
+# External / unauthenticated endpoints — verify signatures or shared secrets inside the handler.
+[functions.kashier-webhook]
 verify_jwt = false
 
 [functions.appsumo-webhook]
@@ -72,3 +57,17 @@ verify_jwt = false
 [functions.appsumo-oauth]
 verify_jwt = false
 
+[functions.parallel-webhook]
+verify_jwt = false
+
+[functions.parallel-run]
+verify_jwt = false
+
+[functions.telegram-tasks-bot]
+verify_jwt = false
+
+[functions.telegram-keys-bot]
+verify_jwt = false
+
+[functions.send-scheduled-messages]
+verify_jwt = false
