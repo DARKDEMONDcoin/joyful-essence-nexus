@@ -1,0 +1,1 @@
+ALTER TABLE public.mcp_connections ADD COLUMN IF NOT EXISTS tool_schemas jsonb NOT NULL DEFAULT '[]'::jsonb;

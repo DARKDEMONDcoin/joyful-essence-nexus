@@ -1,0 +1,1 @@
+UPDATE public.alibaba_keys SET status='active', failure_count=0, last_error=NULL WHERE status='blocked';
