@@ -218,7 +218,10 @@ export default function MobileChatHeader({
 
         <div className="flex-1 min-w-0" />
         {!hasConversation && rightSlot ? (
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
+          <div
+            data-testid="mobile-upgrade"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto"
+          >
             {rightSlot}
           </div>
         ) : null}
