@@ -1,3 +1,4 @@
+/** @doc Megsy Coder edge function — Qwen-powered code assistant. */
 // Megsy Coder edge function — powered by Alibaba Qwen (qwen3-coder-plus) with
 // a persistent E2B sandbox per run, real read/edit/install tools, and
 // GitHub push + PR via the user's Pipedream GitHub connection.

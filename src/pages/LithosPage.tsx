@@ -1,3 +1,4 @@
+/** @doc Lithos landing page — showcases the Lithos product surface. */
 import { useEffect, useRef, useState } from "react";
 import { Menu } from "lucide-react";
 
