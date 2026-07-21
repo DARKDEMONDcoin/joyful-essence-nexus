@@ -303,7 +303,7 @@ export const MobileOnboardingTour = () => {
               opacity: { duration: 1.6, repeat: Infinity, ease: "easeInOut" },
             }}
             fill="none"
-            stroke="rgba(255,255,255,0.9)"
+            stroke="var(--overlay-white-90)"
             strokeWidth={2}
           />
         </svg>
@@ -358,7 +358,7 @@ export const MobileOnboardingTour = () => {
                   animate={{
                     width: i === step ? 18 : 6,
                     backgroundColor:
-                      i === step ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.25)",
+                      i === step ? "var(--overlay-white-90)" : "var(--overlay-white-25)",
                   }}
                   transition={{ duration: 0.25 }}
                 />

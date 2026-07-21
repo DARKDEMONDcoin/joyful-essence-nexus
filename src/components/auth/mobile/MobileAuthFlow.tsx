@@ -39,8 +39,8 @@ const TopBar = ({ onBack, showBack }: { onBack?: () => void; showBack?: boolean 
         aria-label={authT("back")}
         className="mt-4 w-9 h-9 rounded-full grid place-items-center text-white/85 active:scale-95 transition-transform"
         style={{
-          background: "rgba(255,255,255,0.06)",
-          border: "1px solid rgba(255,255,255,0.12)",
+          background: "var(--overlay-white-06)",
+          border: "1px solid var(--overlay-white-12)",
           backdropFilter: "blur(10px)",
           WebkitBackdropFilter: "blur(10px)",
         }}
@@ -122,8 +122,8 @@ export default function MobileAuthFlow(p: Props) {
                 <div
                   className="rounded-2xl px-4 h-[52px] flex items-center"
                   style={{
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.12)",
+                    background: "var(--overlay-white-05)",
+                    border: "1px solid var(--overlay-white-12)",
                     backdropFilter: "blur(10px)",
                     WebkitBackdropFilter: "blur(10px)",
                   }}
@@ -150,8 +150,8 @@ export default function MobileAuthFlow(p: Props) {
                       <div
                         className="rounded-2xl px-4 h-[52px] flex items-center gap-2"
                         style={{
-                          background: "rgba(255,255,255,0.05)",
-                          border: "1px solid rgba(255,255,255,0.12)",
+                          background: "var(--overlay-white-05)",
+                          border: "1px solid var(--overlay-white-12)",
                           backdropFilter: "blur(10px)",
                           WebkitBackdropFilter: "blur(10px)",
                         }}

@@ -438,7 +438,7 @@ function Chip({
       onClick={onClick}
       className={`h-10 inline-flex items-center justify-center rounded-xl text-[12.5px] font-semibold border transition-all active:scale-95 ${
         active
-          ? "bg-foreground text-background border-foreground shadow-[0_6px_20px_-6px_rgba(0,0,0,0.35)]"
+          ? "bg-foreground text-background border-foreground shadow-[0_6px_20px_-6px_var(--overlay-black-35)]"
           : "bg-foreground/[0.03] text-foreground/80 border-foreground/[0.08] hover:bg-foreground/[0.07] hover:border-foreground/[0.12]"
       }`}
     >

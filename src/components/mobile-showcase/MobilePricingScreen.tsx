@@ -199,9 +199,9 @@ export default function MobilePricingScreen({
             <div
               className="relative flex w-full items-center rounded-full p-1"
               style={{
-                background: "rgba(255,255,255,0.05)",
+                background: "var(--overlay-white-05)",
                 border: "1px solid rgba(255,255,255,0.09)",
-                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
+                boxShadow: "inset 0 1px 0 var(--overlay-white-04)",
               }}
             >
               {/* Sliding indicator */}
@@ -210,7 +210,7 @@ export default function MobilePricingScreen({
                 className="absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-full"
                 style={{
                   background: "linear-gradient(180deg, #ffffff 0%, #eef1f6 100%)",
-                  boxShadow: "0 6px 18px -6px rgba(255,255,255,0.35), inset 0 1px 0 rgba(255,255,255,0.9)",
+                  boxShadow: "0 6px 18px -6px rgba(255,255,255,0.35), inset 0 1px 0 var(--overlay-white-90)",
                   transform: isYearly
                     ? isAr
                       ? "translateX(-100%)"
@@ -298,7 +298,7 @@ export default function MobilePricingScreen({
                     background: plan.bg,
                     color: plan.text,
                     boxShadow: isActive
-                      ? "0 14px 36px -12px rgba(0,0,0,0.55)"
+                      ? "0 14px 36px -12px var(--overlay-black-55)"
                       : "0 6px 18px -12px rgba(0,0,0,0.4)",
                     transform: isActive ? "scale(1)" : "scale(0.965)",
                     opacity: isActive ? 1 : 0.78,

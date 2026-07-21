@@ -271,7 +271,7 @@ const cpmCss = `
 
 .cpm-glass {
   border: 0;
-  background: rgba(255,255,255,0.05);
+  background: var(--overlay-white-05);
   color: #ede4d8;
   backdrop-filter: blur(2px) saturate(1.3);
   -webkit-tap-highlight-color: transparent;
@@ -280,7 +280,7 @@ const cpmCss = `
   cursor: pointer;
   display: inline-flex; align-items: center; justify-content: center;
 }
-.cpm-glass:active { transform: scale(0.94); background: rgba(255,255,255,0.08); }
+.cpm-glass:active { transform: scale(0.94); background: var(--overlay-white-08); }
 .cpm-circle { width: 46px; height: 44px; border-radius: 22px; }
 
 /* Identity */
@@ -312,7 +312,7 @@ const cpmCss = `
   text-transform: uppercase; letter-spacing: 0.06em;
 }
 .cpm-card {
-  background: rgba(255,255,255,0.05);
+  background: var(--overlay-white-05);
   border: 0;
   border-radius: 20px;
   overflow: hidden;
@@ -330,7 +330,7 @@ const cpmCss = `
   font: inherit;
   transition: background-color 180ms ease;
 }
-.cpm-row:active { background: rgba(255,255,255,0.05); }
+.cpm-row:active { background: var(--overlay-white-05); }
 .cpm-row-b { border-top: 0; }
 .cpm-row-icon {
   width: 32px; height: 32px; flex-shrink: 0;

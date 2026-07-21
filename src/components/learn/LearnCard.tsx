@@ -190,7 +190,7 @@ const CardShell = ({
       initial={{ opacity: 0, y: 10, scale: 0.985 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ type: "spring", stiffness: 280, damping: 26, mass: 0.7 }}
-      className="relative overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-b from-card via-card to-card/90 p-5 space-y-4 shadow-[0_1px_0_rgba(255,255,255,0.04)_inset,0_20px_50px_-30px_rgba(0,0,0,0.5)] backdrop-blur-xl"
+      className="relative overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-b from-card via-card to-card/90 p-5 space-y-4 shadow-[0_1px_0_var(--overlay-white-04)_inset,0_20px_50px_-30px_rgba(0,0,0,0.5)] backdrop-blur-xl"
     >
       {/* tone accent bar */}
       <div className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r ${t.bar}`} />

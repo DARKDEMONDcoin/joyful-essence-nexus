@@ -141,7 +141,7 @@ const HorizontalGallery = () => {
             backdropFilter: "blur(12px) saturate(150%)",
             WebkitBackdropFilter: "blur(12px) saturate(150%)",
             boxShadow:
-              "inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -1px 0 rgba(0,0,0,0.08), 0 12px 32px rgba(0,0,0,0.15)",
+              "inset 0 1px 0 var(--overlay-white-70), inset 0 -1px 0 rgba(0,0,0,0.08), 0 12px 32px rgba(0,0,0,0.15)",
             border: "1px solid rgba(255,255,255,0.5)",
           }}
         >
@@ -162,7 +162,7 @@ const HorizontalGallery = () => {
             backdropFilter: "blur(12px) saturate(150%)",
             WebkitBackdropFilter: "blur(12px) saturate(150%)",
             boxShadow:
-              "inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -1px 0 rgba(0,0,0,0.08), 0 12px 32px rgba(0,0,0,0.15)",
+              "inset 0 1px 0 var(--overlay-white-70), inset 0 -1px 0 rgba(0,0,0,0.08), 0 12px 32px rgba(0,0,0,0.15)",
             border: "1px solid rgba(255,255,255,0.5)",
           }}
         >

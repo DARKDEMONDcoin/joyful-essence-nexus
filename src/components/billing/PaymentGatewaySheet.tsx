@@ -70,7 +70,7 @@ function PaymentGatewaySheetImpl({
           backdropFilter: "blur(22px) saturate(160%)",
           WebkitBackdropFilter: "blur(22px) saturate(160%)",
           boxShadow:
-            "inset 0 1px 1px rgba(255,255,255,0.16), 0 0 0 1px rgba(255,255,255,0.18), 0 22px 60px -18px rgba(0,0,0,0.7)",
+            "inset 0 1px 1px rgba(255,255,255,0.16), 0 0 0 1px var(--overlay-white-18), 0 22px 60px -18px rgba(0,0,0,0.7)",
         }}
       >
         <div className="sm:hidden pt-2.5 pb-2 flex items-center justify-center shrink-0">
@@ -85,10 +85,10 @@ function PaymentGatewaySheetImpl({
         <div
           className="flex flex-col gap-2 p-2.5 rounded-2xl border border-foreground/10"
           style={{
-            background: "rgba(255, 255, 255, 0.08)",
+            background: "var(--overlay-white-08)",
             backdropFilter: "blur(20px) saturate(150%)",
             WebkitBackdropFilter: "blur(20px) saturate(150%)",
-            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.12), 0 8px 30px rgba(0,0,0,0.18)",
+            boxShadow: "inset 0 1px 0 var(--overlay-white-12), 0 8px 30px rgba(0,0,0,0.18)",
           }}
         >
           {ROWS.map((row) => {
