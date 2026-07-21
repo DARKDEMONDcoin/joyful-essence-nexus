@@ -1155,7 +1155,7 @@ const ChatMessage = ({
                       align="end"
                       side="bottom"
                       sideOffset={6}
-                      className="z-50 w-[200px] rounded-[22px] overflow-hidden bg-popover/80 text-foreground border border-foreground/15 shadow-[0_24px_56px_-18px_rgba(0,0,0,0.7)] backdrop-blur-2xl p-1.5"
+                      className="z-50 w-[200px] rounded-[22px] overflow-hidden bg-popover/95 text-popover-foreground border border-border/60 shadow-[0_24px_56px_-18px_rgba(0,0,0,0.7)] backdrop-blur-2xl p-1.5"
                     >
                       <button
                         onClick={async (e) => {
@@ -1163,24 +1163,24 @@ const ChatMessage = ({
                           await handleCopy();
                           setDesktopMenuOpen(false);
                         }}
-                        className="w-full flex items-center justify-between gap-4 px-3 h-11 rounded-xl text-white hover:bg-white/10 transition-colors"
+                        className="w-full flex items-center justify-between gap-4 px-3 h-11 rounded-xl text-popover-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
                         role="menuitem"
                       >
-                        <span className="text-[15px] font-normal text-white">Copy</span>
-                        <Copy className="w-[18px] h-[18px] text-white" strokeWidth={1.8} />
+                        <span className="text-[15px] font-normal">Copy</span>
+                        <Copy className="w-[18px] h-[18px]" strokeWidth={1.8} />
                       </button>
-                      <div className="h-px bg-white/10 mx-2" />
+                      <div className="h-px bg-border/60 mx-2" />
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           handleEditAction();
                           setDesktopMenuOpen(false);
                         }}
-                        className="w-full flex items-center justify-between gap-4 px-3 h-11 rounded-xl text-white hover:bg-white/10 transition-colors"
+                        className="w-full flex items-center justify-between gap-4 px-3 h-11 rounded-xl text-popover-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
                         role="menuitem"
                       >
-                        <span className="text-[15px] font-normal text-white">Edit</span>
-                        <Pencil className="w-[18px] h-[18px] text-white" strokeWidth={1.8} />
+                        <span className="text-[15px] font-normal">Edit</span>
+                        <Pencil className="w-[18px] h-[18px]" strokeWidth={1.8} />
                       </button>
                     </PopoverContent>
                   </Popover>
