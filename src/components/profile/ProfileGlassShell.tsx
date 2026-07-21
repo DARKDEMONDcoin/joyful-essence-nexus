@@ -159,7 +159,7 @@ const ngCss = `
 .ng-root {
   position: relative;
   min-height: 100dvh;
-  color: #ffffff;
+  color: var(--overlay-white-100);
   font-family: "Helvetica Now Var", "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   display: flex; justify-content: center;
@@ -194,7 +194,7 @@ const ngCss = `
 .ng-back {
   width: 44px; height: 44px; padding: 0;
   border: 0; border-radius: 999px;
-  color: #ffffff;
+  color: var(--overlay-white-100);
   display: inline-flex; align-items: center; justify-content: center;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -216,12 +216,12 @@ const ngCss = `
   font-size: 26px; font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.2;
-  color: #ffffff;
+  color: var(--overlay-white-100);
 }
 .ng-hero-sub {
   margin: 0;
   font-size: 13.5px; line-height: 1.5;
-  color: rgba(255,255,255,0.58);
+  color: var(--overlay-white-60);
   font-weight: 400;
   max-width: 56ch;
 }
@@ -233,7 +233,7 @@ const ngCss = `
 .ng-section-title {
   margin: 0 6px 4px;
   font-size: 11.5px; font-weight: 500;
-  color: rgba(255,255,255,0.55);
+  color: var(--overlay-white-60);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -242,17 +242,17 @@ const ngCss = `
 /* --- Liquid Glass base --- */
 .liquid-glass, .liquid-glass-selected {
   position: relative;
-  background-color: rgba(255,255,255,0.01);
+  background-color: var(--overlay-white-03);
   background-blend-mode: luminosity;
   backdrop-filter: blur(4px);
-  box-shadow: inset 0 1px 1px rgba(255,255,255,0.10);
+  box-shadow: inset 0 1px 1px var(--overlay-white-10);
   border-radius: 24px;
   overflow: hidden;
 }
 .liquid-glass-selected {
-  background-color: rgba(255,255,255,0.12);
+  background-color: var(--overlay-white-12);
   backdrop-filter: blur(8px);
-  box-shadow: inset 0 1px 2px rgba(255,255,255,0.20);
+  box-shadow: inset 0 1px 2px var(--overlay-white-22);
 }
 .liquid-glass::before, .liquid-glass-selected::before {
   content: "";
@@ -260,12 +260,12 @@ const ngCss = `
   border-radius: inherit;
   padding: 1.4px;
   background: linear-gradient(180deg,
-    rgba(255,255,255,0.45) 0%,
-    rgba(255,255,255,0.15) 20%,
-    rgba(255,255,255,0) 40%,
-    rgba(255,255,255,0) 60%,
-    rgba(255,255,255,0.15) 80%,
-    rgba(255,255,255,0.45) 100%);
+    var(--overlay-white-45) 0%,
+    var(--overlay-white-14) 20%,
+    transparent 40%,
+    transparent 60%,
+    var(--overlay-white-14) 80%,
+    var(--overlay-white-45) 100%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
           mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
@@ -274,12 +274,12 @@ const ngCss = `
 }
 .liquid-glass-selected::before {
   background: linear-gradient(180deg,
-    rgba(255,255,255,0.6) 0%,
-    rgba(255,255,255,0.25) 20%,
-    rgba(255,255,255,0) 40%,
-    rgba(255,255,255,0) 60%,
-    rgba(255,255,255,0.25) 80%,
-    rgba(255,255,255,0.6) 100%);
+    var(--overlay-white-60) 0%,
+    var(--overlay-white-22) 20%,
+    transparent 40%,
+    transparent 60%,
+    var(--overlay-white-22) 80%,
+    var(--overlay-white-60) 100%);
 }
 
 /* --- Card --- */
@@ -296,7 +296,7 @@ const ngCss = `
   padding: 18px 20px;
   background: transparent;
   border: 0;
-  color: #ffffff;
+  color: var(--overlay-white-100);
   text-align: left;
   cursor: pointer;
   font: inherit;
@@ -306,38 +306,38 @@ const ngCss = `
 .ng-row + .ng-row::before {
   content: "";
   position: absolute; top: 0; left: 60px; right: 20px;
-  height: 1px; background: rgba(255,255,255,0.07);
+  height: 1px; background: var(--overlay-white-08);
 }
-.ng-row:active { background: rgba(255,255,255,0.06); }
+.ng-row:active { background: var(--overlay-white-06); }
 /* Clean glass icons — no bg, no border, soft luminous drop-shadow */
 .ng-row-icon {
   width: 30px; height: 30px;
   display: inline-flex; align-items: center; justify-content: center;
   flex-shrink: 0;
-  color: rgba(255,255,255,0.95);
+  color: var(--overlay-white-95);
   background: transparent;
   border: 0;
   filter:
-    drop-shadow(0 1px 0 rgba(255,255,255,0.35))
-    drop-shadow(0 2px 6px rgba(0,0,0,0.28))
+    drop-shadow(0 1px 0 var(--overlay-white-45))
+    drop-shadow(0 2px 6px var(--overlay-black-22))
     saturate(1.05) brightness(1.05);
 }
 .ng-row-icon > svg { width: 22px; height: 22px; stroke-width: 1.6; }
 .ng-row-icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .ng-row-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
-.ng-row-label { font-size: 15.5px; font-weight: 500; color: #ffffff; letter-spacing: 0.005em; }
-.ng-row-hint { font-size: 12.5px; color: rgba(255,255,255,0.55); line-height: 1.4; }
+.ng-row-label { font-size: 15.5px; font-weight: 500; color: var(--overlay-white-100); letter-spacing: 0.005em; }
+.ng-row-hint { font-size: 12.5px; color: var(--overlay-white-60); line-height: 1.4; }
 .ng-row-trailing {
-  font-size: 13px; color: rgba(255,255,255,0.6);
+  font-size: 13px; color: var(--overlay-white-60);
   flex-shrink: 0; max-width: 55%;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .ng-row-arrow {
-  font-size: 22px; color: rgba(255,255,255,0.4);
+  font-size: 22px; color: var(--overlay-white-45);
   flex-shrink: 0; line-height: 1;
   transition: transform 180ms ease, color 180ms ease;
 }
-.ng-row:hover .ng-row-arrow { transform: translateX(2px); color: rgba(255,255,255,0.75); }
+.ng-row:hover .ng-row-arrow { transform: translateX(2px); color: var(--overlay-white-70); }
 .ng-row-danger .ng-row-label,
 .ng-row-danger .ng-row-icon { color: #fda4af; }
 .ng-row-danger .ng-row-arrow { color: rgba(253,164,175,0.6); }
@@ -350,7 +350,7 @@ const ngCss = `
 .ng-field-label {
   padding-left: 6px;
   font-size: 12px; font-weight: 500;
-  color: rgba(255,255,255,0.6);
+  color: var(--overlay-white-60);
   letter-spacing: 0.02em;
 }
 .ng-input {
@@ -358,15 +358,15 @@ const ngCss = `
   border: 0;
   border-radius: 18px;
   padding: 14px 16px;
-  color: #ffffff;
+  color: var(--overlay-white-100);
   font: inherit;
   font-size: 15px;
   outline: none;
 }
-.ng-input::placeholder { color: rgba(255,255,255,0.4); }
+.ng-input::placeholder { color: var(--overlay-white-45); }
 .ng-field-hint {
   padding-left: 6px;
-  font-size: 12.5px; color: rgba(255,255,255,0.55);
+  font-size: 12.5px; color: var(--overlay-white-60);
   line-height: 1.5;
 }
 
@@ -382,7 +382,7 @@ const ngCss = `
   display: inline-flex; align-items: center; justify-content: center;
   letter-spacing: 0.01em;
   -webkit-tap-highlight-color: transparent;
-  color: #ffffff;
+  color: var(--overlay-white-100);
 }
 .ng-btn:active { transform: scale(0.98); }
 .ng-btn:disabled { opacity: 0.4; cursor: not-allowed; }
