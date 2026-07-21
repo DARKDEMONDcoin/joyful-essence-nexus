@@ -64,13 +64,18 @@ async function selfInvoke(action: string, payload: Record<string, unknown>) {
         headers: {
           Authorization: `Bearer ${SERVICE_ROLE}`,
           "Content-Type": "application/json",
+          // Send the internal secret in a dedicated header so it never appears
+          // in the JSON body (which may be logged / echoed). The receiving
+          // handler validates via constant-time compare.
+          "x-internal-invoke": SERVICE_ROLE,
         },
-        body: JSON.stringify({ action, __internal: SERVICE_ROLE, ...payload }),
+        body: JSON.stringify({ action, ...payload }),
       });
     } catch (e) {
       console.warn("[selfInvoke] failed", action, e);
     }
   };
+
   if (delayMs > 0) {
     wait(
       (async () => {
