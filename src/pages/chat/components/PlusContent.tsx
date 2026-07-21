@@ -354,7 +354,7 @@ const PlusMain = (p: PlusContentProps) => {
                 height: 18,
                 backgroundColor: p.searchEnabled
                   ? "hsl(var(--brand-action))"
-                  : "rgba(255,255,255,0.18)",
+                  : "var(--overlay-white-18)",
               }}
             >
               <span
@@ -542,7 +542,7 @@ const PlusSkills = (p: PlusContentProps) => (
                 style={{
                   width: 36,
                   height: 22,
-                  backgroundColor: enabled ? "hsl(var(--brand-action))" : "rgba(255,255,255,0.18)",
+                  backgroundColor: enabled ? "hsl(var(--brand-action))" : "var(--overlay-white-18)",
                 }}
                 aria-hidden="true"
               >
@@ -852,7 +852,7 @@ const PlusSkillsBody = (p: PlusContentProps) => (
                   height: 22,
                   backgroundColor: enabled
                     ? "hsl(var(--brand-action))"
-                    : "rgba(255,255,255,0.18)",
+                    : "var(--overlay-white-18)",
                 }}
                 aria-hidden="true"
               >

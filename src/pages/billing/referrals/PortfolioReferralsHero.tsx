@@ -247,7 +247,7 @@ function MobileHero({ onShareClick }: { onShareClick?: () => void }) {
           <div
             key={s.label}
             className="px-3 py-3.5"
-            style={{ borderLeft: i === 0 ? undefined : "1px solid rgba(255,255,255,0.06)" }}
+            style={{ borderLeft: i === 0 ? undefined : "1px solid var(--overlay-white-06)" }}
           >
             <div className="text-[9.5px] font-medium uppercase tracking-[0.2em] text-white/45">
               {s.label}

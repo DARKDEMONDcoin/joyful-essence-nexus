@@ -169,7 +169,7 @@ const css = `
 .help-item { position: relative; }
 .help-item + .help-item::before {
   content: ""; position: absolute; top: 0; left: 18px; right: 18px; height: 1px;
-  background: rgba(255,255,255,0.06);
+  background: var(--overlay-white-06);
 }
 .help-q {
   width: 100%; display: flex; align-items: center; gap: 12px;
@@ -178,7 +178,7 @@ const css = `
   cursor: pointer;
 }
 .help-q > span { flex: 1; }
-.help-q:hover { background: rgba(255,255,255,0.03); }
+.help-q:hover { background: var(--overlay-white-03); }
 .help-a-wrap {
   display: grid; grid-template-rows: 0fr;
   transition: grid-template-rows 260ms cubic-bezier(0.22,1,0.36,1);

@@ -79,7 +79,7 @@ export function DesktopChatHeader(props: DesktopChatHeaderProps) {
           className="relative inline-flex items-center gap-1.5 h-9 px-3.5 rounded-full text-[12.5px] font-bold shrink-0 transition-all hover:-translate-y-[1px] active:translate-y-[1px] active:shadow-none bg-black text-white border border-black hover:bg-white hover:text-black"
           style={{
             boxShadow:
-              "inset 1px 1px 1px 0 rgba(255,255,255,0.18), inset -1px -1px 1px 0 rgba(255,255,255,0.08), 0 4px 12px rgba(0,0,0,0.18)",
+              "inset 1px 1px 1px 0 var(--overlay-white-18), inset -1px -1px 1px 0 var(--overlay-white-08), 0 4px 12px rgba(0,0,0,0.18)",
           }}
         >
           <MegsyStar size={16} static className="text-white shrink-0" />

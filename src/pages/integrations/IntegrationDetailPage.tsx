@@ -267,7 +267,7 @@ const css = `
 }
 .idp-hero-glow {
   position: absolute; inset: -40% -20% auto -20%; height: 220px; pointer-events: none;
-  background: radial-gradient(50% 60% at 50% 0%, rgba(255,255,255,0.10), transparent 70%);
+  background: radial-gradient(50% 60% at 50% 0%, var(--overlay-white-10), transparent 70%);
   filter: blur(4px);
 }
 .idp-logo {
@@ -294,8 +294,8 @@ const css = `
 .idp-status-chip .dot { width: 6px; height: 6px; border-radius: 999px; }
 .idp-status-chip.is-ok { color: #7be0a8; background: rgba(52,199,89,0.14); }
 .idp-status-chip.is-ok .dot { background: #34c759; box-shadow: 0 0 8px rgba(52,199,89,0.7); }
-.idp-status-chip.is-muted { color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.06); }
-.idp-status-chip.is-muted .dot { background: rgba(255,255,255,0.3); }
+.idp-status-chip.is-muted { color: rgba(255,255,255,0.55); background: var(--overlay-white-06); }
+.idp-status-chip.is-muted .dot { background: var(--overlay-white-30); }
 .idp-btn {
   margin-top: 6px; width: 100%; max-width: 320px;
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -324,12 +324,12 @@ const css = `
 }
 .idp-safe.has-divider::before {
   content: ""; position: absolute; top: 0; left: 18px; right: 18px; height: 1px;
-  background: rgba(255,255,255,0.06);
+  background: var(--overlay-white-06);
 }
 .idp-safe-ic {
   width: 36px; height: 36px; border-radius: 12px;
   display: grid; place-items: center; shrink-0;
-  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  background: var(--overlay-white-05); border: 1px solid var(--overlay-white-08);
   color: rgba(242,238,231,0.8);
 }
 .idp-safe-body { min-width: 0; flex: 1; }

@@ -119,7 +119,7 @@ const PromoMasrPage = () => {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(60% 50% at 50% 0%, rgba(255,255,255,0.08), transparent 70%)",
+            "radial-gradient(60% 50% at 50% 0%, var(--overlay-white-08), transparent 70%)",
         }}
       />
 

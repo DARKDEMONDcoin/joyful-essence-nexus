@@ -43,8 +43,8 @@ function CartoonFlag({ code, size = 32 }: { code: string; size?: number }) {
       style={{
         width: size,
         height: size,
-        background: "rgba(255,255,255,0.06)",
-        border: "1px solid rgba(255,255,255,0.10)",
+        background: "var(--overlay-white-06)",
+        border: "1px solid var(--overlay-white-10)",
         boxShadow: "0 3px 10px rgba(0,0,0,0.25)",
       }}
     >

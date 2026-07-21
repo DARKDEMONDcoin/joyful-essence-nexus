@@ -143,9 +143,9 @@ const TwoFactorPage = () => {
                       width: 44, height: 44, borderRadius: 22,
                       display: "grid", placeItems: "center",
                       flexShrink: 0,
-                      background: enabled ? "rgba(52,211,153,0.14)" : "rgba(255,255,255,0.06)",
+                      background: enabled ? "rgba(52,211,153,0.14)" : "var(--overlay-white-06)",
                       color: enabled ? "#6ee7b7" : "rgba(235,220,205,0.7)",
-                      boxShadow: `inset 0 0 0 1px ${enabled ? "rgba(52,211,153,0.35)" : "rgba(255,255,255,0.12)"}`,
+                      boxShadow: `inset 0 0 0 1px ${enabled ? "rgba(52,211,153,0.35)" : "var(--overlay-white-12)"}`,
                     }}
                   >
                     {enabled ? <ShieldCheck className="w-5 h-5" strokeWidth={1.8} /> : <Shield className="w-5 h-5" strokeWidth={1.8} />}
@@ -205,9 +205,9 @@ const TwoFactorPage = () => {
                       display: "inline-flex", alignItems: "center", gap: 8,
                       padding: "8px 12px", borderRadius: 12,
                       fontSize: 12, fontFamily: "ui-monospace, monospace",
-                      background: "rgba(255,255,255,0.05)",
+                      background: "var(--overlay-white-05)",
                       color: "#ede4d8", border: 0,
-                      boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.12)",
+                      boxShadow: "inset 0 0 0 1px var(--overlay-white-12)",
                       cursor: "pointer", maxWidth: "100%",
                     }}
                   >

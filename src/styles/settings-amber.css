@@ -160,7 +160,7 @@
   font-size: 14px;
   color: #fff;
   background: var(--amb-primary-grad);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--overlay-white-10);
   box-shadow: var(--amb-primary-shadow);
   transition: transform 0.12s ease, filter 0.15s ease;
 }

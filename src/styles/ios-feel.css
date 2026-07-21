@@ -154,13 +154,13 @@ html {
     to bottom,
     #000 0,
     #000 calc(100% - 1.25em),
-    rgba(0, 0, 0, 0.55) 100%
+    var(--overlay-black-55) 100%
   );
   mask-image: linear-gradient(
     to bottom,
     #000 0,
     #000 calc(100% - 1.25em),
-    rgba(0, 0, 0, 0.55) 100%
+    var(--overlay-black-55) 100%
   );
 }
 @media (prefers-reduced-motion: reduce) {

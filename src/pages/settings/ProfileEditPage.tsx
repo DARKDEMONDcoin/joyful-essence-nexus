@@ -222,7 +222,7 @@ const profileEditCss = `
   position: absolute; inset: -6px;
   border-radius: 50%;
   background:
-    conic-gradient(from 210deg, rgba(255,255,255,0.55), rgba(255,255,255,0.05) 30%, rgba(255,255,255,0.35) 60%, rgba(255,255,255,0.05) 85%, rgba(255,255,255,0.55));
+    conic-gradient(from 210deg, rgba(255,255,255,0.55), var(--overlay-white-05) 30%, rgba(255,255,255,0.35) 60%, var(--overlay-white-05) 85%, rgba(255,255,255,0.55));
   -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px));
           mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px));
   pointer-events: none;
@@ -246,14 +246,14 @@ const profileEditCss = `
   backdrop-filter: blur(14px);
   color: #fff;
   display: grid; place-items: center;
-  box-shadow: 0 8px 22px -8px rgba(0,0,0,0.55),
+  box-shadow: 0 8px 22px -8px var(--overlay-black-55),
               inset 0 1px 0 rgba(255,255,255,0.35),
               0 0 0 1.5px rgba(10,10,10,0.6);
 }
 .pe-photo-hint {
   margin: 0;
   font-size: 12.5px;
-  color: rgba(255,255,255,0.6);
+  color: var(--overlay-white-60);
   letter-spacing: 0.01em;
 }
 
@@ -267,8 +267,8 @@ const profileEditCss = `
 }
 .pe-input {
   width: 100%;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.10);
+  background: var(--overlay-white-06);
+  border: 1px solid var(--overlay-white-10);
   border-radius: 14px;
   outline: none;
   padding: 14px 16px;
@@ -276,13 +276,13 @@ const profileEditCss = `
   font: inherit;
   font-size: 16px; font-weight: 500;
   letter-spacing: -0.005em;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+  box-shadow: inset 0 1px 0 var(--overlay-white-06);
   transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
 }
 .pe-input:focus {
   border-color: rgba(255,255,255,0.35);
-  background: rgba(255,255,255,0.10);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.10), 0 0 0 3px rgba(255,255,255,0.06);
+  background: var(--overlay-white-10);
+  box-shadow: inset 0 1px 0 var(--overlay-white-10), 0 0 0 3px var(--overlay-white-06);
 }
 .pe-input::placeholder { color: rgba(255,255,255,0.35); }
 .pe-field-hint {
@@ -300,7 +300,7 @@ const profileEditCss = `
   letter-spacing: 0.14em; text-transform: uppercase;
 }
 .pe-meta-value {
-  font-size: 14px; color: rgba(255,255,255,0.9);
+  font-size: 14px; color: var(--overlay-white-90);
   max-width: 60%;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }

@@ -118,7 +118,7 @@ const NotFound = () => {
     >
       <style>{`
         .four-oh-four {
-          text-shadow: 0 0 80px rgba(255,255,255,0.3), 0 0 160px rgba(255,255,255,0.1);
+          text-shadow: 0 0 80px var(--overlay-white-30), 0 0 160px var(--overlay-white-10);
         }
         .liquid-glass {
           background: rgba(255, 255, 255, 0.01);
@@ -126,7 +126,7 @@ const NotFound = () => {
           backdrop-filter: blur(4px);
           -webkit-backdrop-filter: blur(4px);
           border: none;
-          box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+          box-shadow: inset 0 1px 1px var(--overlay-white-10);
           position: relative;
           overflow: hidden;
         }
@@ -137,9 +137,9 @@ const NotFound = () => {
           border-radius: inherit;
           padding: 1.4px;
           background: linear-gradient(180deg,
-            rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%,
+            rgba(255,255,255,0.45) 0%, var(--overlay-white-15) 20%,
             rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
-            rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);
+            var(--overlay-white-15) 80%, rgba(255,255,255,0.45) 100%);
           -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
           -webkit-mask-composite: xor;
           mask-composite: exclude;
