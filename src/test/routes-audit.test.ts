@@ -93,7 +93,9 @@ describe("App router audit", () => {
         "Route",
         "Routes",
         "BrowserRouter",
+        "RootRoute",
       ]);
+
       for (const id of ids) {
         if (ignored.has(id)) continue;
         if (!imports.has(id)) missing.push(`${r.pathAttr ?? "(index)"} -> <${id}>`);
