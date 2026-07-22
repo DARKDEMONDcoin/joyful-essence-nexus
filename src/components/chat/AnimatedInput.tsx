@@ -467,8 +467,9 @@ const AnimatedInput = ({
               ) : null}
             </AnimatePresence>
           </div>
-        </div>
+        </motion.div>
       </div>
+
     </div>
   );
 };
