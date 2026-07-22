@@ -387,9 +387,10 @@ const AnimatedInput = ({
                 value={value}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
-                onFocus={() => onFocusChange?.(true)}
-                onBlur={() => onFocusChange?.(false)}
+                onFocus={() => { setFocused(true); onFocusChange?.(true); }}
+                onBlur={() => { setFocused(false); onFocusChange?.(false); }}
                 placeholder=""
+
                 rows={1}
                 autoComplete="off"
                 autoCorrect="off"
