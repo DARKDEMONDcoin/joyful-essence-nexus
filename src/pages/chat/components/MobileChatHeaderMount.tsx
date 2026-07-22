@@ -7,6 +7,8 @@ import { pathForZone } from "@/lib/zoneRouting";
 import MobileChatHeader from "@/components/chat/mobile/MobileChatHeader";
 import ComposerModelMenu from "../ComposerModelMenu";
 import type { ChatMode } from "../chatConstants";
+import { MediaSettingsPanel } from "@/components/chat/mobile/MediaSettingsMenu";
+import { ChatModelSettingsPanel } from "./ChatModelSettingsPanel";
 
 interface MobileChatHeaderMountProps {
   // Conversation meta
@@ -51,6 +53,8 @@ interface MobileChatHeaderMountProps {
   setGeneratedShareUrl: (v: string | null) => void;
   handleCreateShareLink: (m: "private" | "public") => unknown | Promise<unknown>;
   handleCopyShareLink: () => void;
+  setChatMode: (mode: ChatMode) => void;
+  setVideoDurationSec?: (duration: any) => void;
 }
 
 export function MobileChatHeaderMount(props: MobileChatHeaderMountProps) {
@@ -124,7 +128,7 @@ export function MobileChatHeaderMount(props: MobileChatHeaderMountProps) {
       onDelete={confirmDelete as any}
       isDeleting={isDeleting}
       modelSlot={
-        !isMobile || chatMode === "images" || chatMode === "video" ? null : (
+        !isMobile ? null : (
           <ComposerModelMenu
             mode={chatMode}
             open={tierMenuOpen}
@@ -136,6 +140,19 @@ export function MobileChatHeaderMount(props: MobileChatHeaderMountProps) {
             megsyTier={megsyTier}
             userPlan={userPlan as any}
             mediaModel={mediaModel}
+            settingsLabel={chatMode === "images" ? "Image settings" : chatMode === "video" ? "Video settings" : "Model settings"}
+            settingsPanel={
+              chatMode === "images" || chatMode === "video" ? (
+                <MediaSettingsPanel
+                  mode={chatMode}
+                  onChange={(settings) => {
+                    if (settings.duration !== undefined) props.setVideoDurationSec?.(settings.duration);
+                  }}
+                />
+              ) : (
+                <ChatModelSettingsPanel />
+              )
+            }
             onTierSelect={(tier) => {
               setSelectedModel(null);
               setMegsyTier(tier);
@@ -151,6 +168,7 @@ export function MobileChatHeaderMount(props: MobileChatHeaderMountProps) {
               setSelectedModel({ id: model.id, label: model.label, cost: 0 })
             }
             onMediaModelSelect={setMediaModel}
+            onModeChange={props.setChatMode}
           />
         )
       }

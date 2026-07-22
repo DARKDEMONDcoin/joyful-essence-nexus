@@ -216,7 +216,9 @@ export default function MobileChatHeader({
           <MegsySidebarToggleIcon />
         </button>
 
-        <div className="flex-1 min-w-0" />
+        <div className="flex min-w-0 flex-1 items-center justify-center px-1">
+          {modelSlot}
+        </div>
         {!hasConversation && rightSlot ? (
           <div
             data-testid="mobile-upgrade"

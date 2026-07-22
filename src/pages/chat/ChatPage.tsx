@@ -2431,6 +2431,8 @@ const ChatPage = () => {
             setGeneratedShareUrl={setGeneratedShareUrl}
             handleCreateShareLink={handleCreateShareLink}
             handleCopyShareLink={handleCopyShareLink}
+            setChatMode={setChatMode}
+            setVideoDurationSec={setVideoDurationSec}
           />
 
           {/* Desktop/mobile combined header: title dropdown, Unlock Pro, options */}
@@ -2465,6 +2467,17 @@ const ChatPage = () => {
             onCreateShareLink={handleCreateShareLink}
             onOpenInvite={openInviteFlow}
             onConfirmDelete={confirmDelete}
+            tierMenuOpen={tierMenuOpen}
+            setTierMenuOpen={setTierMenuOpen}
+            selectedModel={selectedModel}
+            setSelectedModel={setSelectedModel}
+            megsyTier={megsyTier}
+            setMegsyTier={setMegsyTier}
+            mediaModel={mediaModel}
+            setMediaModel={setMediaModel}
+            chatUserId={chatUserId}
+            setChatMode={setChatMode}
+            setVideoDurationSec={setVideoDurationSec}
           />
 
           {/* Scrollable messages area (welcome → loading → transcript) */}
