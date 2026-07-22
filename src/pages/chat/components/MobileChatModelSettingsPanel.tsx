@@ -36,7 +36,7 @@ export function MobileChatModelSettingsPanel() {
         <div className="px-4 pt-3 pb-1.5 text-[11px] uppercase tracking-[0.12em] font-semibold text-foreground/45">
           Model strength
         </div>
-        {EFFORTS.map(({ id, label, description, badge, icon: Icon, routedTo }) => {
+        {EFFORTS.map(({ id, label, description, badge, routedTo }) => {
           const active = preferences.effort === id;
           return (
             <button
@@ -45,9 +45,6 @@ export function MobileChatModelSettingsPanel() {
               onClick={() => update({ ...preferences, effort: id })}
               className={`flex w-full items-center gap-3 px-4 py-3 text-start border-t border-white/[0.05] transition-colors ${active ? "bg-white/[0.04]" : "hover:bg-white/[0.02]"}`}
             >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/[0.05]">
-                <Icon className="h-4 w-4 text-foreground/85" strokeWidth={2} />
-              </span>
               <span className="min-w-0 flex-1">
                 <span className="flex items-center gap-2 text-[15px] font-semibold text-foreground">
                   {label}
