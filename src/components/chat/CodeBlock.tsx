@@ -101,19 +101,19 @@ export default function CodeBlock({ code, lang, className, onPreview }: Props) {
       <div
         className="flex items-center justify-between px-3.5 h-10 border-b"
         style={{
-          backgroundColor: "#14171c",
+          backgroundColor: "var(--code-header-bg)",
           borderColor: "hsl(var(--foreground) / 0.10)",
         }}
       >
         <div className="flex items-center gap-2 min-w-0">
-          <FileCode2 className="w-3.5 h-3.5 shrink-0" style={{ color: "#c7ccd4" }} />
+          <FileCode2 className="w-3.5 h-3.5 shrink-0" style={{ color: "var(--code-fg-muted)" }} />
           <span
             className="text-[11px] font-medium tracking-wide uppercase truncate"
-            style={{ color: "#e6e8eb" }}
+            style={{ color: "var(--code-fg)" }}
           >
             {label}
           </span>
-          <span className="text-[10.5px] tabular-nums" style={{ color: "#8a9099" }}>
+          <span className="text-[10.5px] tabular-nums" style={{ color: "var(--code-fg-subtle)" }}>
             · {lineCount} {lineCount === 1 ? "line" : "lines"}
           </span>
         </div>
