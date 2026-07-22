@@ -73,9 +73,6 @@ export function MobileChatModelSettingsPanel() {
       {/* Deep thinking card */}
       <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
         <div className="flex items-center gap-3 px-4 py-3.5">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/[0.05]">
-            <Brain className="h-4 w-4 text-foreground/85" strokeWidth={2} />
-          </span>
           <span className="min-w-0 flex-1">
             <span className="block text-[15px] font-semibold text-foreground">Deep thinking</span>
             <span className="mt-0.5 block text-[11.5px] text-foreground/55">
