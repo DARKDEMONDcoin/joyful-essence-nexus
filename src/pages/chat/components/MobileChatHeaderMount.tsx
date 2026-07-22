@@ -153,6 +153,13 @@ export function MobileChatHeaderMount(props: MobileChatHeaderMountProps) {
                     if (settings.duration !== undefined) props.setVideoDurationSec?.(settings.duration);
                   }}
                 />
+              ) : chatMode === "deep-research" ? (
+                <MobileResearchDepthPanel
+                  researchDepth={props.researchDepth}
+                  setResearchDepth={props.setResearchDepth}
+                  userPlan={userPlan}
+                  onSelect={() => setTierMenuOpen(false)}
+                />
               ) : (
                 <MobileChatModelSettingsPanel activeModelId={selectedModel?.id ?? "lite"} />
               )
