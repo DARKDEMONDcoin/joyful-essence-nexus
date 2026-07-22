@@ -291,7 +291,6 @@ export default function ComposerModelMenu({
                       <p className="text-[16px] font-semibold">{view === "settings" && mode !== "images" && mode !== "video" ? "Effort" : view === "settings" ? settingsLabel : view === "more" ? "More models" : "Select model"}</p>
                       <span className="h-9 w-9" aria-hidden="true" />
                     </div>
-                    </div>
                     <AnimatePresence mode="wait" initial={false}>
                       {view === "settings" && settingsPanel ? (
                         <motion.div
