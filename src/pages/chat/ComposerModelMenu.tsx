@@ -354,7 +354,7 @@ export default function ComposerModelMenu({
                                   onChatModelSelect({ id: item.id, label: item.label });
                                 onOpenChange(false);
                               }}
-                              className={`flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors border-b border-white/[0.06] last:border-b-0 ${active ? "bg-white/[0.04]" : "hover:bg-white/[0.03]"}`}
+                              className={`flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors border-t border-white/[0.05] first:border-t-0 ${active ? "bg-white/[0.04]" : "hover:bg-white/[0.03]"}`}
                             >
                               <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-foreground/[0.05]">
                                 <ComposerModelIcon brand={item.brand} />
@@ -413,7 +413,7 @@ export default function ComposerModelMenu({
                                 onMediaModelSelect(choice);
                                 onOpenChange(false);
                               }}
-                              className={`flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors border-b border-white/[0.06] last:border-b-0 ${active ? "bg-white/[0.04]" : "hover:bg-white/[0.03]"}`}
+                              className={`flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors border-t border-white/[0.05] first:border-t-0 ${active ? "bg-white/[0.04]" : "hover:bg-white/[0.03]"}`}
                             >
                               <span className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-foreground/[0.05]">
                                 {hasBrandIcon(choice.name, choice.provider) ? (
@@ -481,7 +481,7 @@ export default function ComposerModelMenu({
                                 onMediaModelSelect(choice);
                                 onOpenChange(false);
                               }}
-                              className={`flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors border-b border-white/[0.06] last:border-b-0 ${active ? "bg-white/[0.04]" : "hover:bg-white/[0.03]"}`}
+                              className={`flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors border-t border-white/[0.05] first:border-t-0 ${active ? "bg-white/[0.04]" : "hover:bg-white/[0.03]"}`}
                             >
                               <span className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-foreground/[0.05]">
                                 {hasBrandIcon(choice.name, choice.provider) ? (
@@ -519,7 +519,7 @@ export default function ComposerModelMenu({
                     {view === "models" && (
                       <div className="mt-3 flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.03] overflow-hidden">
                         {settingsPanel ? (
-                          <button type="button" onClick={() => setView("settings")} className="flex w-full items-center gap-3 px-4 py-3.5 text-start border-b border-white/[0.06] last:border-b-0 hover:bg-white/[0.03] transition-colors">
+                          <button type="button" onClick={() => setView("settings")} className="flex w-full items-center gap-3 px-4 py-3.5 text-start border-t border-white/[0.05] first:border-t-0 hover:bg-white/[0.03] transition-colors">
                             <span className="flex-1 text-[14.5px] font-semibold">{mode !== "images" && mode !== "video" ? "Effort" : settingsLabel}</span>
                             {mode !== "images" && mode !== "video" ? (
                               <span className="text-[13.5px] text-foreground/55 capitalize">{effortValue}</span>
@@ -528,7 +528,7 @@ export default function ComposerModelMenu({
                           </button>
                         ) : null}
                         {(mode === "images" ? orderedImageOptions.length : mode === "video" ? orderedVideoOptions.length : orderedChatOptions.length) > 4 ? (
-                          <button type="button" onClick={() => setView("more")} className="flex w-full items-center gap-3 px-4 py-3.5 text-start border-b border-white/[0.06] last:border-b-0 hover:bg-white/[0.03] transition-colors">
+                          <button type="button" onClick={() => setView("more")} className="flex w-full items-center gap-3 px-4 py-3.5 text-start border-t border-white/[0.05] first:border-t-0 hover:bg-white/[0.03] transition-colors">
                             <span className="flex-1 text-[14.5px] font-semibold">More models</span>
                             <ChevronRight className="h-4 w-4 text-foreground/40" />
                           </button>
