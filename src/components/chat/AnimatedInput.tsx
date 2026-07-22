@@ -448,8 +448,7 @@ const AnimatedInput = ({
                 >
                   <Square className="w-3 h-3" fill="currentColor" />
                 </motion.button>
-
-              ) : value.trim() ? (
+              ) : (
                 <motion.button
                   key="send"
                   initial={{ opacity: 0, scale: 0.6 }}
@@ -458,7 +457,7 @@ const AnimatedInput = ({
                   transition={{ type: "spring", stiffness: 380, damping: 22 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={handleSendWithSlash}
-                  disabled={disabled}
+                  disabled={disabled || !value.trim()}
                   data-testid="mobile-composer-send"
                   className="theme-fixed shrink-0 w-9 h-9 md:h-10 md:w-10 flex items-center justify-center rounded-full bg-white text-black shadow-[0_2px_10px_rgba(0,0,0,0.3)] hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
                   style={{ backgroundColor: "#ffffff", color: "#000000" }}
@@ -466,7 +465,7 @@ const AnimatedInput = ({
                 >
                   <ArrowUp className="w-[18px] h-[18px] md:w-4 md:h-4" strokeWidth={2.2} color="#000000" />
                 </motion.button>
-              ) : null}
+              )}
             </AnimatePresence>
           </div>
         </motion.div>
