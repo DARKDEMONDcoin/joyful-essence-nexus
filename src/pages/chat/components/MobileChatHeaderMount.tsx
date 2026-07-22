@@ -57,6 +57,8 @@ interface MobileChatHeaderMountProps {
   handleCopyShareLink: () => void;
   setChatMode: (mode: ChatMode) => void;
   setVideoDurationSec?: (duration: any) => void;
+  researchDepth: ResearchDepth;
+  setResearchDepth: (d: ResearchDepth) => void;
 }
 
 export function MobileChatHeaderMount(props: MobileChatHeaderMountProps) {
