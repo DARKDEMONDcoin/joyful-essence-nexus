@@ -563,7 +563,50 @@ export default function ComposerModelMenu({
                   className="z-[9999] rounded-2xl p-2 text-white overflow-y-auto overscroll-contain unified-menu-surface scrollbar-thin"
                 >
 
+                  {settingsPanel && (
+                    <div className="flex items-center justify-between gap-2 px-1.5 pt-0.5 pb-2 sticky top-0 z-10">
+                      <button
+                        type="button"
+                        onClick={() => setView(view === "settings" ? "models" : "settings")}
+                        className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11.5px] font-semibold text-white/90 bg-white/10 border border-white/15 hover:bg-white/15 transition-colors"
+                        aria-label={view === "settings" ? "Back to models" : "Open model settings"}
+                      >
+                        {view === "settings" ? (
+                          <>
+                            <ArrowLeft className="h-3 w-3" strokeWidth={2.4} />
+                            <span>Models</span>
+                          </>
+                        ) : (
+                          <>
+                            <Sliders className="h-3 w-3" strokeWidth={2.4} />
+                            <span>{settingsLabel}</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  )}
+                  <AnimatePresence mode="wait" initial={false}>
+                  {view === "settings" && settingsPanel ? (
+                    <motion.div
+                      key="settings-desktop"
+                      initial={{ opacity: 0, x: 16 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -16 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className="p-1"
+                    >
+                      {settingsPanel}
+                    </motion.div>
+                  ) : (
+                  <motion.div
+                    key="models-desktop"
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 16 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                  >
                   {isMediaMode ? (
+
                     mediaOptions.length === 0 ? (
                       <div className={glassModelMenu.empty}>
                         {loading ? "Loading models…" : "No models available."}
