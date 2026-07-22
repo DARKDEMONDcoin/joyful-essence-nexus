@@ -59,31 +59,33 @@ export function MobileChatModelSettingsPanel({ activeModelId }: Props) {
 
       {/* Deep thinking — inline row, matches Effort card style */}
       <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
-        <div className="flex items-center gap-3 px-4 py-3.5">
+        <button
+          type="button"
+          role="switch"
+          aria-checked={preferences.deepThinking}
+          onClick={() => update({ ...preferences, deepThinking: !preferences.deepThinking })}
+          className="flex w-full items-center gap-3 px-4 py-3.5 text-start"
+        >
           <span className="min-w-0 flex-1">
             <span className="block text-[15px] font-semibold text-foreground">Deep thinking</span>
             <span className="mt-0.5 block text-[12px] text-foreground/50">Plan step-by-step before answering</span>
           </span>
-          <button
-            type="button"
-            role="switch"
-            aria-checked={preferences.deepThinking}
-            aria-label="Deep thinking"
-            onClick={() => update({ ...preferences, deepThinking: !preferences.deepThinking })}
+          <span
+            aria-hidden="true"
             className="relative h-[31px] w-[51px] shrink-0 rounded-full transition-colors duration-300 ease-out"
             style={{
               backgroundColor: preferences.deepThinking ? "var(--megsy-blue)" : "rgba(120,120,128,0.32)",
             }}
           >
             <span
-              className="absolute top-[2px] h-[27px] w-[27px] rounded-full bg-white transition-transform duration-300 ease-out"
+              className="absolute top-1/2 left-0 h-[27px] w-[27px] rounded-full bg-white transition-transform duration-300 ease-out"
               style={{
-                transform: preferences.deepThinking ? "translateX(22px)" : "translateX(2px)",
+                transform: `translate(${preferences.deepThinking ? "22px" : "2px"}, -50%)`,
                 boxShadow: "0 3px 8px rgba(0,0,0,0.15), 0 3px 1px rgba(0,0,0,0.06)",
               }}
             />
-          </button>
-        </div>
+          </span>
+        </button>
       </div>
     </motion.div>
   );
