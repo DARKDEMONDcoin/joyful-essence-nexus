@@ -69,14 +69,7 @@ export function ComposerInlineSlot(props: ComposerInlineSlotProps) {
           onOpenPicker={() => setSlidesPickerOpen(true)}
         />
       ) : null}
-      {chatMode === "deep-research" ? (
-        <ResearchDepthDropdown
-          researchDepth={researchDepth}
-          setResearchDepth={setResearchDepth}
-          researchDepthOpen={researchDepthOpen}
-          setResearchDepthOpen={setResearchDepthOpen}
-        />
-      ) : null}
+      {/* Deep-research depth moved into the model menu (Depth panel). */}
     </>
   );
 }
