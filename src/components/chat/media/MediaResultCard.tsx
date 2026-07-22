@@ -110,14 +110,22 @@ export default function MediaResultCard({
           <motion.div
             key={r.index}
             layout
-            initial={{ opacity: 0, scale: 0.96 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.96 }}
+            exit={{ opacity: 0, scale: 0.98 }}
             transition={{ type: "spring", stiffness: 320, damping: 28 }}
-            className="group relative rounded-2xl border border-border/60 bg-card/60 backdrop-blur overflow-hidden"
+            className={`group relative rounded-2xl overflow-hidden ${
+              r.status === "running"
+                ? "border-0 bg-transparent"
+                : "border border-border/60 bg-card/60 backdrop-blur"
+            }`}
           >
             <div
-              className={`w-full relative flex items-center justify-center overflow-hidden bg-[hsl(var(--muted))]/30 ${
+              className={`w-full relative flex items-center justify-center overflow-hidden ${
+                r.status === "running"
+                  ? "bg-foreground/[0.04] rounded-2xl"
+                  : "bg-[hsl(var(--muted))]/30"
+              } ${
                 r.type === "video" ? "aspect-[9/16]" : r.type === "music" ? "aspect-[16/9]" : "aspect-square"
               }`}
             >
@@ -156,53 +164,59 @@ export default function MediaResultCard({
                 )
               ) : r.status === "running" ? (
                 <>
-                  {/* ChatGPT-style progressive preview: show partial image with
-                      decreasing blur as more frames arrive, then sharpen on done. */}
+                  {/* ChatGPT-style clean loading tile:
+                      - subtle animated gradient wash (no chrome, no text)
+                      - if we already have a partial preview, show it softly blurred
+                      - single thin progress line at the bottom */}
                   {r.previewUrl && r.type === "image" ? (
                     <motion.img
                       key={r.previewUrl}
                       src={r.previewUrl}
-                      alt={r.title}
+                      alt=""
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.35 }}
                       className="absolute inset-0 w-full h-full object-cover"
                       style={{
-                        filter: `blur(${Math.max(2, 22 - (r.progress ?? 0) * 22)}px) saturate(1.05)`,
+                        filter: `blur(${Math.max(2, 20 - (r.progress ?? 0) * 20)}px) saturate(1.05)`,
                         transform: "scale(1.04)",
                       }}
                     />
-                  ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--muted))]/50 via-[hsl(var(--muted))]/30 to-[hsl(var(--muted))]/60" />
-                  )}
-                  {/* Smooth shimmer sweep */}
+                  ) : null}
+
+                  {/* Smooth, slow sweeping shimmer — ChatGPT-style */}
                   <motion.div
-                    className="absolute inset-y-0 -inset-x-1/2 bg-gradient-to-r from-transparent via-white/[0.09] to-transparent"
-                    animate={{ x: ["-50%", "150%"] }}
-                    transition={{ duration: 2.2, ease: "easeInOut", repeat: Infinity }}
-                  />
-                  {/* Soft pulsing aura */}
-                  <motion.div
-                    className="absolute inset-0 rounded-2xl"
+                    className="absolute inset-y-0 -inset-x-1/2 pointer-events-none"
                     style={{
                       background:
-                        "radial-gradient(60% 60% at 50% 50%, hsl(var(--primary) / 0.10), transparent 70%)",
+                        "linear-gradient(110deg, transparent 30%, hsl(var(--foreground) / 0.06) 50%, transparent 70%)",
                     }}
-                    animate={{ opacity: [0.35, 0.7, 0.35] }}
+                    animate={{ x: ["-40%", "140%"] }}
                     transition={{ duration: 2.4, ease: "easeInOut", repeat: Infinity }}
                   />
-                  {/* Clean loading state — no labels, just motion (ChatGPT-style). */}
-                  {/* Bottom progress bar — determinate when we have progress, else indeterminate */}
-                  <div className="absolute inset-x-0 bottom-0 h-[3px] overflow-hidden bg-foreground/5">
+
+                  {/* Soft breathing overlay to keep the tile alive */}
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background:
+                        "radial-gradient(65% 65% at 50% 50%, hsl(var(--foreground) / 0.04), transparent 75%)",
+                    }}
+                    animate={{ opacity: [0.4, 0.85, 0.4] }}
+                    transition={{ duration: 2.6, ease: "easeInOut", repeat: Infinity }}
+                  />
+
+                  {/* Thin progress hairline at the bottom */}
+                  <div className="absolute inset-x-3 bottom-2 h-[2px] overflow-hidden rounded-full bg-foreground/10">
                     {Number.isFinite(r.progress as number) ? (
                       <motion.div
-                        className="h-full bg-gradient-to-r from-primary/80 via-primary to-primary/80"
-                        animate={{ width: `${Math.min(100, Math.max(4, (r.progress as number) * 100))}%` }}
+                        className="h-full bg-foreground/70"
+                        animate={{ width: `${Math.min(100, Math.max(6, (r.progress as number) * 100))}%` }}
                         transition={{ duration: 0.5, ease: "easeOut" }}
                       />
                     ) : (
                       <motion.div
-                        className="h-full w-1/3 bg-gradient-to-r from-transparent via-primary to-transparent"
+                        className="h-full w-1/3 bg-foreground/70 rounded-full"
                         animate={{ x: ["-100%", "300%"] }}
                         transition={{ duration: 1.6, ease: "easeInOut", repeat: Infinity }}
                       />
@@ -217,6 +231,7 @@ export default function MediaResultCard({
               ) : null}
 
             </div>
+
             <div className="p-2 flex items-center justify-between gap-1 bg-black">
               <span className="text-[11px] font-medium truncate flex-1 min-w-0">{r.title}</span>
               {r.status === "done" && r.url && (
