@@ -1,4 +1,4 @@
-import { Check, Gauge, Rabbit, Scale, Sparkles, Flame, Rocket, Brain } from "lucide-react";
+import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
   readChatModelPreferences,
@@ -12,14 +12,13 @@ const EFFORTS: Array<{
   label: string;
   description: string;
   badge?: string;
-  icon: typeof Rabbit;
   routedTo: string;
 }> = [
-  { id: "low", label: "Low", description: "Quick replies to simple questions", icon: Rabbit, routedTo: "Megsy 3.9" },
-  { id: "medium", label: "Medium", description: "Light, everyday tasks", badge: "Default", icon: Scale, routedTo: "Megsy 3.9" },
-  { id: "high", label: "High", description: "Balanced for demanding work", icon: Gauge, routedTo: "GLM 5.3" },
-  { id: "extra", label: "Extra", description: "Complex, detailed work", icon: Flame, routedTo: "Claude Sonnet 5" },
-  { id: "max", label: "Max", description: "Hardest problems. Takes longest.", icon: Rocket, routedTo: "Claude Opus 4.8" },
+  { id: "low", label: "Low", description: "Quick replies to simple questions", routedTo: "Megsy 3.9" },
+  { id: "medium", label: "Medium", description: "Light, everyday tasks", badge: "Default", routedTo: "Megsy 3.9" },
+  { id: "high", label: "High", description: "Balanced for demanding work", routedTo: "GLM 5.3" },
+  { id: "extra", label: "Extra", description: "Complex, detailed work", routedTo: "Claude Sonnet 5" },
+  { id: "max", label: "Max", description: "Hardest problems. Takes longest.", routedTo: "Claude Opus 4.8" },
 ];
 
 export function MobileChatModelSettingsPanel() {
@@ -37,7 +36,7 @@ export function MobileChatModelSettingsPanel() {
         <div className="px-4 pt-3 pb-1.5 text-[11px] uppercase tracking-[0.12em] font-semibold text-foreground/45">
           Model strength
         </div>
-        {EFFORTS.map(({ id, label, description, badge, icon: Icon, routedTo }) => {
+        {EFFORTS.map(({ id, label, description, badge, routedTo }) => {
           const active = preferences.effort === id;
           return (
             <button
@@ -46,9 +45,6 @@ export function MobileChatModelSettingsPanel() {
               onClick={() => update({ ...preferences, effort: id })}
               className={`flex w-full items-center gap-3 px-4 py-3 text-start border-t border-white/[0.05] transition-colors ${active ? "bg-white/[0.04]" : "hover:bg-white/[0.02]"}`}
             >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/[0.05]">
-                <Icon className="h-4 w-4 text-foreground/85" strokeWidth={2} />
-              </span>
               <span className="min-w-0 flex-1">
                 <span className="flex items-center gap-2 text-[15px] font-semibold text-foreground">
                   {label}
@@ -77,9 +73,6 @@ export function MobileChatModelSettingsPanel() {
       {/* Deep thinking card */}
       <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
         <div className="flex items-center gap-3 px-4 py-3.5">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/[0.05]">
-            <Brain className="h-4 w-4 text-foreground/85" strokeWidth={2} />
-          </span>
           <span className="min-w-0 flex-1">
             <span className="block text-[15px] font-semibold text-foreground">Deep thinking</span>
             <span className="mt-0.5 block text-[11.5px] text-foreground/55">
