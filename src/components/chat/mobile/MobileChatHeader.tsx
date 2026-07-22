@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, m as motion } from "framer-motion";
 import { PrefetchLink as Link } from "@/components/common/PrefetchLink";
 import {
@@ -154,6 +154,24 @@ export default function MobileChatHeader({
 }: MobileChatHeaderProps) {
   const [open, setOpen] = useState(false);
   const [menuView, setMenuView] = useState<MenuView>("main");
+  const [modelHidden, setModelHidden] = useState(false);
+
+  // Hide the centered model button when the chat transcript scrolls.
+  // Shows again when the user scrolls back near the top.
+  useEffect(() => {
+    const el = document.querySelector('[role="log"]') as HTMLElement | null;
+    if (!el) return;
+    let lastY = el.scrollTop;
+    const onScroll = () => {
+      const y = el.scrollTop;
+      if (y < 40) setModelHidden(false);
+      else if (y > lastY + 4) setModelHidden(true);
+      else if (y < lastY - 4) setModelHidden(false);
+      lastY = y;
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, []);
   const prefetchPricing = () => {
     void prefetchRoute("/pricing");
   };
@@ -216,7 +234,9 @@ export default function MobileChatHeader({
           <MegsySidebarToggleIcon />
         </button>
 
-        <div className="flex min-w-0 flex-1 items-center justify-center px-1">
+        <div
+          className={`flex min-w-0 flex-1 items-center justify-center px-1 transition-all duration-200 ${modelHidden ? "opacity-0 -translate-y-1 pointer-events-none" : "opacity-100 translate-y-0"}`}
+        >
           {modelSlot}
         </div>
         {!hasConversation && rightSlot ? (
