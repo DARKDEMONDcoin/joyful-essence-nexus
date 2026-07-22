@@ -1,6 +1,10 @@
-import { m as motion, AnimatePresence } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { AGENTS, type AgentDef } from "@/lib/agentRegistry";
 import { useMemo } from "react";
+import {
+  glassModelMenu,
+  glassModelMenuStyle,
+} from "@/components/model-picker/glassModelMenuStyles";
 
 interface MentionDropdownProps {
   query: string; // text after "@"
@@ -39,18 +43,17 @@ const MentionDropdown = ({
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 8 }}
-        className="absolute bottom-full mb-2 left-0 z-[46] w-72 rounded-2xl border border-border/30 bg-black/80 backdrop-blur-2xl p-2 max-h-[280px] overflow-y-auto"
+        style={glassModelMenuStyle}
+        className={`${glassModelMenu.panelScrollable} absolute bottom-full mb-2 left-0 w-72 max-h-[280px]`}
       >
-        <p className="text-[10px] text-muted-foreground/60 uppercase px-3 py-1.5 select-none">
-          Agents
-        </p>
+        <p className={`${glassModelMenu.sectionLabel} px-3 py-1.5`}>Agents</p>
         {filtered.map((agent) => {
           const Icon = agent.icon;
           return (
             <button
               key={agent.id}
               onClick={() => onSelect(agent)}
-              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left hover:bg-white/5 transition-colors group"
+              className={glassModelMenu.item(false, "gap-3")}
             >
               <div
                 className={`w-8 h-8 rounded-lg ${agent.bg} flex items-center justify-center shrink-0`}

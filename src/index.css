@@ -120,6 +120,8 @@ html.lenis body {
   --overlay-black-50: rgba(0, 0, 0, 0.50);
   --overlay-black-55: var(--overlay-black-55);
   --page-bg: #000000;
+  /* Megsy brand blue — used across ThinkingLoader, AgentStatusLine, ChatMessage sources, MegsyStar */
+  --megsy-blue: #5b8def;
 
 
   /* ── Megsy Brand Tokens (unified) ─────────────────────────────

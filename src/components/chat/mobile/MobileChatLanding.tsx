@@ -729,7 +729,7 @@ const MobileChatLanding = ({
           <div className="flex flex-col items-center justify-center gap-5 w-full max-w-sm">
             {!isReactive && (
               <div aria-hidden>
-                <MegsyStar size={64} static className="text-[#3B82F6]" />
+                <MegsyStar size={64} static className="text-[#5B8DEF]" />
               </div>
             )}
 
