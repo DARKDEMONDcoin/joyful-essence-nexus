@@ -91,7 +91,7 @@ export default function CodeBlock({ code, lang, className, onPreview }: Props) {
     <div
       className="my-4 rounded-2xl overflow-hidden group/code"
       style={{
-        backgroundColor: "#0b0d10",
+        backgroundColor: "var(--code-bg)",
         boxShadow:
           "inset 0 0 0 1px hsl(var(--foreground) / 0.10), 0 20px 50px -28px hsl(0 0% 0% / 0.6)",
       }}
