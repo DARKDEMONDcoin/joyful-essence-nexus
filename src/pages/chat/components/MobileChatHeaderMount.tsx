@@ -8,7 +8,7 @@ import MobileChatHeader from "@/components/chat/mobile/MobileChatHeader";
 import ComposerModelMenu from "../ComposerModelMenu";
 import type { ChatMode } from "../chatConstants";
 import { MediaSettingsPanel } from "@/components/chat/mobile/MediaSettingsMenu";
-import { ChatModelSettingsPanel } from "./ChatModelSettingsPanel";
+import { MobileChatModelSettingsPanel } from "./MobileChatModelSettingsPanel";
 
 interface MobileChatHeaderMountProps {
   // Conversation meta
@@ -150,7 +150,7 @@ export function MobileChatHeaderMount(props: MobileChatHeaderMountProps) {
                   }}
                 />
               ) : (
-                <ChatModelSettingsPanel />
+                <MobileChatModelSettingsPanel />
               )
             }
             onTierSelect={(tier) => {
