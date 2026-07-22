@@ -278,6 +278,47 @@ export const CHAT_COMPOSER_MODEL_OPTIONS = [
 
 export type ChatModelBrand = "megsy" | "claude" | "gemini" | "openai" | "glm" | "kimi";
 
+// Per-model effort presets. Each model exposes its own list — shorter, curated names.
+export interface EffortPreset {
+  id: ModelEffort;
+  label: string;
+  description: string;
+}
+
+const EFFORTS_BALANCED: EffortPreset[] = [
+  { id: "low", label: "Fast", description: "Quick everyday replies" },
+  { id: "medium", label: "Balanced", description: "The default" },
+  { id: "high", label: "Smart", description: "More careful reasoning" },
+];
+
+const EFFORTS_POWERFUL: EffortPreset[] = [
+  { id: "medium", label: "Fast", description: "Quick answers" },
+  { id: "high", label: "Balanced", description: "The default" },
+  { id: "extra", label: "Deep", description: "Careful, detailed work" },
+];
+
+const EFFORTS_MAX: EffortPreset[] = [
+  { id: "high", label: "Fast", description: "Quicker replies" },
+  { id: "extra", label: "Deep", description: "Detailed reasoning" },
+  { id: "max", label: "Max", description: "Hardest problems" },
+];
+
+export const MODEL_EFFORT_PRESETS: Record<string, EffortPreset[]> = {
+  lite: EFFORTS_BALANCED,
+  "z-ai/glm-4.6:glm-5.3": EFFORTS_POWERFUL,
+  "google/gemini-2.5-flash:gemini-3-pro": EFFORTS_POWERFUL,
+  "anthropic/claude-sonnet-4.5:claude-sonnet-5": EFFORTS_POWERFUL,
+  "anthropic/claude-sonnet-4.5:claude-opus-4.8": EFFORTS_MAX,
+  "moonshot/kimi-k3:kimi-k3": EFFORTS_POWERFUL,
+  "openai/gpt-sol:gpt-sol": EFFORTS_MAX,
+};
+
+export function getEffortPresetsForModel(modelId: string | null | undefined): EffortPreset[] {
+  if (!modelId) return EFFORTS_BALANCED;
+  return MODEL_EFFORT_PRESETS[modelId] ?? EFFORTS_BALANCED;
+}
+
+
 export const ComposerModelIcon = ({
   brand,
 }: {
