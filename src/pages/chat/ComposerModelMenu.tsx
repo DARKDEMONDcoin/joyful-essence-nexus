@@ -183,7 +183,7 @@ export default function ComposerModelMenu({
         className={
           variant === "segment"
             ? `${glassModelMenu.triggerSegment} justify-center`
-            : "group inline-flex h-9 max-w-[52vw] items-center justify-center gap-1.5 px-2 text-[12.5px] font-semibold text-white hover:text-white active:opacity-70 transition-opacity outline-none"
+            : "group inline-flex h-9 max-w-[52vw] items-center justify-center gap-1.5 px-2 text-[12.5px] font-semibold text-foreground hover:text-foreground active:opacity-70 transition-opacity outline-none"
         }
         style={
           variant === "segment"
@@ -201,9 +201,9 @@ export default function ComposerModelMenu({
               ) : mediaModel?.thumbnail ? (
                 <img src={mediaModel.thumbnail} alt="" className="h-full w-full object-cover" />
               ) : mode === "video" ? (
-                <VideoIcon className="h-3.5 w-3.5 text-white/85" />
+                <VideoIcon className="h-3.5 w-3.5 text-foreground/85" />
               ) : (
-                <ImageIcon className="h-3.5 w-3.5 text-white/85" />
+                <ImageIcon className="h-3.5 w-3.5 text-foreground/85" />
               )
             ) : activeChatOption ? (
               <ComposerModelIcon brand={activeChatOption.brand} />
@@ -216,12 +216,13 @@ export default function ComposerModelMenu({
             )}
           </span>
         )}
-        <span className="truncate tracking-tight text-white">{triggerLabel}</span>
+        <span className="truncate tracking-tight text-foreground">{triggerLabel}</span>
         <ChevronDown
-          className={`h-3.5 w-3.5 shrink-0 text-black transition-transform ${open ? "rotate-180" : ""}`}
+          className={`h-3.5 w-3.5 shrink-0 text-foreground/60 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
         />
 
       </button>
+
 
 
       {/* MOBILE — unified bottom-sheet (Chat + Images + Videos) */}
