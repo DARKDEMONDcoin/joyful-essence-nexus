@@ -87,7 +87,13 @@ export default function ComposerModelMenu({
   onModeChange,
   noIcon = false,
   variant = "pill",
+  settingsPanel,
+  settingsLabel = "Settings",
 }: Props) {
+  const [view, setView] = useState<"models" | "settings">("models");
+  useEffect(() => {
+    if (!open) setView("models");
+  }, [open]);
   const isMediaMode = mode === "images" || mode === "video";
   const paid = isPaidUser(userPlan);
   const megsyLogo = useBrandLogo();
