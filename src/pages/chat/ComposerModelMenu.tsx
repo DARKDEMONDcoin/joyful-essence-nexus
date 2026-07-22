@@ -18,7 +18,7 @@ import { useDynamicModels } from "@/hooks/useModels";
 import { isPaidUser } from "@/lib/subscriptionGating";
 import type { MediaModelChoice } from "@/components/chat/media/MediaModelPickerSheet";
 import type { ChatMode } from "./chatConstants";
-import { CHAT_COMPOSER_MODEL_OPTIONS, ComposerModelIcon, getChatModelDisplayLabel } from "./chatConstants";
+import { CHAT_COMPOSER_MODEL_OPTIONS, ComposerModelIcon, getChatModelDisplayLabel, getEffortPresetsForModel } from "./chatConstants";
 import { useBrandLogo } from "@/hooks/useBrandLogo";
 import { BrandIcon, hasBrandIcon } from "@/components/chat/media/BrandIcon";
 import { useIsMobile } from "@/hooks/use-mobile";
