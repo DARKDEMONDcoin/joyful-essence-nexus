@@ -283,10 +283,24 @@ export default function ComposerModelMenu({
                 <DraggablePlusSheet
                    height={(() => {
                      const allRows = mode === "images" ? orderedImageOptions.length : mode === "video" ? orderedVideoOptions.length : orderedChatOptions.length;
-                     const rows = view === "settings" ? (mode === "images" || mode === "video" ? 5 : 6) : view === "more" ? allRows : Math.min(allRows, 4);
-                     const estimated = view === "settings" ? 570 : 150 + rows * 66 + (view === "models" ? 112 : 0);
-                    const maxH =
-                       typeof window !== "undefined" ? window.innerHeight * 0.88 : 650;
+                     const HEADER = 60;
+                     const ROW = 68;
+                     const PAD = 40;
+                     let rows: number;
+                     if (view === "settings") {
+                       // Model settings, media settings, and deep-research depth panels
+                       // are compact — pick the fewest rows we need.
+                       if (mode === "deep-research") rows = 5;
+                       else if (mode === "images" || mode === "video") rows = 4;
+                       else rows = 4; // 3 effort + 1 deep-thinking toggle
+                     } else if (view === "more") {
+                       rows = allRows;
+                     } else {
+                       // main models view: up to 4 model rows + a small trailing card (~2 rows)
+                       rows = Math.min(allRows, 4) + 2;
+                     }
+                     const estimated = HEADER + rows * ROW + PAD;
+                     const maxH = typeof window !== "undefined" ? window.innerHeight * 0.88 : 650;
                      return Math.min(estimated, maxH, 720);
                   })()}
                   collapsedY={0}
@@ -299,9 +313,31 @@ export default function ComposerModelMenu({
                       <button type="button" onClick={() => view === "models" ? onOpenChange(false) : setView("models")} className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/10 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.15)] hover:bg-white/15 transition-colors" aria-label={view === "models" ? "Close" : "Back"}>
                         {view === "models" ? <X className="h-5 w-5" /> : <ArrowLeft className="h-5 w-5" />}
                       </button>
-                      <p className="text-[16px] font-semibold">{view === "settings" && mode !== "images" && mode !== "video" ? "Effort" : view === "settings" ? settingsLabel : view === "more" ? "More models" : "Select model"}</p>
+                      <div className="relative flex-1 flex items-center justify-center overflow-hidden">
+                        <AnimatePresence mode="wait" initial={false}>
+                          <motion.p
+                            key={view}
+                            initial={{ opacity: 0, y: 6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -6 }}
+                            transition={{ duration: 0.18, ease: "easeOut" }}
+                            className="text-[16px] font-semibold"
+                          >
+                            {view === "settings"
+                              ? (mode === "deep-research"
+                                  ? "Depth"
+                                  : mode !== "images" && mode !== "video"
+                                    ? "Effort"
+                                    : settingsLabel)
+                              : view === "more"
+                                ? "More models"
+                                : "Select model"}
+                          </motion.p>
+                        </AnimatePresence>
+                      </div>
                       <span className="h-9 w-9" aria-hidden="true" />
                     </div>
+
                     <AnimatePresence mode="wait" initial={false}>
                       {view === "settings" && settingsPanel ? (
                         <motion.div
