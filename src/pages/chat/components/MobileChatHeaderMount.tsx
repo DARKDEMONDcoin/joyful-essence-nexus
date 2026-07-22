@@ -9,6 +9,8 @@ import ComposerModelMenu from "../ComposerModelMenu";
 import type { ChatMode } from "../chatConstants";
 import { MediaSettingsPanel } from "@/components/chat/mobile/MediaSettingsMenu";
 import { MobileChatModelSettingsPanel } from "./MobileChatModelSettingsPanel";
+import { MobileResearchDepthPanel } from "./MobileResearchDepthPanel";
+import type { ResearchDepth } from "../hooks/useChatTier";
 
 interface MobileChatHeaderMountProps {
   // Conversation meta
