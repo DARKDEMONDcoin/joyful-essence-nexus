@@ -1419,7 +1419,7 @@ const ChatMessage = ({
                 <button
                   type="button"
                   onClick={openProjectPreview}
-                  className="group inline-flex items-center gap-3 flex-1 rounded-2xl border border-border/60 bg-gradient-to-br from-[#0a0a0a] to-[#1a1a1a] px-4 py-3 text-left shadow-sm hover:shadow-md hover:border-[var(--megsy-blue)]/60 transition-all"
+                  className="group inline-flex items-center gap-3 flex-1 rounded-2xl border border-border/60 bg-gradient-to-br from-surface-1 to-surface-3 px-4 py-3 text-left shadow-sm hover:shadow-md hover:border-[var(--megsy-blue)]/60 transition-all"
                 >
                   <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[var(--megsy-blue)]/20 text-[var(--megsy-blue)] group-hover:bg-[var(--megsy-blue)] group-hover:text-white transition-colors">
                     <Play className="w-4 h-4" fill="currentColor" />
@@ -1436,7 +1436,7 @@ const ChatMessage = ({
                 <button
                   type="button"
                   onClick={() => setStudioOpen(true)}
-                  className="group inline-flex items-center gap-3 flex-1 rounded-2xl border border-border/60 bg-gradient-to-br from-[#0a0a0a] to-[#1a1a1a] px-4 py-3 text-left shadow-sm hover:shadow-md hover:border-emerald-400/60 transition-all"
+                  className="group inline-flex items-center gap-3 flex-1 rounded-2xl border border-border/60 bg-gradient-to-br from-surface-1 to-surface-3 px-4 py-3 text-left shadow-sm hover:shadow-md hover:border-emerald-400/60 transition-all"
                 >
                   <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-black transition-colors">
                     <FolderTree className="w-4 h-4" />
