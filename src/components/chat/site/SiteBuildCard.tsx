@@ -18,6 +18,7 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import StatusBadge from "../primitives/StatusBadge";
 
 type Task = {
   step?: string;
@@ -145,19 +146,12 @@ export default function SiteBuildCard({ siteId }: Props) {
           <Progress value={row?.progress ?? 5} className="h-1.5" />
           <div className="flex flex-wrap gap-1.5">
             {tasks.slice(-4).map((t, i) => (
-              <span
+              <StatusBadge
                 key={i}
-                className={`text-[10px] px-2 py-0.5 rounded-full border ${
-                  t.status === "done"
-                    ? "border-primary/30 text-primary bg-primary/5"
-                    : t.status === "error"
-                      ? "border-destructive/30 text-destructive bg-destructive/5"
-                      : "border-border text-muted-foreground bg-muted/40"
-                }`}
-              >
-                {t.status === "done" ? "✓ " : t.status === "running" ? "⋯ " : ""}
-                {t.label}
-              </span>
+                status={t.status ?? "running"}
+                label={t.label}
+                size="md"
+              />
             ))}
           </div>
         </div>

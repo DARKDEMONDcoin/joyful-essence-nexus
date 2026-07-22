@@ -1,9 +1,9 @@
 import { memo, useMemo } from "react";
 import { m as motion } from "framer-motion";
-import { Check, AlertCircle, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import MegsyStar from "@/components/files/MegsyStar";
 import { resolveToolActivity, brandIconUrl } from "@/lib/toolActivity";
-import { cn } from "@/lib/utils";
+import StatusBadge from "./primitives/StatusBadge";
 
 export interface ParallelAgentTask {
   id: string;
@@ -93,23 +93,7 @@ const ParallelAgentsPanel = ({ tasks, active = true }: Props) => {
             <span className="min-w-0 flex-1 truncate text-[12px] font-medium text-foreground/85">
               {taskLabel(task, isArabic)}
             </span>
-            <span
-              className={cn(
-                "inline-flex h-5 min-w-5 shrink-0 items-center justify-center rounded-full px-1.5 text-[10px]",
-                task.status === "done" &&
-                  "bg-emerald-500/12 text-emerald-600 dark:text-emerald-400",
-                task.status === "error" && "bg-destructive/12 text-destructive",
-                task.status === "running" && "bg-primary/12 text-primary",
-              )}
-            >
-              {task.status === "done" ? (
-                <Check className="h-3 w-3" />
-              ) : task.status === "error" ? (
-                <AlertCircle className="h-3 w-3" />
-              ) : (
-                <Loader2 className="h-3 w-3 animate-spin" />
-              )}
-            </span>
+            <StatusBadge status={task.status} className="shrink-0" />
           </div>
         ))}
       </div>

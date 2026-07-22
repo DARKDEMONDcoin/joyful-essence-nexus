@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { m as motion } from "framer-motion";
-import { FileText } from "lucide-react";
+import { FileText, ExternalLink } from "lucide-react";
 import {
   detectResearchReportDirection,
   normalizeResearchReport,
 } from "@/lib/normalizeResearchReport";
+import ToolCard from "./primitives/ToolCard";
 
 interface DeepResearchCardProps {
   query: string;
@@ -23,41 +23,33 @@ const DeepResearchCard = ({
   const navigate = useNavigate();
   const cleanReport = normalizeResearchReport(report);
   const isRtl = detectResearchReportDirection(cleanReport) === "rtl";
-  const reportData = { query, report: cleanReport, images };
+  const isEmpty = !cleanReport?.trim();
 
   const openPreview = () => {
     const target = sessionKey ? `/research/preview/${sessionKey}` : "/research/preview/new";
-    navigate(target, { state: { reportData } });
+    navigate(target, { state: { reportData: { query, report: cleanReport, images } } });
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 6 }}
-      animate={{ opacity: 1, y: 0 }}
+    <ToolCard
       dir={isRtl ? "rtl" : "ltr"}
-      className="w-full max-w-[420px] rounded-3xl bg-card/70 border border-border/40 backdrop-blur-sm p-5"
+      className="max-w-[420px]"
+      icon={<FileText className="h-4 w-4" />}
+      title={query}
+      subtitle={isEmpty ? "No report content" : undefined}
     >
-      <div className={`flex items-start gap-3 ${isRtl ? "flex-row-reverse" : ""}`}>
-        <div className="w-10 h-10 rounded-full bg-muted/60 flex items-center justify-center shrink-0">
-          <FileText className="w-5 h-5 text-foreground/70" />
-        </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="text-base font-semibold text-foreground leading-snug line-clamp-2">
-            {query}
-          </h3>
-        </div>
-      </div>
-
-      <div className={`mt-5 ${isRtl ? "text-right" : "text-left"}`}>
+      <div className={isRtl ? "text-right" : "text-left"}>
         <button
           type="button"
           onClick={openPreview}
-          className="inline-flex items-center justify-center px-6 h-10 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors"
+          disabled={isEmpty}
+          className="inline-flex items-center gap-1.5 justify-center px-5 h-9 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
+          <ExternalLink className="h-3.5 w-3.5" />
           Open
         </button>
       </div>
-    </motion.div>
+    </ToolCard>
   );
 };
 
