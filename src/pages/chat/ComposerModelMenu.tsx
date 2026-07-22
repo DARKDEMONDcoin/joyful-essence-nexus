@@ -506,17 +506,17 @@ export default function ComposerModelMenu({
                     </div>
                     )}
                     {view === "models" && (
-                      <div className="mt-2 space-y-2">
+                      <div className="mt-3 flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.03] overflow-hidden">
                         {settingsPanel ? (
-                          <button type="button" onClick={() => setView("settings")} className="flex w-full items-center gap-3 rounded-2xl bg-foreground/[0.045] px-4 py-3 text-start">
-                            <Sliders className="h-4 w-4 text-foreground/65" />
-                            <span className="flex-1 text-[14px] font-semibold">{settingsLabel}</span>
+                          <button type="button" onClick={() => setView("settings")} className="flex w-full items-center gap-3 px-4 py-3.5 text-start border-b border-white/[0.06] last:border-b-0 hover:bg-white/[0.03] transition-colors">
+                            <Sliders className="h-4 w-4 text-foreground/70" />
+                            <span className="flex-1 text-[14.5px] font-semibold">{settingsLabel}</span>
                             <ChevronRight className="h-4 w-4 text-foreground/40" />
                           </button>
                         ) : null}
                         {(mode === "images" ? orderedImageOptions.length : mode === "video" ? orderedVideoOptions.length : orderedChatOptions.length) > 4 ? (
-                          <button type="button" onClick={() => setView("more")} className="flex w-full items-center gap-3 rounded-2xl bg-foreground/[0.045] px-4 py-3 text-start">
-                            <span className="flex-1 text-[14px] font-semibold">More models</span>
+                          <button type="button" onClick={() => setView("more")} className="flex w-full items-center gap-3 px-4 py-3.5 text-start border-b border-white/[0.06] last:border-b-0 hover:bg-white/[0.03] transition-colors">
+                            <span className="flex-1 text-[14.5px] font-semibold">More models</span>
                             <ChevronRight className="h-4 w-4 text-foreground/40" />
                           </button>
                         ) : null}
