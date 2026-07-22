@@ -521,7 +521,11 @@ export default function ComposerModelMenu({
                       </div>
                     </div>
                     )}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
+
 
                 </DraggablePlusSheet>
               </>
