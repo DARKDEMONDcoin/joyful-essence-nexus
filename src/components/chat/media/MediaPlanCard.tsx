@@ -1,6 +1,7 @@
 import { m as motion } from "framer-motion";
 import { Image as ImageIcon, Video as VideoIcon, Play, Pencil, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ToolCard from "../primitives/ToolCard";
 
 export interface MediaPlanScene {
   index: number;
@@ -19,18 +20,17 @@ export interface MediaPlan {
   scenes: MediaPlanScene[];
   estimatedTotalSeconds?: number;
   notes?: string;
-  /** User-selected aspect ratio (from MediaSettings) — passed through to the provider. */
   aspectRatio?: string;
-  /** For music mode: optional lyrics attached alongside the style prompt. */
   lyrics?: string;
 }
 
 interface Props {
   plan: MediaPlan;
-  status: "awaiting" | "running" | "done" | "cancelled";
+  status: "awaiting" | "running" | "done" | "cancelled" | "error";
   currentSceneIndex?: number;
   onStart: () => void;
   onEditPrompt: () => void;
+  errorMessage?: string;
 }
 
 export default function MediaPlanCard({
@@ -39,43 +39,27 @@ export default function MediaPlanCard({
   currentSceneIndex,
   onStart,
   onEditPrompt,
+  errorMessage,
 }: Props) {
   const Icon = plan.mode === "video" ? VideoIcon : ImageIcon;
   const totalCount = plan.scenes.length;
   const hasGeneratedOutput = status === "running" || status === "done";
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="my-2 max-w-[640px] rounded-2xl border border-white/10 bg-black/30 p-4 text-brand-parchment shadow-2xl backdrop-blur-2xl"
+    <ToolCard
+      icon={<Icon className="h-4 w-4" />}
+      title={plan.mode === "video" ? "Video plan" : "Image plan"}
+      subtitle={plan.modelName}
+      trailing={
+        plan.estimatedTotalSeconds ? (
+          <span className="inline-flex items-center gap-1 text-[11px] text-muted-foreground">
+            <Clock className="h-3 w-3" />~{plan.estimatedTotalSeconds}s
+          </span>
+        ) : null
+      }
     >
-      <div className="flex items-center gap-3 mb-3">
-        <div
-          className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0"
-          style={{
-            background: plan.mode === "video" ? "hsl(var(--brand-mint) / 0.22)" : "hsl(var(--brand-action) / 0.22)",
-            border: `1px solid ${plan.mode === "video" ? "hsl(var(--brand-mint) / 0.35)" : "hsl(var(--brand-action) / 0.35)"}`,
-            color: plan.mode === "video" ? "hsl(var(--brand-mint))" : "hsl(var(--brand-action))",
-          }}
-        >
-          <Icon className="w-4 h-4" />
-        </div>
-        <div className="flex-1 min-w-0">
-          <div className="font-semibold text-sm text-brand-parchment">
-            {plan.mode === "video" ? "Video plan" : "Image plan"}
-          </div>
-          <div className="text-[11px] text-brand-parchment/60 truncate">{plan.modelName}</div>
-        </div>
-        {plan.estimatedTotalSeconds ? (
-          <div className="text-[11px] text-brand-parchment/60 flex items-center gap-1">
-            <Clock className="w-3 h-3" />~{plan.estimatedTotalSeconds}s
-          </div>
-        ) : null}
-      </div>
-
       {plan.summary && (
-        <p className="text-sm text-brand-parchment/90 leading-relaxed mb-3">{plan.summary}</p>
+        <p className="mb-3 text-sm leading-relaxed text-foreground/90">{plan.summary}</p>
       )}
 
       {hasGeneratedOutput ? (
@@ -90,57 +74,48 @@ export default function MediaPlanCard({
             return (
               <li
                 key={s.index}
-                className="rounded-xl border border-white/10 bg-white/[0.05] p-3 text-sm transition-colors"
-                style={{
-                  boxShadow: active
-                    ? "inset 0 0 0 1px hsl(var(--brand-action) / 0.5), 0 0 20px -6px hsl(var(--brand-action) / 0.35)"
+                className={
+                  "rounded-ios-md border border-border/40 bg-background/40 p-3 text-sm transition-colors " +
+                  (active
+                    ? "ring-1 ring-primary/60 bg-primary/5"
                     : done
-                      ? "inset 0 0 0 1px hsl(var(--brand-mint) / 0.4)"
-                      : "none",
-                  background: active
-                    ? "linear-gradient(135deg, hsl(var(--brand-action) / 0.18), hsl(var(--brand-action) / 0.06))"
-                    : done
-                      ? "linear-gradient(135deg, hsl(var(--brand-mint) / 0.12), hsl(var(--brand-mint) / 0.04))"
-                      : "hsl(0 0% 100% / 0.04)",
-                }}
+                      ? "ring-1 ring-emerald-500/40 bg-emerald-500/5"
+                      : "")
+                }
               >
-                <div className="flex items-center gap-2.5 mb-1">
+                <div className="mb-1 flex items-center gap-2.5">
                   <span
-                    className="w-6 h-6 rounded-full text-[11px] font-semibold flex items-center justify-center shrink-0"
-                    style={{
-                      background: done || active ? "hsl(var(--brand-action))" : "hsl(0 0% 100% / 0.1)",
-                      color: done || active ? "hsl(var(--brand-ink))" : "hsl(var(--brand-parchment) / 0.7)",
-                      border: `1px solid ${done || active ? "transparent" : "hsl(0 0% 100% / 0.15)"}`,
-                    }}
+                    className={
+                      "flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold " +
+                      (done || active
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-muted text-muted-foreground")
+                    }
                   >
                     {s.index}
                   </span>
-                  <span className="font-semibold text-sm flex-1 min-w-0 truncate text-brand-ink">
-                    {s.title}
-                  </span>
+                  <span className="min-w-0 flex-1 truncate text-sm font-semibold">{s.title}</span>
                   {s.duration_seconds && (
-                    <span className="text-[10px] text-brand-parchment/60 shrink-0">
+                    <span className="shrink-0 text-[10px] text-muted-foreground">
                       {s.duration_seconds}s
                     </span>
                   )}
                 </div>
-                <p className="text-[12px] text-brand-ink/80 leading-snug ps-8">{s.prompt}</p>
+                <p className="text-[12px] leading-snug text-foreground/70 ps-8">{s.prompt}</p>
               </li>
             );
           })}
         </ol>
       ) : null}
 
-      {plan.notes && <p className="text-[11px] text-brand-parchment/60 italic mb-3">{plan.notes}</p>}
+      {plan.notes && (
+        <p className="mb-3 text-[11px] italic text-muted-foreground">{plan.notes}</p>
+      )}
 
       {status === "awaiting" && (
-        <div className="flex items-center gap-2 pt-1">
-          <Button
-            size="sm"
-            onClick={onStart}
-            className="gap-1.5 bg-brand-action text-brand-ink hover:bg-brand-action/90 border-0"
-          >
-            <Play className="w-3.5 h-3.5" />
+        <div className="flex flex-wrap items-center gap-2">
+          <Button size="sm" onClick={onStart} className="gap-1.5">
+            <Play className="h-3.5 w-3.5" />
             Generate {totalCount}{" "}
             {plan.mode === "video"
               ? totalCount === 1
@@ -150,35 +125,30 @@ export default function MediaPlanCard({
                 ? "image"
                 : "images"}
           </Button>
-          <Button
-            size="sm"
-            variant="ghost"
-            onClick={onEditPrompt}
-            className="gap-1.5 text-brand-parchment/80 hover:text-brand-parchment hover:bg-white/10"
-          >
-            <Pencil className="w-3.5 h-3.5" />
+          <Button size="sm" variant="ghost" onClick={onEditPrompt} className="gap-1.5">
+            <Pencil className="h-3.5 w-3.5" />
             Edit prompt
           </Button>
         </div>
       )}
+
       {status === "running" && (
-        <div className="pt-1 space-y-2">
-          <div className="flex items-center justify-between text-xs text-brand-parchment">
+        <div className="space-y-2 pt-1">
+          <div className="flex items-center justify-between text-xs text-foreground">
             <span className="inline-flex items-center gap-2">
-              <span className="relative flex w-2 h-2">
-                <span className="absolute inset-0 rounded-full bg-brand-action/60 animate-ping" />
-                <span className="relative inline-flex w-2 h-2 rounded-full bg-brand-action" />
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inset-0 animate-ping rounded-full bg-primary/60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
               </span>
               Generating {currentSceneIndex ?? 1} of {totalCount}…
             </span>
-            <span className="text-brand-parchment/60">
+            <span className="text-muted-foreground">
               {Math.round((((currentSceneIndex ?? 1) - 1) / totalCount) * 100)}%
             </span>
           </div>
-          <div className="h-1.5 w-full rounded-full bg-white/10 overflow-hidden">
+          <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
             <motion.div
-              className="h-full rounded-full"
-              style={{ background: "hsl(var(--brand-action))" }}
+              className="h-full rounded-full bg-primary"
               initial={{ width: 0 }}
               animate={{
                 width: `${(((currentSceneIndex ?? 1) - 1) / totalCount) * 100}%`,
@@ -188,12 +158,18 @@ export default function MediaPlanCard({
           </div>
         </div>
       )}
+
       {status === "done" && (
-        <div className="pt-1 text-xs text-brand-parchment/70">All outputs are ready.</div>
+        <div className="pt-1 text-xs text-muted-foreground">All outputs are ready.</div>
       )}
       {status === "cancelled" && (
-        <div className="pt-1 text-xs text-brand-parchment/70">Cancelled</div>
+        <div className="pt-1 text-xs text-muted-foreground">Cancelled</div>
       )}
-    </motion.div>
+      {status === "error" && (
+        <div className="rounded-ios-sm border border-destructive/30 bg-destructive/5 p-2 text-[12px] text-destructive">
+          {errorMessage || "Generation failed — try editing the prompt."}
+        </div>
+      )}
+    </ToolCard>
   );
 }
