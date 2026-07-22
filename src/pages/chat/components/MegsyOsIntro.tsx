@@ -26,7 +26,7 @@ export function MegsyOsIntro({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-modal bg-black/50 backdrop-blur-sm"
+            className="fixed inset-0 z-modal bg-black/70 backdrop-blur-sm"
           />
           <MegsyOsIntroBody
             onClose={onClose}
