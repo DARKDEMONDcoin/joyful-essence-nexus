@@ -232,37 +232,40 @@ export default function MediaResultCard({
 
             </div>
 
-            <div className="p-2 flex items-center justify-between gap-1 bg-black">
-              <span className="text-[11px] font-medium truncate flex-1 min-w-0">{r.title}</span>
-              {r.status === "done" && r.url && (
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  className="h-7 px-2 text-[11px] gap-1"
-                  onClick={() =>
-                    forceDownload(
-                      r.url!,
-                      `${r.title.replace(/[^\w-]+/g, "_") || `scene-${r.index}`}.${r.type === "video" ? "mp4" : r.type === "music" ? "mp3" : "png"}`,
-                    )
-                  }
-                  title="Download"
-                >
-                  <Download className="w-3.5 h-3.5" />
-                  Download
-                </Button>
-              )}
-              {r.status === "error" && (
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  className="h-6 px-2 text-[10px]"
-                  onClick={() => onRetry(r.index)}
-                >
-                  <RotateCw className="w-3 h-3 me-1" />
-                  Retry
-                </Button>
-              )}
-            </div>
+            {r.status !== "running" && (
+              <div className="p-2 flex items-center justify-between gap-1 bg-black">
+                <span className="text-[11px] font-medium truncate flex-1 min-w-0 text-white/90">{r.title}</span>
+                {r.status === "done" && r.url && (
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="h-7 px-2 text-[11px] gap-1"
+                    onClick={() =>
+                      forceDownload(
+                        r.url!,
+                        `${r.title.replace(/[^\w-]+/g, "_") || `scene-${r.index}`}.${r.type === "video" ? "mp4" : r.type === "music" ? "mp3" : "png"}`,
+                      )
+                    }
+                    title="Download"
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                    Download
+                  </Button>
+                )}
+                {r.status === "error" && (
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="h-6 px-2 text-[10px]"
+                    onClick={() => onRetry(r.index)}
+                  >
+                    <RotateCw className="w-3 h-3 me-1" />
+                    Retry
+                  </Button>
+                )}
+              </div>
+            )}
+
           </motion.div>
           )
         ))}
