@@ -117,6 +117,7 @@ export const DraggablePlusSheet = ({
       style={{
         y,
         transformOrigin: "bottom center",
+        boxShadow: "0 40vh 0 0 #1c1c1e, 0 -8px 40px rgba(0,0,0,0.5)",
       }}
       initial={{ height }}
       animate={{ height }}
