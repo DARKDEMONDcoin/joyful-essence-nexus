@@ -1155,7 +1155,7 @@ const ChatMessage = ({
                       align="end"
                       side="bottom"
                       sideOffset={6}
-                      className="z-50 w-[200px] rounded-[22px] overflow-hidden bg-popover/95 text-popover-foreground border border-border/60 shadow-[0_24px_56px_-18px_rgba(0,0,0,0.7)] backdrop-blur-2xl p-1.5"
+                      className="z-50 w-[200px] rounded-ios-lg overflow-hidden bg-popover/95 text-popover-foreground border border-border/60 shadow-[0_24px_56px_-18px_rgba(0,0,0,0.7)] backdrop-blur-2xl p-1.5"
                     >
                       <button
                         onClick={async (e) => {
@@ -1199,7 +1199,7 @@ const ChatMessage = ({
                       ref={mobileMenuRef}
                       role="menu"
                       dir="ltr"
-                      className="md:hidden liquid-glass-strong absolute right-0 z-50 min-w-[180px] rounded-[22px] p-1.5 animate-in fade-in-0 zoom-in-95 duration-150"
+                      className="md:hidden liquid-glass-strong absolute right-0 z-50 min-w-[180px] rounded-ios-lg p-1.5 animate-in fade-in-0 zoom-in-95 duration-150"
                       style={{ bottom: "calc(100% + 8px)" }}
                       onClick={(e) => e.stopPropagation()}
                     >
@@ -1209,7 +1209,7 @@ const ChatMessage = ({
                           await handleCopy();
                           closeMenu();
                         }}
-                        className="w-full flex items-center gap-3 px-3.5 h-11 rounded-[14px] text-popover-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+                        className="w-full flex items-center gap-3 px-3.5 h-11 rounded-ios-md text-popover-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
                         role="menuitem"
                       >
                         <Copy className="w-[18px] h-[18px] shrink-0" strokeWidth={1.8} />
@@ -1221,7 +1221,7 @@ const ChatMessage = ({
                           handleEditAction();
                           closeMenu();
                         }}
-                        className="w-full flex items-center gap-3 px-3.5 h-11 rounded-[14px] text-popover-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+                        className="w-full flex items-center gap-3 px-3.5 h-11 rounded-ios-md text-popover-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
                         role="menuitem"
                       >
                         <Pencil className="w-[18px] h-[18px] shrink-0" strokeWidth={1.8} />

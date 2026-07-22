@@ -535,7 +535,7 @@ export default function ComposerModelMenu({
                                   onMediaModelSelect(choice);
                                   onOpenChange(false);
                                 }}
-                                className="group relative flex w-full items-center gap-2.5 rounded-[14px] px-3 py-2.5 text-left transition-colors border border-transparent bg-transparent text-white/90 hover:bg-transparent hover:text-white"
+                                className="group relative flex w-full items-center gap-2.5 rounded-ios-md px-3 py-2.5 text-left transition-colors border border-transparent bg-transparent text-white/90 hover:bg-transparent hover:text-white"
                               >
                                 <span className="relative flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-transparent">
                                   <BrandIcon name={choice.name} provider={choice.provider} size={28} />
@@ -588,7 +588,7 @@ export default function ComposerModelMenu({
                               else onChatModelSelect({ id: item.id, label: item.label });
                               onOpenChange(false);
                             }}
-                            className="group relative flex w-full items-center gap-3 rounded-[14px] px-3 py-2.5 text-left transition-colors border border-transparent bg-transparent text-white/90 hover:bg-transparent hover:text-white"
+                            className="group relative flex w-full items-center gap-3 rounded-ios-md px-3 py-2.5 text-left transition-colors border border-transparent bg-transparent text-white/90 hover:bg-transparent hover:text-white"
                           >
                             <span className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-transparent">
                               <ComposerModelIcon brand={item.brand} />
