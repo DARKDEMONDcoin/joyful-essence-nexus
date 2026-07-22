@@ -68,7 +68,13 @@ function cleanModelName(name = ""): string {
 function imageRowToModelDetail(r: any): ModelDetail {
   const badges: string[] = [];
   if (r.is_new) badges.push("NEW");
-  if (r.is_premium) badges.push("PRO");
+  const slugLower = String(r.slug || "").toLowerCase();
+  const nameLower = String(r.display_name || "").toLowerCase();
+  // Business rule: all image models are premium/subscriber-only,
+  // except Flux models which remain available on the free plan.
+  const isFluxFree = slugLower.includes("flux") || nameLower.includes("flux");
+  const isPremium = isFluxFree ? false : true;
+  if (isPremium) badges.push("PRO");
   if (r.supports_multi_image) badges.push("Multi-Image");
   const topRes = Array.isArray(r.supported_resolutions)
     ? r.supported_resolutions[r.supported_resolutions.length - 1]
@@ -102,11 +108,12 @@ function imageRowToModelDetail(r: any): ModelDetail {
     defaultResolution: r.default_resolution,
     supportsMultiImage: !!r.supports_multi_image,
     unit: r.unit,
-    isPremium: !!r.is_premium,
+    isPremium,
     isNew: !!r.is_new,
     isFeatured: !!r.is_featured,
   };
 }
+
 
 function videoRowToModelDetail(r: any): ModelDetail {
   const badges: string[] = [];
