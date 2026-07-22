@@ -4,6 +4,8 @@
 import Claude from "@lobehub/icons/es/Claude";
 import Gemini from "@lobehub/icons/es/Gemini";
 import OpenAI from "@lobehub/icons/es/OpenAI";
+import ChatGLM from "@lobehub/icons/es/ChatGLM";
+import Kimi from "@lobehub/icons/es/Kimi";
 import { useBrandLogo } from "@/hooks/useBrandLogo";
 import {
   isLegacyMegsyChatSelection,
