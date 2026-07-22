@@ -272,6 +272,49 @@ export default function ComposerModelMenu({
                 >
 
                   <div className="px-3 pt-1 pb-4 text-foreground">
+                    {/* Pinned header with Settings toggle (all services) */}
+                    {settingsPanel && (
+                      <div className="flex items-center justify-between gap-2 px-1 pt-1 pb-3 sticky top-0 z-10">
+                        <button
+                          type="button"
+                          onClick={() => setView(view === "settings" ? "models" : "settings")}
+                          className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[12.5px] font-semibold text-foreground bg-foreground/[0.08] border border-foreground/15 hover:bg-foreground/[0.12] transition-colors"
+                          aria-label={view === "settings" ? "Back to models" : "Open model settings"}
+                        >
+                          {view === "settings" ? (
+                            <>
+                              <ArrowLeft className="h-3.5 w-3.5" strokeWidth={2.4} />
+                              <span>Models</span>
+                            </>
+                          ) : (
+                            <>
+                              <Sliders className="h-3.5 w-3.5" strokeWidth={2.4} />
+                              <span>{settingsLabel}</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    )}
+                    <AnimatePresence mode="wait" initial={false}>
+                      {view === "settings" && settingsPanel ? (
+                        <motion.div
+                          key="settings"
+                          initial={{ opacity: 0, x: 16 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -16 }}
+                          transition={{ duration: 0.2, ease: "easeOut" }}
+                        >
+                          {settingsPanel}
+                        </motion.div>
+                      ) : (
+                        <motion.div
+                          key="models"
+                          initial={{ opacity: 0, x: -16 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: 16 }}
+                          transition={{ duration: 0.2, ease: "easeOut" }}
+                        >
+
                     {/* Chat models — shown only when in chat mode */}
                     {mode !== "images" && mode !== "video" && (
                     <div className="mb-4">
