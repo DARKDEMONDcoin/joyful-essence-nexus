@@ -486,10 +486,10 @@ export default function ComposerModelMenu({
                 />
                 <motion.div
                   data-tier-menu
-                  initial={{ opacity: 0, y: side === "top" ? 6 : -6, scale: 0.97 }}
+                  initial={{ opacity: 0, y: side === "top" ? 8 : -8, scale: 0.96 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: side === "top" ? 6 : -6, scale: 0.97 }}
-                  transition={{ duration: 0.14, ease: "easeOut" }}
+                  exit={{ opacity: 0, y: side === "top" ? 8 : -8, scale: 0.96 }}
+                  transition={{ type: "spring", stiffness: 380, damping: 32, mass: 0.6 }}
                   style={{
                     position: "fixed",
                     left: pos.left,
@@ -497,9 +497,10 @@ export default function ComposerModelMenu({
                     ...(pos.top !== undefined ? { top: pos.top } : {}),
                     ...(pos.bottom !== undefined ? { bottom: pos.bottom } : {}),
                     maxHeight: pos.maxHeight,
+                    scrollBehavior: "smooth",
                     ...glassModelMenuStyle,
                   }}
-                  className="z-[9999] rounded-2xl p-2 text-white overflow-y-auto overscroll-contain unified-menu-surface"
+                  className="z-[9999] rounded-2xl p-2 text-white overflow-y-auto overscroll-contain unified-menu-surface scrollbar-thin"
                 >
 
                   {isMediaMode ? (
