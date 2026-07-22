@@ -95,8 +95,18 @@ export default function ComposerModelMenu({
   renderMobileSheet = true,
 }: Props) {
   const [view, setView] = useState<"models" | "more" | "settings">("models");
+  const [effortValue, setEffortValue] = useState<string>(() => {
+    try { return readChatModelPreferences().effort; } catch { return "medium"; }
+  });
   useEffect(() => {
     if (!open) setView("models");
+    if (open) { try { setEffortValue(readChatModelPreferences().effort); } catch {} }
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.effort) setEffortValue(detail.effort);
+    };
+    window.addEventListener("megsy:chat-model-preferences", handler);
+    return () => window.removeEventListener("megsy:chat-model-preferences", handler);
   }, [open]);
   const isMediaMode = mode === "images" || mode === "video";
   const paid = isPaidUser(userPlan);
