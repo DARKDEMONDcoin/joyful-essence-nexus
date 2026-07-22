@@ -130,6 +130,13 @@ html.lenis body {
   --code-fg-muted: #c7ccd4;
   --code-fg-subtle: #8a9099;
 
+  /* Chat mode accent hues — one distinct hue per chat mode; used by MobileModeBar */
+  --mode-code: #7DD3FC;      /* sky */
+  --mode-video: #C9A8FF;     /* lavender */
+  --mode-slides: #FFB347;    /* orange */
+  --mode-docs: #FF9F7A;      /* coral */
+  --mode-learning: #7DD3FC;  /* sky */
+
 
   /* ── Megsy Brand Tokens (unified) ─────────────────────────────
      Use the Tailwind aliases `brand-*` / `surface-*` (see tailwind.config.ts)

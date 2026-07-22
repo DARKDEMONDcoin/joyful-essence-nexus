@@ -36,19 +36,19 @@ type ModeDef = {
 // One distinct hue per mode — makes the active state instantly recognisable
 // and keeps the resting chip strip lively without a wall of yellow.
 const MODES: ModeDef[] = [
-  { id: "code", label: "Coder Mode", Icon: Code2, color: "#7DD3FC" }, // sky
-  { id: "images", label: "Images", Icon: ImageIcon, color: "hsl(var(--brand-mint))" }, // mint
-  { id: "video", label: "Videos", Icon: VideoIcon, color: "#C9A8FF" }, // lavender
-  
+  { id: "code", label: "Coder Mode", Icon: Code2, color: "var(--mode-code)" },
+  { id: "images", label: "Images", Icon: ImageIcon, color: "hsl(var(--brand-mint))" },
+  { id: "video", label: "Videos", Icon: VideoIcon, color: "var(--mode-video)" },
+
   {
     id: "deep-research",
     label: "Deep Research",
     Icon: Microscope,
     color: "hsl(var(--brand-blush))",
-  }, // pink
-  { id: "slides", label: "Slides", Icon: Presentation, color: "#FFB347" }, // orange
-  { id: "docs", label: "Docs", Icon: FileText, color: "#FF9F7A" }, // coral
-  { id: "learning", label: "Learning", Icon: GraduationCap, color: "#7DD3FC" }, // sky
+  },
+  { id: "slides", label: "Slides", Icon: Presentation, color: "var(--mode-slides)" },
+  { id: "docs", label: "Docs", Icon: FileText, color: "var(--mode-docs)" },
+  { id: "learning", label: "Learning", Icon: GraduationCap, color: "var(--mode-learning)" },
 ];
 
 // Color-mix tint helper — works with hex, hsl(var(--…)), or any CSS color.
