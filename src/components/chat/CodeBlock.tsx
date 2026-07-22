@@ -175,7 +175,7 @@ export default function CodeBlock({ code, lang, className, onPreview }: Props) {
                 padding: "14px 16px",
                 fontSize: "13px",
                 lineHeight: "1.55",
-                color: "#e6e8eb",
+                color: "var(--code-fg)",
                 fontFamily:
                   'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace',
                 whiteSpace: wrap ? "pre-wrap" : "pre",
