@@ -1,27 +1,19 @@
 import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
+import { m as motion } from "framer-motion";
 import {
   readChatModelPreferences,
   setChatModelPreferences,
   type ChatModelPreferences,
-  type ModelEffort,
 } from "@/lib/chatModelPreferences";
+import { getEffortPresetsForModel } from "../chatConstants";
 
-const EFFORTS: Array<{
-  id: ModelEffort;
-  label: string;
-  description: string;
-  badge?: string;
-  routedTo: string;
-}> = [
-  { id: "low", label: "Low", description: "Quick replies to simple questions", routedTo: "Megsy 3.9" },
-  { id: "medium", label: "Medium", description: "Light, everyday tasks", badge: "Default", routedTo: "Megsy 3.9" },
-  { id: "high", label: "High", description: "Balanced for demanding work", routedTo: "GLM 5.3" },
-  { id: "extra", label: "Extra", description: "Complex, detailed work", routedTo: "Claude Sonnet 5" },
-  { id: "max", label: "Max", description: "Hardest problems. Takes longest.", routedTo: "Claude Opus 4.8" },
-];
+interface Props {
+  /** Currently active model id — resolves the per-model effort presets. */
+  activeModelId?: string | null;
+}
 
-export function MobileChatModelSettingsPanel() {
+export function MobileChatModelSettingsPanel({ activeModelId }: Props) {
   const [preferences, setPreferences] = useState<ChatModelPreferences>({ effort: "medium", deepThinking: false });
   useEffect(() => setPreferences(readChatModelPreferences()), []);
   const update = (next: ChatModelPreferences) => {
@@ -29,36 +21,31 @@ export function MobileChatModelSettingsPanel() {
     setChatModelPreferences(next);
   };
 
+  const presets = getEffortPresetsForModel(activeModelId);
+  // Ensure the stored effort is valid for this model; fall back to the middle option.
+  const activeEffort = presets.find((p) => p.id === preferences.effort)?.id ?? presets[Math.floor(presets.length / 2)].id;
+
   return (
-    <div className="space-y-4">
-      {/* Effort card */}
+    <motion.div
+      initial={{ opacity: 0, y: 4 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.18, ease: "easeOut" }}
+      className="space-y-3"
+    >
+      {/* Effort card — no header, no icons, no helper text */}
       <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
-        <div className="px-4 pt-3 pb-1.5 text-[11px] uppercase tracking-[0.12em] font-semibold text-foreground/45">
-          Model strength
-        </div>
-        {EFFORTS.map(({ id, label, description, badge, routedTo }) => {
-          const active = preferences.effort === id;
+        {presets.map(({ id, label, description }) => {
+          const active = activeEffort === id;
           return (
             <button
               key={id}
               type="button"
               onClick={() => update({ ...preferences, effort: id })}
-              className={`flex w-full items-center gap-3 px-4 py-3 text-start border-t border-white/[0.05] transition-colors ${active ? "bg-white/[0.04]" : "hover:bg-white/[0.02]"}`}
+              className={`flex w-full items-center gap-3 px-4 py-3.5 text-start border-t border-white/[0.05] first:border-t-0 transition-colors ${active ? "bg-white/[0.04]" : "hover:bg-white/[0.02]"}`}
             >
               <span className="min-w-0 flex-1">
-                <span className="flex items-center gap-2 text-[15px] font-semibold text-foreground">
-                  {label}
-                  {badge ? (
-                    <span className="rounded-full bg-white/[0.08] px-2 py-0.5 text-[9.5px] tracking-wide text-foreground/60">
-                      {badge}
-                    </span>
-                  ) : null}
-                </span>
-                <span className="mt-0.5 flex items-center gap-1.5 text-[11.5px] text-foreground/50">
-                  <span className="truncate">{description}</span>
-                  <span className="text-foreground/30">·</span>
-                  <span className="truncate text-foreground/60">{routedTo}</span>
-                </span>
+                <span className="block text-[15px] font-semibold text-foreground">{label}</span>
+                <span className="mt-0.5 block text-[12px] text-foreground/50">{description}</span>
               </span>
               {active ? (
                 <Check className="h-5 w-5 shrink-0" strokeWidth={2.75} style={{ color: "var(--megsy-blue)" }} />
@@ -70,14 +57,12 @@ export function MobileChatModelSettingsPanel() {
         })}
       </div>
 
-      {/* Deep thinking card */}
+      {/* Deep thinking — inline row, matches Effort card style */}
       <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
         <div className="flex items-center gap-3 px-4 py-3.5">
           <span className="min-w-0 flex-1">
             <span className="block text-[15px] font-semibold text-foreground">Deep thinking</span>
-            <span className="mt-0.5 block text-[11.5px] text-foreground/55">
-              Plan step-by-step before answering. Best for long tasks.
-            </span>
+            <span className="mt-0.5 block text-[12px] text-foreground/50">Plan step-by-step before answering</span>
           </span>
           <button
             type="button"
@@ -100,10 +85,6 @@ export function MobileChatModelSettingsPanel() {
           </button>
         </div>
       </div>
-
-      <p className="px-2 text-[11px] leading-relaxed text-foreground/45">
-        Higher strength routes to a more capable model and may take longer. Deep thinking adds a planning pass before the reply.
-      </p>
-    </div>
+    </motion.div>
   );
 }

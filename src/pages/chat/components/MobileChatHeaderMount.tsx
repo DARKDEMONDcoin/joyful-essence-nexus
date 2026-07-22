@@ -150,7 +150,7 @@ export function MobileChatHeaderMount(props: MobileChatHeaderMountProps) {
                   }}
                 />
               ) : (
-                <MobileChatModelSettingsPanel />
+                <MobileChatModelSettingsPanel activeModelId={selectedModel?.id ?? "lite"} />
               )
             }
             onTierSelect={(tier) => {

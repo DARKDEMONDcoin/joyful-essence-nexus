@@ -18,7 +18,7 @@ import { useDynamicModels } from "@/hooks/useModels";
 import { isPaidUser } from "@/lib/subscriptionGating";
 import type { MediaModelChoice } from "@/components/chat/media/MediaModelPickerSheet";
 import type { ChatMode } from "./chatConstants";
-import { CHAT_COMPOSER_MODEL_OPTIONS, ComposerModelIcon, getChatModelDisplayLabel } from "./chatConstants";
+import { CHAT_COMPOSER_MODEL_OPTIONS, ComposerModelIcon, getChatModelDisplayLabel, getEffortPresetsForModel } from "./chatConstants";
 import { useBrandLogo } from "@/hooks/useBrandLogo";
 import { BrandIcon, hasBrandIcon } from "@/components/chat/media/BrandIcon";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -325,11 +325,8 @@ export default function ComposerModelMenu({
                     {/* Chat models — shown only when in chat mode */}
                     {mode !== "images" && mode !== "video" && (
                     <div className="mb-4">
-
-                      <p className="px-2 pb-2 text-[11px] uppercase tracking-[0.12em] font-semibold text-foreground/50">
-                        Chat models
-                      </p>
                       <div className="flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.03] overflow-hidden">
+
                         {(view === "more" ? orderedChatOptions : orderedChatOptions.slice(0, 4)).map((item) => {
                           const locked =
                             item.premium && (userPlan === "free" || userPlan === "trial");
@@ -522,7 +519,9 @@ export default function ComposerModelMenu({
                           <button type="button" onClick={() => setView("settings")} className="flex w-full items-center gap-3 px-4 py-3.5 text-start border-t border-white/[0.05] first:border-t-0 hover:bg-white/[0.03] transition-colors">
                             <span className="flex-1 text-[14.5px] font-semibold">{mode !== "images" && mode !== "video" ? "Effort" : settingsLabel}</span>
                             {mode !== "images" && mode !== "video" ? (
-                              <span className="text-[13.5px] text-foreground/55 capitalize">{effortValue}</span>
+                              <span className="text-[13.5px] text-foreground/55">
+                                {getEffortPresetsForModel(selectedModel?.id ?? "lite").find((p) => p.id === effortValue)?.label ?? ""}
+                              </span>
                             ) : null}
                             <ChevronRight className="h-4 w-4 text-foreground/40" />
                           </button>
