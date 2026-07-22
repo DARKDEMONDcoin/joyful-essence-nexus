@@ -1,7 +1,3 @@
-import { useState } from "react";
-import { Settings2 } from "lucide-react";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { MobileBottomSheet } from "@/components/ui/MobileBottomSheet";
 import { supabase } from "@/integrations/supabase/client";
 import ComposerModelMenu from "../ComposerModelMenu";
 import SlidesTemplateButton from "./SlidesTemplateButton";
@@ -35,7 +31,7 @@ interface ComposerInlineSlotProps {
   setVideoDurationSec?: (n: any) => void;
 }
 
-/** Inline pills/menus rendered inside the composer (AnimatedInput.inlineSlot). */
+/** Inline pills/menus rendered above the composer textarea. */
 export function ComposerInlineSlot(props: ComposerInlineSlotProps) {
   const {
     chatMode,
@@ -60,9 +56,6 @@ export function ComposerInlineSlot(props: ComposerInlineSlotProps) {
     setVideoDurationSec,
   } = props;
 
-  const [settingsOpen, setSettingsOpen] = useState(false);
-  const isMobile = props.isMobileViewport;
-
   const isSlidesMode =
     chatMode === "slides" ||
     chatMode === "slides-images" ||
@@ -75,6 +68,15 @@ export function ComposerInlineSlot(props: ComposerInlineSlotProps) {
   const isDeepResearch = chatMode === "deep-research";
   const hideModelMenu = isDeepResearch || isSlidesMode;
 
+  const mediaSettingsPanel = isMediaMode ? (
+    <MediaSettingsPanel
+      mode={mediaMode}
+      onChange={(s) => {
+        if (s.duration !== undefined) setVideoDurationSec?.(s.duration);
+      }}
+    />
+  ) : undefined;
+
   return (
     <>
       {!hideModelMenu && (
@@ -86,6 +88,8 @@ export function ComposerInlineSlot(props: ComposerInlineSlotProps) {
           megsyTier={megsyTier}
           userPlan={userPlan as any}
           mediaModel={mediaModel}
+          settingsPanel={mediaSettingsPanel}
+          settingsLabel={mediaMode === "video" ? "Video settings" : "Image settings"}
           onTierSelect={(tier) => {
             setSelectedModel(null);
             setMegsyTier(tier);
@@ -103,64 +107,9 @@ export function ComposerInlineSlot(props: ComposerInlineSlotProps) {
           onMediaModelSelect={setMediaModel}
           onModeChange={setChatMode}
           side="top"
-          align="center"
+          align="start"
         />
       )}
-      {isMediaMode ? (
-        isMobile ? (
-          <>
-            <button
-              type="button"
-              aria-label="Generation settings"
-              onClick={() => setSettingsOpen(true)}
-              className="shrink-0 inline-flex items-center justify-center h-7 w-7 text-foreground/60 hover:text-foreground transition-colors"
-            >
-              <Settings2 className="h-4 w-4" strokeWidth={2} />
-            </button>
-            <MobileBottomSheet
-              open={settingsOpen}
-              onClose={() => setSettingsOpen(false)}
-              initialExpanded
-            >
-              <div className="px-1 pb-4 pt-1">
-                <MediaSettingsPanel
-                  mode={mediaMode}
-                  onChange={(s) => {
-                    if (s.duration !== undefined) setVideoDurationSec?.(s.duration);
-                  }}
-                />
-              </div>
-            </MobileBottomSheet>
-          </>
-        ) : (
-          <Popover open={settingsOpen} onOpenChange={setSettingsOpen}>
-            <PopoverTrigger asChild>
-              <button
-                type="button"
-                aria-label="Generation settings"
-                className="shrink-0 inline-flex items-center justify-center h-7 w-7 text-foreground/60 hover:text-foreground transition-colors"
-              >
-                <Settings2 className="h-4 w-4" strokeWidth={2} />
-              </button>
-            </PopoverTrigger>
-            <PopoverContent
-              data-tier-menu
-              data-media-settings-menu
-              side="top"
-              align="start"
-              sideOffset={8}
-              className="w-[min(340px,calc(100vw-24px))] p-3 rounded-2xl unified-menu-surface"
-            >
-              <MediaSettingsPanel
-                mode={mediaMode}
-                onChange={(s) => {
-                  if (s.duration !== undefined) setVideoDurationSec?.(s.duration);
-                }}
-              />
-            </PopoverContent>
-          </Popover>
-        )
-      ) : null}
       {isSlidesMode ? (
         <SlidesTemplateButton
           slidesTemplate={slidesTemplate}
@@ -178,6 +127,3 @@ export function ComposerInlineSlot(props: ComposerInlineSlotProps) {
     </>
   );
 }
-
-
-
