@@ -133,6 +133,9 @@ const AnimatedInput = ({
   const [modelPickerOpen, setModelPickerOpen] = useState(false);
   const [modelQuery, setModelQuery] = useState("");
   const [lastSelectedAgent, setLastSelectedAgent] = useState<AgentDef | null>(null);
+  const [focused, setFocused] = useState(false);
+  const isActive = focused || !!value;
+
 
   useEffect(() => {
     valueRef.current = value;
