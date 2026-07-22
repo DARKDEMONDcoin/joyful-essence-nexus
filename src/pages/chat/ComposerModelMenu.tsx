@@ -519,7 +519,9 @@ export default function ComposerModelMenu({
                           <button type="button" onClick={() => setView("settings")} className="flex w-full items-center gap-3 px-4 py-3.5 text-start border-t border-white/[0.05] first:border-t-0 hover:bg-white/[0.03] transition-colors">
                             <span className="flex-1 text-[14.5px] font-semibold">{mode !== "images" && mode !== "video" ? "Effort" : settingsLabel}</span>
                             {mode !== "images" && mode !== "video" ? (
-                              <span className="text-[13.5px] text-foreground/55 capitalize">{effortValue}</span>
+                              <span className="text-[13.5px] text-foreground/55">
+                                {getEffortPresetsForModel(selectedModel?.id ?? "lite").find((p) => p.id === effortValue)?.label ?? ""}
+                              </span>
                             ) : null}
                             <ChevronRight className="h-4 w-4 text-foreground/40" />
                           </button>
