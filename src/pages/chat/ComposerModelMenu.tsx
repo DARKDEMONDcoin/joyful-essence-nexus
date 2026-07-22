@@ -509,8 +509,10 @@ export default function ComposerModelMenu({
                       <div className="mt-3 flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.03] overflow-hidden">
                         {settingsPanel ? (
                           <button type="button" onClick={() => setView("settings")} className="flex w-full items-center gap-3 px-4 py-3.5 text-start border-b border-white/[0.06] last:border-b-0 hover:bg-white/[0.03] transition-colors">
-                            <Sliders className="h-4 w-4 text-foreground/70" />
-                            <span className="flex-1 text-[14.5px] font-semibold">{settingsLabel}</span>
+                            <span className="flex-1 text-[14.5px] font-semibold">{mode === "chat" ? "Effort" : settingsLabel}</span>
+                            {mode === "chat" ? (
+                              <span className="text-[13.5px] text-foreground/55 capitalize">{effortValue}</span>
+                            ) : null}
                             <ChevronRight className="h-4 w-4 text-foreground/40" />
                           </button>
                         ) : null}
