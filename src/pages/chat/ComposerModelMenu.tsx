@@ -318,7 +318,7 @@ export default function ComposerModelMenu({
                       <p className="px-2 pb-2 text-[11px] uppercase tracking-[0.12em] font-semibold text-foreground/50">
                         Chat models
                       </p>
-                      <div className="flex flex-col gap-1">
+                      <div className="flex flex-col gap-1 rounded-2xl border border-foreground/12 bg-foreground/[0.02] p-1.5">
                         {(view === "more" ? orderedChatOptions : orderedChatOptions.slice(0, 4)).map((item) => {
                           const locked =
                             item.premium && (userPlan === "free" || userPlan === "trial");
@@ -377,7 +377,7 @@ export default function ComposerModelMenu({
                       <p className="px-2 pb-2 text-[11px] uppercase tracking-[0.12em] font-semibold text-foreground/50">
                         Image models
                       </p>
-                      <div className="flex flex-col gap-1">
+                      <div className="flex flex-col gap-1 rounded-2xl border border-foreground/12 bg-foreground/[0.02] p-1.5">
                         {orderedImageOptions.length === 0 && (
                           <p className="px-3 py-2 text-[12.5px] text-foreground/50">
                             {loading ? "Loading models…" : "No models available."}
@@ -445,7 +445,7 @@ export default function ComposerModelMenu({
                       <p className="px-2 pb-2 text-[11px] uppercase tracking-[0.12em] font-semibold text-foreground/50">
                         Video models
                       </p>
-                      <div className="flex flex-col gap-1">
+                      <div className="flex flex-col gap-1 rounded-2xl border border-foreground/12 bg-foreground/[0.02] p-1.5">
                         {orderedVideoOptions.length === 0 && (
                           <p className="px-3 py-2 text-[12.5px] text-foreground/50">
                             {loading ? "Loading models…" : "No models available."}
