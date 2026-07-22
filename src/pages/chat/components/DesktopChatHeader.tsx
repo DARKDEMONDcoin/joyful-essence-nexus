@@ -2,6 +2,10 @@ import { MobileSidebarButton } from "@/components/shared/MobileSidebarButton";
 import { ChatOptionsDropdown } from "./ChatOptionsDropdown";
 import MegsyStar from "@/components/files/MegsyStar";
 import { prefetchRoute } from "@/hooks/usePrefetchRoute";
+import ComposerModelMenu from "../ComposerModelMenu";
+import { MediaSettingsPanel } from "@/components/chat/mobile/MediaSettingsMenu";
+import { ChatModelSettingsPanel } from "./ChatModelSettingsPanel";
+import { supabase } from "@/integrations/supabase/client";
 
 interface DesktopChatHeaderProps {
   chatMode: "normal" | "learning" | "shopping" | "images" | "video" | "music" | "slides" | "slides-images" | "deep-research" | "operator" | "code";
@@ -34,6 +38,17 @@ interface DesktopChatHeaderProps {
   onCreateShareLink: () => void;
   onOpenInvite: () => void;
   onConfirmDelete: () => void;
+  tierMenuOpen: boolean;
+  setTierMenuOpen: (open: boolean) => void;
+  selectedModel: any;
+  setSelectedModel: (model: any) => void;
+  megsyTier: any;
+  setMegsyTier: (tier: any) => void;
+  mediaModel: any;
+  setMediaModel: (model: any) => void;
+  chatUserId: string | null;
+  setChatMode: (mode: any) => void;
+  setVideoDurationSec?: (duration: any) => void;
 }
 
 /**
@@ -62,6 +77,44 @@ export function DesktopChatHeader(props: DesktopChatHeaderProps) {
           <ChatOptionsDropdown variant="desktop" {...props} />
         ) : null}
       </div>
+
+      <ComposerModelMenu
+        mode={chatMode}
+        open={props.tierMenuOpen}
+        onOpenChange={props.setTierMenuOpen}
+        side="bottom"
+        align="start"
+        selectedModel={props.selectedModel}
+        megsyTier={props.megsyTier}
+        userPlan={props.userPlan || "free"}
+        mediaModel={props.mediaModel}
+        settingsLabel={chatMode === "images" ? "Image settings" : chatMode === "video" ? "Video settings" : "Model settings"}
+        settingsPanel={
+          chatMode === "images" || chatMode === "video" ? (
+            <MediaSettingsPanel
+              mode={chatMode}
+              onChange={(settings) => {
+                if (settings.duration !== undefined) props.setVideoDurationSec?.(settings.duration);
+              }}
+            />
+          ) : (
+            <ChatModelSettingsPanel />
+          )
+        }
+        onTierSelect={(tier) => {
+          props.setSelectedModel(null);
+          props.setMegsyTier(tier);
+          if (props.chatUserId) {
+            void supabase.from("ai_personalization").upsert(
+              { user_id: props.chatUserId, preferred_tier: tier } as any,
+              { onConflict: "user_id" },
+            );
+          }
+        }}
+        onChatModelSelect={(model) => props.setSelectedModel({ id: model.id, label: model.label, cost: 0 })}
+        onMediaModelSelect={props.setMediaModel}
+        onModeChange={props.setChatMode}
+      />
 
       <div className="flex-1" />
 
