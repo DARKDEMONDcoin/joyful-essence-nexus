@@ -12,14 +12,13 @@ const EFFORTS: Array<{
   label: string;
   description: string;
   badge?: string;
-  icon: typeof Rabbit;
   routedTo: string;
 }> = [
-  { id: "low", label: "Low", description: "Quick replies to simple questions", icon: Rabbit, routedTo: "Megsy 3.9" },
-  { id: "medium", label: "Medium", description: "Light, everyday tasks", badge: "Default", icon: Scale, routedTo: "Megsy 3.9" },
-  { id: "high", label: "High", description: "Balanced for demanding work", icon: Gauge, routedTo: "GLM 5.3" },
-  { id: "extra", label: "Extra", description: "Complex, detailed work", icon: Flame, routedTo: "Claude Sonnet 5" },
-  { id: "max", label: "Max", description: "Hardest problems. Takes longest.", icon: Rocket, routedTo: "Claude Opus 4.8" },
+  { id: "low", label: "Low", description: "Quick replies to simple questions", routedTo: "Megsy 3.9" },
+  { id: "medium", label: "Medium", description: "Light, everyday tasks", badge: "Default", routedTo: "Megsy 3.9" },
+  { id: "high", label: "High", description: "Balanced for demanding work", routedTo: "GLM 5.3" },
+  { id: "extra", label: "Extra", description: "Complex, detailed work", routedTo: "Claude Sonnet 5" },
+  { id: "max", label: "Max", description: "Hardest problems. Takes longest.", routedTo: "Claude Opus 4.8" },
 ];
 
 export function MobileChatModelSettingsPanel() {
