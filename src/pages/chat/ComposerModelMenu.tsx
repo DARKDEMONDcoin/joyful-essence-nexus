@@ -28,6 +28,7 @@ import {
   glassModelMenuStyle,
   glassModelMenuTriggerStyle,
 } from "@/components/model-picker/glassModelMenuStyles";
+import { readChatModelPreferences } from "@/lib/chatModelPreferences";
 
 const menuContainerVariants = {
   hidden: {},
@@ -95,8 +96,18 @@ export default function ComposerModelMenu({
   renderMobileSheet = true,
 }: Props) {
   const [view, setView] = useState<"models" | "more" | "settings">("models");
+  const [effortValue, setEffortValue] = useState<string>(() => {
+    try { return readChatModelPreferences().effort; } catch { return "medium"; }
+  });
   useEffect(() => {
     if (!open) setView("models");
+    if (open) { try { setEffortValue(readChatModelPreferences().effort); } catch {} }
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.effort) setEffortValue(detail.effort);
+    };
+    window.addEventListener("megsy:chat-model-preferences", handler);
+    return () => window.removeEventListener("megsy:chat-model-preferences", handler);
   }, [open]);
   const isMediaMode = mode === "images" || mode === "video";
   const paid = isPaidUser(userPlan);
@@ -509,8 +520,10 @@ export default function ComposerModelMenu({
                       <div className="mt-3 flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.03] overflow-hidden">
                         {settingsPanel ? (
                           <button type="button" onClick={() => setView("settings")} className="flex w-full items-center gap-3 px-4 py-3.5 text-start border-b border-white/[0.06] last:border-b-0 hover:bg-white/[0.03] transition-colors">
-                            <Sliders className="h-4 w-4 text-foreground/70" />
-                            <span className="flex-1 text-[14.5px] font-semibold">{settingsLabel}</span>
+                            <span className="flex-1 text-[14.5px] font-semibold">{mode !== "images" && mode !== "video" ? "Effort" : settingsLabel}</span>
+                            {mode !== "images" && mode !== "video" ? (
+                              <span className="text-[13.5px] text-foreground/55 capitalize">{effortValue}</span>
+                            ) : null}
                             <ChevronRight className="h-4 w-4 text-foreground/40" />
                           </button>
                         ) : null}
