@@ -212,6 +212,11 @@ export async function streamChat({
         }
       }
       customSystem = mod.buildCustomSystem(chatMode, selectedModel?.id, learnState);
+      if (chatMode !== "images" && chatMode !== "video") {
+        const { chatModelPreferenceHint } = await import("@/lib/chatModelPreferences");
+        const preferenceHint = chatModelPreferenceHint();
+        if (preferenceHint) customSystem = `${customSystem || ""}\n${preferenceHint}`.trim();
+      }
     } catch {
       customSystem = null;
     }

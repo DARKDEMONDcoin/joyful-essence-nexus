@@ -116,9 +116,11 @@ export const DraggablePlusSheet = ({
     <motion.div
       style={{
         y,
-        height,
         transformOrigin: "bottom center",
       }}
+      initial={{ height }}
+      animate={{ height }}
+      transition={{ type: "spring", damping: 34, stiffness: 340 }}
       data-plus-menu
       onClick={(e) => e.stopPropagation()}
       drag={dragEnabled ? "y" : false}
