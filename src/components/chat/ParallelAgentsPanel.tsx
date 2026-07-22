@@ -33,7 +33,7 @@ function iconFor(task: ParallelAgentTask) {
       <img src={brandIconUrl(meta.slug)} alt="" className="h-3.5 w-3.5 opacity-80 dark:invert" />
     );
   }
-  return <MegsyStar size={14} static className="text-[#5B8DEF]" />;
+  return <MegsyStar size={14} static className="text-[var(--megsy-blue)]" />;
 }
 
 const ParallelAgentsPanel = ({ tasks, active = true }: Props) => {
@@ -67,7 +67,7 @@ const ParallelAgentsPanel = ({ tasks, active = true }: Props) => {
     >
       <div className="mb-2.5 flex items-center gap-2.5">
         <span className="relative inline-flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 text-primary ring-1 ring-primary/15">
-          <MegsyStar size={16} className="text-[#5B8DEF]" />
+          <MegsyStar size={16} className="text-[var(--megsy-blue)]" />
         </span>
         <div className="min-w-0 flex-1">
           <div className="text-[13px] font-semibold leading-tight">{intro}</div>

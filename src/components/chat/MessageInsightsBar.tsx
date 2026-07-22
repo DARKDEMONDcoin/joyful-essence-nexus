@@ -26,7 +26,7 @@ function detectMode(content: string, isArabic: boolean): Mode {
       key: "deep",
       label: isArabic ? "رد عميق" : "Deep",
       icon: <Brain className="w-3 h-3" />,
-      className: "text-[#5B8DEF] bg-[#5B8DEF]/10 border-[#5B8DEF]/20",
+      className: "text-[var(--megsy-blue)] bg-[var(--megsy-blue)]/10 border-[var(--megsy-blue)]/20",
     };
   }
   if (isCreative) {

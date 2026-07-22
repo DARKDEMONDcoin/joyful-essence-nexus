@@ -1419,9 +1419,9 @@ const ChatMessage = ({
                 <button
                   type="button"
                   onClick={openProjectPreview}
-                  className="group inline-flex items-center gap-3 flex-1 rounded-2xl border border-border/60 bg-gradient-to-br from-[#0a0a0a] to-[#1a1a1a] px-4 py-3 text-left shadow-sm hover:shadow-md hover:border-[#5B8DEF]/60 transition-all"
+                  className="group inline-flex items-center gap-3 flex-1 rounded-2xl border border-border/60 bg-gradient-to-br from-[#0a0a0a] to-[#1a1a1a] px-4 py-3 text-left shadow-sm hover:shadow-md hover:border-[var(--megsy-blue)]/60 transition-all"
                 >
-                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#5B8DEF]/20 text-[#5B8DEF] group-hover:bg-[#5B8DEF] group-hover:text-white transition-colors">
+                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[var(--megsy-blue)]/20 text-[var(--megsy-blue)] group-hover:bg-[var(--megsy-blue)] group-hover:text-white transition-colors">
                     <Play className="w-4 h-4" fill="currentColor" />
                   </span>
                   <span className="flex-1 min-w-0">
@@ -1575,7 +1575,7 @@ const ChatMessage = ({
                     {inner}
                     {isStreaming && (
                       <span className="inline-flex ms-1 align-baseline">
-                        <MegsyStar size={14} className="text-[#5B8DEF]" />
+                        <MegsyStar size={14} className="text-[var(--megsy-blue)]" />
                       </span>
                     )}
                   </div>
