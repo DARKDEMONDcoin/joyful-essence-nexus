@@ -55,6 +55,10 @@ interface Props {
   noIcon?: boolean;
   variant?: "pill" | "segment";
   centerOnMobile?: boolean;
+  /** Optional settings panel shown in-place when the pinned "Settings" toggle is tapped. */
+  settingsPanel?: ReactNode;
+  /** Label for the settings view header (defaults to "Settings"). */
+  settingsLabel?: string;
 }
 
 const asMediaChoice = (model: any, mode: "images" | "video"): MediaModelChoice => ({
