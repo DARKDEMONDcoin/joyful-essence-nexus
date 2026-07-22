@@ -28,6 +28,7 @@ import {
   glassModelMenuStyle,
   glassModelMenuTriggerStyle,
 } from "@/components/model-picker/glassModelMenuStyles";
+import { readChatModelPreferences } from "@/lib/chatModelPreferences";
 
 const menuContainerVariants = {
   hidden: {},
