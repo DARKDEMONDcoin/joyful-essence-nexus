@@ -717,7 +717,11 @@ export default function ComposerModelMenu({
                       })}
                     </div>
           )}
+                  </motion.div>
+                  )}
+                  </AnimatePresence>
         </motion.div>
+
       </>
     )}
   </AnimatePresence>,
