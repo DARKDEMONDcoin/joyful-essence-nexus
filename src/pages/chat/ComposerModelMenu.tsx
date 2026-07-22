@@ -318,7 +318,7 @@ export default function ComposerModelMenu({
                       <p className="px-2 pb-2 text-[11px] uppercase tracking-[0.12em] font-semibold text-foreground/50">
                         Chat models
                       </p>
-                      <div className="flex flex-col gap-1 rounded-2xl border border-foreground/12 bg-foreground/[0.02] p-1.5">
+                      <div className="flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.03] overflow-hidden">
                         {(view === "more" ? orderedChatOptions : orderedChatOptions.slice(0, 4)).map((item) => {
                           const locked =
                             item.premium && (userPlan === "free" || userPlan === "trial");
@@ -343,7 +343,7 @@ export default function ComposerModelMenu({
                                   onChatModelSelect({ id: item.id, label: item.label });
                                 onOpenChange(false);
                               }}
-                              className={`flex w-full items-center gap-3 rounded-2xl px-3 py-3 text-left transition-colors border ${active ? "bg-foreground/[0.10] border-foreground/20" : "bg-foreground/[0.04] border-foreground/10 hover:bg-foreground/[0.07] hover:border-foreground/15"}`}
+                              className={`flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors border-b border-white/[0.06] last:border-b-0 ${active ? "bg-white/[0.04]" : "hover:bg-white/[0.03]"}`}
                             >
                               <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-foreground/[0.05]">
                                 <ComposerModelIcon brand={item.brand} />
@@ -360,7 +360,7 @@ export default function ComposerModelMenu({
                                 {locked ? (
                                   <Lock className="h-4 w-4 text-foreground/45" />
                                 ) : active ? (
-                                  <Check className="h-4 w-4 text-foreground" strokeWidth={2.5} />
+                                  <Check className="h-5 w-5" strokeWidth={2.75} style={{ color: "var(--megsy-blue)" }} />
                                 ) : null}
                               </span>
                             </button>
@@ -377,7 +377,7 @@ export default function ComposerModelMenu({
                       <p className="px-2 pb-2 text-[11px] uppercase tracking-[0.12em] font-semibold text-foreground/50">
                         Image models
                       </p>
-                      <div className="flex flex-col gap-1 rounded-2xl border border-foreground/12 bg-foreground/[0.02] p-1.5">
+                      <div className="flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.03] overflow-hidden">
                         {orderedImageOptions.length === 0 && (
                           <p className="px-3 py-2 text-[12.5px] text-foreground/50">
                             {loading ? "Loading models…" : "No models available."}
@@ -402,7 +402,7 @@ export default function ComposerModelMenu({
                                 onMediaModelSelect(choice);
                                 onOpenChange(false);
                               }}
-                              className={`flex w-full items-center gap-3 rounded-2xl px-3 py-3 text-left transition-colors border ${active ? "bg-foreground/[0.10] border-foreground/20" : "bg-foreground/[0.04] border-foreground/10 hover:bg-foreground/[0.07] hover:border-foreground/15"}`}
+                              className={`flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors border-b border-white/[0.06] last:border-b-0 ${active ? "bg-white/[0.04]" : "hover:bg-white/[0.03]"}`}
                             >
                               <span className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-foreground/[0.05]">
                                 {hasBrandIcon(choice.name, choice.provider) ? (
@@ -428,7 +428,7 @@ export default function ComposerModelMenu({
                                 {locked ? (
                                   <Lock className="h-4 w-4 text-foreground/45" />
                                 ) : active ? (
-                                  <Check className="h-4 w-4 text-foreground" strokeWidth={2.5} />
+                                  <Check className="h-5 w-5" strokeWidth={2.75} style={{ color: "var(--megsy-blue)" }} />
                                 ) : null}
                               </span>
                             </button>
@@ -445,7 +445,7 @@ export default function ComposerModelMenu({
                       <p className="px-2 pb-2 text-[11px] uppercase tracking-[0.12em] font-semibold text-foreground/50">
                         Video models
                       </p>
-                      <div className="flex flex-col gap-1 rounded-2xl border border-foreground/12 bg-foreground/[0.02] p-1.5">
+                      <div className="flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.03] overflow-hidden">
                         {orderedVideoOptions.length === 0 && (
                           <p className="px-3 py-2 text-[12.5px] text-foreground/50">
                             {loading ? "Loading models…" : "No models available."}
@@ -470,7 +470,7 @@ export default function ComposerModelMenu({
                                 onMediaModelSelect(choice);
                                 onOpenChange(false);
                               }}
-                              className={`flex w-full items-center gap-3 rounded-2xl px-3 py-3 text-left transition-colors border ${active ? "bg-foreground/[0.10] border-foreground/20" : "bg-foreground/[0.04] border-foreground/10 hover:bg-foreground/[0.07] hover:border-foreground/15"}`}
+                              className={`flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors border-b border-white/[0.06] last:border-b-0 ${active ? "bg-white/[0.04]" : "hover:bg-white/[0.03]"}`}
                             >
                               <span className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-foreground/[0.05]">
                                 {hasBrandIcon(choice.name, choice.provider) ? (
@@ -496,7 +496,7 @@ export default function ComposerModelMenu({
                                 {locked ? (
                                   <Lock className="h-4 w-4 text-foreground/45" />
                                 ) : active ? (
-                                  <Check className="h-4 w-4 text-foreground" strokeWidth={2.5} />
+                                  <Check className="h-5 w-5" strokeWidth={2.75} style={{ color: "var(--megsy-blue)" }} />
                                 ) : null}
                               </span>
                             </button>
