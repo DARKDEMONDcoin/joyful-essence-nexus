@@ -2433,6 +2433,8 @@ const ChatPage = () => {
             handleCopyShareLink={handleCopyShareLink}
             setChatMode={setChatMode}
             setVideoDurationSec={setVideoDurationSec}
+            researchDepth={researchDepth}
+            setResearchDepth={setResearchDepth}
           />
 
           {/* Desktop/mobile combined header: title dropdown, Unlock Pro, options */}
