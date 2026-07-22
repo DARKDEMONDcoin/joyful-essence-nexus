@@ -1,11 +1,14 @@
-import { useEffect, useMemo, useRef, useState, useLayoutEffect } from "react";
+import { useEffect, useMemo, useRef, useState, useLayoutEffect, type ReactNode } from "react";
 import { m as motion, AnimatePresence } from "framer-motion";
 import { createPortal } from "react-dom";
 import {
+  ArrowLeft,
   Check,
   ChevronDown,
   Image as ImageIcon,
   Lock,
+  Settings2,
+  Sliders,
   Video as VideoIcon,
 } from "lucide-react";
 import { toast } from "sonner";
