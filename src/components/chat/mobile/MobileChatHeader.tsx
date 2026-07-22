@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, m as motion } from "framer-motion";
 import { PrefetchLink as Link } from "@/components/common/PrefetchLink";
 import {
