@@ -327,7 +327,7 @@ export const MobileOnboardingTour = () => {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, scale: 0.98 }}
           transition={{ duration: 0.28, ease }}
-          className="absolute rounded-2xl border border-white/10 bg-[#0b0b0c]/95 p-4 text-left shadow-2xl backdrop-blur-xl"
+          className="absolute rounded-2xl border border-white/10 bg-surface-1/95 p-4 text-left shadow-2xl backdrop-blur-xl"
           style={{
             left: tipX,
             top: tipY,
@@ -337,7 +337,7 @@ export const MobileOnboardingTour = () => {
           {/* Arrow */}
           <span
             aria-hidden
-            className="absolute h-3 w-3 rotate-45 border border-white/10 bg-[#0b0b0c]/95"
+            className="absolute h-3 w-3 rotate-45 border border-white/10 bg-surface-1/95"
             style={{
               left: arrowX,
               ...(placement === "top"

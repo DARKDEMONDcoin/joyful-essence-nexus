@@ -96,14 +96,14 @@ export default function CodeBlockHighlighter({ code, language, showLineNumbers, 
         background: "transparent",
         fontSize: "13px",
         lineHeight: "1.55",
-        color: "#e6e8eb",
+        color: "var(--code-fg)",
         fontFamily:
           'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace',
       }}
       lineNumberStyle={{
         minWidth: "2.25em",
         paddingRight: "1em",
-        color: "#5a6068",
+        color: "var(--code-fg-subtle)",
         userSelect: "none",
         fontSize: "11.5px",
       }}

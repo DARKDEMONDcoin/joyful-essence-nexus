@@ -91,7 +91,7 @@ export default function CodeBlock({ code, lang, className, onPreview }: Props) {
     <div
       className="my-4 rounded-2xl overflow-hidden group/code"
       style={{
-        backgroundColor: "#0b0d10",
+        backgroundColor: "var(--code-bg)",
         boxShadow:
           "inset 0 0 0 1px hsl(var(--foreground) / 0.10), 0 20px 50px -28px hsl(0 0% 0% / 0.6)",
       }}
@@ -101,19 +101,19 @@ export default function CodeBlock({ code, lang, className, onPreview }: Props) {
       <div
         className="flex items-center justify-between px-3.5 h-10 border-b"
         style={{
-          backgroundColor: "#14171c",
+          backgroundColor: "var(--code-header-bg)",
           borderColor: "hsl(var(--foreground) / 0.10)",
         }}
       >
         <div className="flex items-center gap-2 min-w-0">
-          <FileCode2 className="w-3.5 h-3.5 shrink-0" style={{ color: "#c7ccd4" }} />
+          <FileCode2 className="w-3.5 h-3.5 shrink-0" style={{ color: "var(--code-fg-muted)" }} />
           <span
             className="text-[11px] font-medium tracking-wide uppercase truncate"
-            style={{ color: "#e6e8eb" }}
+            style={{ color: "var(--code-fg)" }}
           >
             {label}
           </span>
-          <span className="text-[10.5px] tabular-nums" style={{ color: "#8a9099" }}>
+          <span className="text-[10.5px] tabular-nums" style={{ color: "var(--code-fg-subtle)" }}>
             · {lineCount} {lineCount === 1 ? "line" : "lines"}
           </span>
         </div>
@@ -175,7 +175,7 @@ export default function CodeBlock({ code, lang, className, onPreview }: Props) {
                 padding: "14px 16px",
                 fontSize: "13px",
                 lineHeight: "1.55",
-                color: "#e6e8eb",
+                color: "var(--code-fg)",
                 fontFamily:
                   'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace',
                 whiteSpace: wrap ? "pre-wrap" : "pre",

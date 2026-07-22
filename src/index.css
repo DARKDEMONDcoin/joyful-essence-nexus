@@ -123,6 +123,13 @@ html.lenis body {
   /* Megsy brand blue — used across ThinkingLoader, AgentStatusLine, ChatMessage sources, MegsyStar */
   --megsy-blue: #5b8def;
 
+  /* Code block surface tokens — unified across CodeBlock + highlighter */
+  --code-bg: #0b0d10;
+  --code-header-bg: #14171c;
+  --code-fg: #e6e8eb;
+  --code-fg-muted: #c7ccd4;
+  --code-fg-subtle: #8a9099;
+
 
   /* ── Megsy Brand Tokens (unified) ─────────────────────────────
      Use the Tailwind aliases `brand-*` / `surface-*` (see tailwind.config.ts)
