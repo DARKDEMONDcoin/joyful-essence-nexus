@@ -325,10 +325,6 @@ export default function ComposerModelMenu({
                     {/* Chat models — shown only when in chat mode */}
                     {mode !== "images" && mode !== "video" && (
                     <div className="mb-4">
-
-                      <p className="px-2 pb-2 text-[11px] uppercase tracking-[0.12em] font-semibold text-foreground/50">
-                        Chat models
-                      </p>
                       <div className="flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.03] overflow-hidden">
                         {(view === "more" ? orderedChatOptions : orderedChatOptions.slice(0, 4)).map((item) => {
                           const locked =
@@ -354,18 +350,24 @@ export default function ComposerModelMenu({
                                   onChatModelSelect({ id: item.id, label: item.label });
                                 onOpenChange(false);
                               }}
-                              className={`flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors border-b border-white/[0.06] last:border-b-0 ${active ? "bg-white/[0.04]" : "hover:bg-white/[0.03]"}`}
+                              className={`flex w-full items-center gap-3 px-4 py-4 text-left transition-colors border-b border-white/[0.06] last:border-b-0 ${active ? "bg-white/[0.04]" : "hover:bg-white/[0.03]"}`}
                             >
-                              <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-foreground/[0.05]">
-                                <ComposerModelIcon brand={item.brand} />
-                              </span>
                               <span className="min-w-0 flex-1">
-                                <span className="block text-[14.5px] font-semibold leading-tight truncate tracking-tight">
-                                  {item.label}
+                                <span className="flex items-center gap-2">
+                                  <span className="text-[17px] font-semibold leading-tight tracking-tight text-foreground truncate">
+                                    {item.label}
+                                  </span>
+                                  {item.premium ? (
+                                    <span className="shrink-0 rounded-full px-2 py-[2px] text-[10.5px] font-semibold" style={{ backgroundColor: "color-mix(in oklab, var(--megsy-blue) 22%, transparent)", color: "var(--megsy-blue)" }}>
+                                      Pro
+                                    </span>
+                                  ) : null}
                                 </span>
-                                <span className="mt-0.5 block text-[11.5px] text-foreground/55 truncate">
-                                  {item.desc}
-                                </span>
+                                {item.desc ? (
+                                  <span className="mt-1 block text-[13px] leading-snug text-foreground/55 truncate">
+                                    {item.desc}
+                                  </span>
+                                ) : null}
                               </span>
                               <span className="shrink-0 w-5 flex items-center justify-end">
                                 {locked ? (
