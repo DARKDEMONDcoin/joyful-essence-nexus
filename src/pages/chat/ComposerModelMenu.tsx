@@ -553,8 +553,14 @@ export default function ComposerModelMenu({
                       <div className="mt-3 flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.03] overflow-hidden">
                         {settingsPanel ? (
                           <button type="button" onClick={() => setView("settings")} className="flex w-full items-center gap-3 px-4 py-3.5 text-start border-t border-white/[0.05] first:border-t-0 hover:bg-white/[0.03] transition-colors">
-                            <span className="flex-1 text-[14.5px] font-semibold">{mode !== "images" && mode !== "video" ? "Effort" : settingsLabel}</span>
-                            {mode !== "images" && mode !== "video" ? (
+                            <span className="flex-1 text-[14.5px] font-semibold">
+                              {mode === "deep-research"
+                                ? "Depth"
+                                : mode !== "images" && mode !== "video"
+                                  ? "Effort"
+                                  : settingsLabel}
+                            </span>
+                            {mode !== "images" && mode !== "video" && mode !== "deep-research" ? (
                               <span className="text-[13.5px] text-foreground/55">
                                 {getEffortPresetsForModel(selectedModel?.id ?? "lite").find((p) => p.id === effortValue)?.label ?? ""}
                               </span>
