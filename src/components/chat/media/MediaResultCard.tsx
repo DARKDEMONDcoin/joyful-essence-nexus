@@ -124,7 +124,7 @@ export default function MediaResultCard({
               {r.status === "running" && r.title && (
                 <div className="mb-2 px-0.5 text-[12.5px] leading-tight">
                   <span className="text-foreground/55">Generating </span>
-                  <span className="font-medium text-[hsl(var(--megsy-blue))]">
+                  <span className="font-medium" style={{ color: "var(--megsy-blue)" }}>
                     {r.title}
                   </span>
                 </div>
