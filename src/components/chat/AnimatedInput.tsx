@@ -427,7 +427,8 @@ const AnimatedInput = ({
             </motion.button>
 
 
-            {inlineSlot}
+            {/* chips moved above the textarea */}
+
 
             <div className="flex-1" />
 
