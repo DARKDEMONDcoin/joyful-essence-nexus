@@ -214,70 +214,80 @@ export const CHAT_COMPOSER_MODEL_OPTIONS = [
     kind: "tier" as const,
     id: "lite",
     label: `${MEGSY_CHAT_MODEL_LABEL} 3.9`,
-    desc: "Fast everyday answers",
+    desc: "The default. Fast, warm, and gets everyday tasks done.",
     premium: false,
     brand: "megsy" as const,
+    strength: "Balanced" as const,
   },
   {
     kind: "model" as const,
     id: "z-ai/glm-4.6:glm-5.3",
     label: "GLM 5.3",
-    desc: "Zhipu's newest flagship reasoning model",
+    desc: "Zhipu's flagship reasoning model for hard analytical work.",
     premium: true,
-    brand: "megsy" as const,
+    brand: "glm" as const,
+    strength: "Powerful" as const,
   },
   {
     kind: "model" as const,
     id: "google/gemini-2.5-flash:gemini-3-pro",
     label: "Gemini 3 Pro",
-    desc: "Google's newest multimodal model",
+    desc: "Multimodal thinking across text, images, and long context.",
     premium: true,
     brand: "gemini" as const,
+    strength: "Powerful" as const,
   },
   {
     kind: "model" as const,
     id: "anthropic/claude-sonnet-4.5:claude-sonnet-5",
     label: "Claude Sonnet 5",
-    desc: "Unlimited & free for paid subscribers",
+    desc: "Fast, sharp writing and reasoning from Anthropic.",
     premium: true,
     brand: "claude" as const,
+    strength: "Powerful" as const,
   },
   {
     kind: "model" as const,
     id: "anthropic/claude-sonnet-4.5:claude-opus-4.8",
     label: "Claude Opus 4.8",
-    desc: "Unlimited & free for paid subscribers",
+    desc: "Anthropic's most capable model for deep research and code.",
     premium: true,
     brand: "claude" as const,
+    strength: "Max" as const,
   },
   {
     kind: "model" as const,
     id: "moonshot/kimi-k3:kimi-k3",
     label: "Kimi K3",
-    desc: "Moonshot's flagship long-context model",
+    desc: "Moonshot's long-context expert. Best for large documents.",
     premium: true,
-    brand: "megsy" as const,
+    brand: "kimi" as const,
+    strength: "Powerful" as const,
   },
   {
     kind: "model" as const,
     id: "openai/gpt-sol:gpt-sol",
     label: "GPT Sol",
-    desc: "OpenAI's newest 2026 flagship",
+    desc: "OpenAI's 2026 flagship. Elite reasoning and world knowledge.",
     premium: true,
     brand: "openai" as const,
+    strength: "Max" as const,
   },
 ];
 
+export type ChatModelBrand = "megsy" | "claude" | "gemini" | "openai" | "glm" | "kimi";
 
 export const ComposerModelIcon = ({
   brand,
 }: {
-  brand: "megsy" | "claude" | "gemini" | "openai";
+  brand: ChatModelBrand;
 }) => {
   const megsyLogo = useBrandLogo();
   if (brand === "claude") return <Claude.Color size={18} />;
   if (brand === "gemini") return <Gemini.Color size={18} />;
   if (brand === "openai") return <OpenAI size={18} />;
+  if (brand === "glm") return <ChatGLM.Color size={18} />;
+  if (brand === "kimi") return <Kimi.Color size={18} />;
   return (
     <img
       src={megsyLogo}
