@@ -4,7 +4,7 @@
 import Claude from "@lobehub/icons/es/Claude";
 import Gemini from "@lobehub/icons/es/Gemini";
 import OpenAI from "@lobehub/icons/es/OpenAI";
-import ChatGLM from "@lobehub/icons/es/ChatGLM";
+import Zhipu from "@lobehub/icons/es/Zhipu";
 import Kimi from "@lobehub/icons/es/Kimi";
 import { useBrandLogo } from "@/hooks/useBrandLogo";
 import {
@@ -15,6 +15,7 @@ import {
 import type { SlideDeck } from "@/components/chat/SlidesDeckCard";
 import type { MediaPlan } from "@/components/chat/media/MediaPlanCard";
 import type { MediaSceneResult } from "@/components/chat/media/MediaResultCard";
+import type { ModelEffort } from "@/lib/chatModelPreferences";
 
 export interface ProductResult {
   title: string;
