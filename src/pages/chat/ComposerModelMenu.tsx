@@ -343,11 +343,7 @@ export default function ComposerModelMenu({
                                   onChatModelSelect({ id: item.id, label: item.label });
                                 onOpenChange(false);
                               }}
-                              className={`flex w-full items-center gap-3 rounded-2xl px-3 py-3 text-left transition-colors ${
-                                active
-                                  ? "bg-foreground/[0.08] border border-foreground/15"
-                                  : "border border-transparent hover:bg-foreground/[0.04]"
-                              }`}
+                              className={`flex w-full items-center gap-3 rounded-2xl px-3 py-3 text-left transition-colors border ${active ? "bg-foreground/[0.10] border-foreground/20" : "bg-foreground/[0.04] border-foreground/10 hover:bg-foreground/[0.07] hover:border-foreground/15"}`}
                             >
                               <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-foreground/[0.05]">
                                 <ComposerModelIcon brand={item.brand} />
@@ -406,11 +402,7 @@ export default function ComposerModelMenu({
                                 onMediaModelSelect(choice);
                                 onOpenChange(false);
                               }}
-                              className={`flex w-full items-center gap-3 rounded-2xl px-3 py-3 text-left transition-colors ${
-                                active
-                                  ? "bg-foreground/[0.08] border border-foreground/15"
-                                  : "border border-transparent hover:bg-foreground/[0.04]"
-                              }`}
+                              className={`flex w-full items-center gap-3 rounded-2xl px-3 py-3 text-left transition-colors border ${active ? "bg-foreground/[0.10] border-foreground/20" : "bg-foreground/[0.04] border-foreground/10 hover:bg-foreground/[0.07] hover:border-foreground/15"}`}
                             >
                               <span className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-foreground/[0.05]">
                                 {hasBrandIcon(choice.name, choice.provider) ? (
@@ -478,11 +470,7 @@ export default function ComposerModelMenu({
                                 onMediaModelSelect(choice);
                                 onOpenChange(false);
                               }}
-                              className={`flex w-full items-center gap-3 rounded-2xl px-3 py-3 text-left transition-colors ${
-                                active
-                                  ? "bg-foreground/[0.08] border border-foreground/15"
-                                  : "border border-transparent hover:bg-foreground/[0.04]"
-                              }`}
+                              className={`flex w-full items-center gap-3 rounded-2xl px-3 py-3 text-left transition-colors border ${active ? "bg-foreground/[0.10] border-foreground/20" : "bg-foreground/[0.04] border-foreground/10 hover:bg-foreground/[0.07] hover:border-foreground/15"}`}
                             >
                               <span className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-foreground/[0.05]">
                                 {hasBrandIcon(choice.name, choice.provider) ? (
