@@ -291,9 +291,9 @@ const AnimatedInput = ({
       {/* Desktop: liquid-glass surface (no solid card wrapper) */}
       <div className="md:rounded-[28px]">
         <motion.div
-          animate={{ scale: isActive ? 1.01 : 1 }}
+          animate={{ scale: isActive ? 1.008 : 1 }}
           transition={{ type: "spring", stiffness: 320, damping: 26 }}
-          className={`chat-composer-frame chat-mobile-input-glow composer-card pointer-events-auto rounded-[28px] px-4 pt-2 pb-2 relative z-10 md:rounded-[28px] md:px-4 md:pt-3 md:pb-2.5 border transition-[border-color,box-shadow] duration-200 ${isActive ? "border-foreground/25 shadow-[0_10px_40px_-12px_rgba(0,0,0,0.35)]" : "border-foreground/12"} ${chatContext ? "chat-composer-liquid" : ""}`}
+          className={`chat-composer-frame chat-mobile-input-glow composer-card pointer-events-auto rounded-[28px] px-4 pt-2 pb-2 relative z-10 md:rounded-[28px] md:px-4 md:pt-3 md:pb-2.5 border-2 transition-[border-color,box-shadow] duration-200 ${isActive ? "border-foreground/45 shadow-[0_12px_44px_-12px_rgba(0,0,0,0.45)]" : "border-foreground/25 shadow-[0_6px_20px_-12px_rgba(0,0,0,0.3)]"} ${chatContext ? "chat-composer-liquid" : ""}`}
         >
           {/* Active service strip — fused into the top of the composer card */}
           {headerSlot && (
