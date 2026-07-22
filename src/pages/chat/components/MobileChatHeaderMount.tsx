@@ -9,6 +9,8 @@ import ComposerModelMenu from "../ComposerModelMenu";
 import type { ChatMode } from "../chatConstants";
 import { MediaSettingsPanel } from "@/components/chat/mobile/MediaSettingsMenu";
 import { MobileChatModelSettingsPanel } from "./MobileChatModelSettingsPanel";
+import { MobileResearchDepthPanel } from "./MobileResearchDepthPanel";
+import type { ResearchDepth } from "../hooks/useChatTier";
 
 interface MobileChatHeaderMountProps {
   // Conversation meta
@@ -55,6 +57,8 @@ interface MobileChatHeaderMountProps {
   handleCopyShareLink: () => void;
   setChatMode: (mode: ChatMode) => void;
   setVideoDurationSec?: (duration: any) => void;
+  researchDepth: ResearchDepth;
+  setResearchDepth: (d: ResearchDepth) => void;
 }
 
 export function MobileChatHeaderMount(props: MobileChatHeaderMountProps) {
@@ -148,6 +152,13 @@ export function MobileChatHeaderMount(props: MobileChatHeaderMountProps) {
                   onChange={(settings) => {
                     if (settings.duration !== undefined) props.setVideoDurationSec?.(settings.duration);
                   }}
+                />
+              ) : chatMode === "deep-research" ? (
+                <MobileResearchDepthPanel
+                  researchDepth={props.researchDepth}
+                  setResearchDepth={props.setResearchDepth}
+                  userPlan={userPlan}
+                  onSelect={() => setTierMenuOpen(false)}
                 />
               ) : (
                 <MobileChatModelSettingsPanel activeModelId={selectedModel?.id ?? "lite"} />

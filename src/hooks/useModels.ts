@@ -71,9 +71,9 @@ function imageRowToModelDetail(r: any): ModelDetail {
   const slugLower = String(r.slug || "").toLowerCase();
   const nameLower = String(r.display_name || "").toLowerCase();
   // Business rule: all image models are premium/subscriber-only,
-  // except Flux models which remain available on the free plan.
-  const isFluxFree = slugLower.includes("flux") || nameLower.includes("flux");
-  const isPremium = isFluxFree ? false : true;
+  // except the two LTX models which remain available on the free plan.
+  const isLtxFree = slugLower.includes("ltx") || nameLower.includes("ltx");
+  const isPremium = isLtxFree ? false : true;
   if (isPremium) badges.push("PRO");
   if (r.supports_multi_image) badges.push("Multi-Image");
   const topRes = Array.isArray(r.supported_resolutions)
