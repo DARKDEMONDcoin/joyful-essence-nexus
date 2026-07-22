@@ -287,7 +287,7 @@ export const ComposerModelIcon = ({
   if (brand === "claude") return <Claude.Color size={18} />;
   if (brand === "gemini") return <Gemini.Color size={18} />;
   if (brand === "openai") return <OpenAI size={18} />;
-  if (brand === "glm") return <ChatGLM.Color size={18} />;
+  if (brand === "glm") return <Zhipu.Color size={18} />;
   if (brand === "kimi") return <Kimi.Color size={18} />;
   return (
     <img
