@@ -291,9 +291,9 @@ const AnimatedInput = ({
       {/* Desktop: liquid-glass surface (no solid card wrapper) */}
       <div className="md:rounded-[28px]">
         <motion.div
-          animate={{ scale: isActive ? 1.01 : 1 }}
+          animate={{ scale: isActive ? 1.008 : 1 }}
           transition={{ type: "spring", stiffness: 320, damping: 26 }}
-          className={`chat-composer-frame chat-mobile-input-glow composer-card pointer-events-auto rounded-[28px] px-4 pt-2 pb-2 relative z-10 md:rounded-[28px] md:px-4 md:pt-3 md:pb-2.5 border transition-[border-color,box-shadow] duration-200 ${isActive ? "border-foreground/25 shadow-[0_10px_40px_-12px_rgba(0,0,0,0.35)]" : "border-foreground/12"} ${chatContext ? "chat-composer-liquid" : ""}`}
+          className={`chat-composer-frame chat-mobile-input-glow composer-card pointer-events-auto rounded-[28px] px-4 pt-2 pb-2 relative z-10 md:rounded-[28px] md:px-4 md:pt-3 md:pb-2.5 border-2 transition-[border-color,box-shadow] duration-200 ${isActive ? "border-foreground/45 shadow-[0_12px_44px_-12px_rgba(0,0,0,0.45)]" : "border-foreground/25 shadow-[0_6px_20px_-12px_rgba(0,0,0,0.3)]"} ${chatContext ? "chat-composer-liquid" : ""}`}
         >
           {/* Active service strip — fused into the top of the composer card */}
           {headerSlot && (
@@ -448,8 +448,7 @@ const AnimatedInput = ({
                 >
                   <Square className="w-3 h-3" fill="currentColor" />
                 </motion.button>
-
-              ) : value.trim() ? (
+              ) : (
                 <motion.button
                   key="send"
                   initial={{ opacity: 0, scale: 0.6 }}
@@ -458,7 +457,7 @@ const AnimatedInput = ({
                   transition={{ type: "spring", stiffness: 380, damping: 22 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={handleSendWithSlash}
-                  disabled={disabled}
+                  disabled={disabled || !value.trim()}
                   data-testid="mobile-composer-send"
                   className="theme-fixed shrink-0 w-9 h-9 md:h-10 md:w-10 flex items-center justify-center rounded-full bg-white text-black shadow-[0_2px_10px_rgba(0,0,0,0.3)] hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
                   style={{ backgroundColor: "#ffffff", color: "#000000" }}
@@ -466,7 +465,7 @@ const AnimatedInput = ({
                 >
                   <ArrowUp className="w-[18px] h-[18px] md:w-4 md:h-4" strokeWidth={2.2} color="#000000" />
                 </motion.button>
-              ) : null}
+              )}
             </AnimatePresence>
           </div>
         </motion.div>
