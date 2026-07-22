@@ -156,21 +156,32 @@ export default function MobileChatHeader({
   const [menuView, setMenuView] = useState<MenuView>("main");
   const [modelHidden, setModelHidden] = useState(false);
 
-  // Hide the centered model button when the chat transcript scrolls.
-  // Shows again when the user scrolls back near the top.
   useEffect(() => {
-    const el = document.querySelector('[role="log"]') as HTMLElement | null;
-    if (!el) return;
-    let lastY = el.scrollTop;
-    const onScroll = () => {
-      const y = el.scrollTop;
+    let lastY = 0;
+    let lastTouchY = 0;
+    const onScroll = (event: Event) => {
+      const target = event.target as HTMLElement | Document;
+      const y = target instanceof HTMLElement ? target.scrollTop : window.scrollY;
       if (y < 40) setModelHidden(false);
-      else if (y > lastY + 4) setModelHidden(true);
-      else if (y < lastY - 4) setModelHidden(false);
+      else if (y > lastY + 2) setModelHidden(true);
+      else if (y < lastY - 2) setModelHidden(false);
       lastY = y;
     };
-    el.addEventListener("scroll", onScroll, { passive: true });
-    return () => el.removeEventListener("scroll", onScroll);
+    const onTouchStart = (event: TouchEvent) => { lastTouchY = event.touches[0]?.clientY || 0; };
+    const onTouchMove = (event: TouchEvent) => {
+      const currentY = event.touches[0]?.clientY || 0;
+      if (lastTouchY - currentY > 8) setModelHidden(true);
+      else if (currentY - lastTouchY > 8) setModelHidden(false);
+      lastTouchY = currentY;
+    };
+    document.addEventListener("scroll", onScroll, { passive: true, capture: true });
+    document.addEventListener("touchstart", onTouchStart, { passive: true });
+    document.addEventListener("touchmove", onTouchMove, { passive: true });
+    return () => {
+      document.removeEventListener("scroll", onScroll, true);
+      document.removeEventListener("touchstart", onTouchStart);
+      document.removeEventListener("touchmove", onTouchMove);
+    };
   }, []);
   const prefetchPricing = () => {
     void prefetchRoute("/pricing");

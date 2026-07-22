@@ -7,11 +7,7 @@ import {
   type ResponseStyle,
 } from "@/lib/responseStyle";
 
-const OPTIONS: Array<{
-  id: ResponseStyle;
-  icon: typeof Sparkles;
-  description: string;
-}> = [
+const OPTIONS: Array<{ id: ResponseStyle; icon: typeof Sparkles; description: string }> = [
   { id: "auto", icon: Sparkles, description: "Adapts the answer to your request" },
   { id: "concise", icon: Zap, description: "Short, direct answers" },
   { id: "detailed", icon: BookOpen, description: "Thorough answers with examples" },
@@ -19,10 +15,8 @@ const OPTIONS: Array<{
   { id: "friendly", icon: Smile, description: "Warm, conversational tone" },
 ];
 
-/** General model preferences rendered inside the header model menu. */
 export function ChatModelSettingsPanel() {
   const [current, setCurrent] = useState<ResponseStyle>("auto");
-
   useEffect(() => setCurrent(readResponseStyle()), []);
 
   return (
@@ -33,30 +27,11 @@ export function ChatModelSettingsPanel() {
       </div>
       {OPTIONS.map(({ id, icon: Icon, description }) => {
         const active = current === id;
-        return (
-          <button
-            key={id}
-            type="button"
-            onClick={() => {
-              setResponseStyle(id);
-              setCurrent(id);
-            }}
-            className={`flex w-full items-center gap-3 rounded-xl border px-3 py-2.5 text-start transition-colors ${
-              active
-                ? "border-foreground/15 bg-foreground/[0.09]"
-                : "border-transparent hover:bg-foreground/[0.05]"
-            }`}
-          >
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-foreground/[0.07]">
-              <Icon className="h-4 w-4 text-foreground/80" />
-            </span>
-            <span className="min-w-0 flex-1">
-              <span className="block text-[13px] font-semibold text-foreground">{STYLE_LABELS_AR[id]}</span>
-              <span className="block truncate text-[10.5px] text-foreground/50">{description}</span>
-            </span>
-            {active ? <Check className="h-4 w-4 shrink-0 text-foreground" strokeWidth={2.5} /> : null}
-          </button>
-        );
+        return <button key={id} type="button" onClick={() => { setResponseStyle(id); setCurrent(id); }} className={`flex w-full items-center gap-3 rounded-xl border px-3 py-2.5 text-start transition-colors ${active ? "border-foreground/15 bg-foreground/[0.09]" : "border-transparent hover:bg-foreground/[0.05]"}`}>
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-foreground/[0.07]"><Icon className="h-4 w-4 text-foreground/80" /></span>
+          <span className="min-w-0 flex-1"><span className="block text-[13px] font-semibold text-foreground">{STYLE_LABELS_AR[id]}</span><span className="block truncate text-[10.5px] text-foreground/50">{description}</span></span>
+          {active ? <Check className="h-4 w-4 shrink-0 text-foreground" strokeWidth={2.5} /> : null}
+        </button>;
       })}
     </div>
   );

@@ -5,11 +5,12 @@ import {
   ArrowLeft,
   Check,
   ChevronDown,
+  ChevronRight,
   Image as ImageIcon,
   Lock,
-  Settings2,
   Sliders,
   Video as VideoIcon,
+  X,
 } from "lucide-react";
 import { toast } from "sonner";
 import type { AgentModel } from "@/lib/agentRegistry";
@@ -59,6 +60,8 @@ interface Props {
   settingsPanel?: ReactNode;
   /** Label for the settings view header (defaults to "Settings"). */
   settingsLabel?: string;
+  /** Desktop header instances must not create a mobile portal while hidden by CSS. */
+  renderMobileSheet?: boolean;
 }
 
 const asMediaChoice = (model: any, mode: "images" | "video"): MediaModelChoice => ({
@@ -89,8 +92,9 @@ export default function ComposerModelMenu({
   variant = "pill",
   settingsPanel,
   settingsLabel = "Settings",
+  renderMobileSheet = true,
 }: Props) {
-  const [view, setView] = useState<"models" | "settings">("models");
+  const [view, setView] = useState<"models" | "more" | "settings">("models");
   useEffect(() => {
     if (!open) setView("models");
   }, [open]);
@@ -171,6 +175,19 @@ export default function ComposerModelMenu({
     [dynamicModels],
   );
 
+  const orderedChatOptions = useMemo(
+    () => [...CHAT_COMPOSER_MODEL_OPTIONS].sort((a, b) => Number(a.premium) - Number(b.premium)),
+    [],
+  );
+  const orderedImageOptions = useMemo(
+    () => [...imageOptions].sort((a, b) => Number(!!a.isPremium) - Number(!!b.isPremium)),
+    [imageOptions],
+  );
+  const orderedVideoOptions = useMemo(
+    () => [...videoOptions].sort((a, b) => Number(!!a.isPremium) - Number(!!b.isPremium)),
+    [videoOptions],
+  );
+
   useEffect(() => {
     if (!isMediaMode || loading || mediaOptions.length === 0) return;
     if (mediaModel?.type === (mode === "video" ? "video" : "image")) return;
@@ -239,7 +256,7 @@ export default function ComposerModelMenu({
 
 
       {/* MOBILE — unified bottom-sheet (Chat + Images + Videos) */}
-      {isMobile && typeof document !== "undefined" &&
+      {renderMobileSheet && isMobile && typeof document !== "undefined" &&
         createPortal(
           <AnimatePresence>
             {open && (
@@ -253,18 +270,13 @@ export default function ComposerModelMenu({
                   onClick={() => onOpenChange(false)}
                 />
                 <DraggablePlusSheet
-                  height={(() => {
-                    const rows =
-                      mode === "images"
-                        ? Math.max(imageOptions.length, 1)
-                        : mode === "video"
-                        ? Math.max(videoOptions.length, 1)
-                        : CHAT_COMPOSER_MODEL_OPTIONS.length;
-                    // header (~48) + top/bottom padding (~40) + drag handle (~28) + rows*72 + gaps
-                    const estimated = 48 + 40 + 28 + rows * 72 + (rows - 1) * 4;
+                   height={(() => {
+                     const allRows = mode === "images" ? orderedImageOptions.length : mode === "video" ? orderedVideoOptions.length : orderedChatOptions.length;
+                     const rows = view === "settings" ? (mode === "images" || mode === "video" ? 5 : 6) : view === "more" ? allRows : Math.min(allRows, 4);
+                     const estimated = view === "settings" ? 570 : 150 + rows * 66 + (view === "models" ? 112 : 0);
                     const maxH =
-                      typeof window !== "undefined" ? window.innerHeight * 0.82 : 640;
-                    return Math.min(estimated, maxH, 720);
+                       typeof window !== "undefined" ? window.innerHeight * 0.88 : 650;
+                     return Math.min(estimated, maxH, 720);
                   })()}
                   collapsedY={0}
                   onClose={() => onOpenChange(false)}
@@ -272,29 +284,13 @@ export default function ComposerModelMenu({
                 >
 
                   <div className="px-3 pt-1 pb-4 text-foreground">
-                    {/* Pinned header with Settings toggle (all services) */}
-                    {settingsPanel && (
-                      <div className="flex items-center justify-between gap-2 px-1 pt-1 pb-3 sticky top-0 z-10">
-                        <button
-                          type="button"
-                          onClick={() => setView(view === "settings" ? "models" : "settings")}
-                          className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[12.5px] font-semibold text-foreground bg-foreground/[0.08] border border-foreground/15 hover:bg-foreground/[0.12] transition-colors"
-                          aria-label={view === "settings" ? "Back to models" : "Open model settings"}
-                        >
-                          {view === "settings" ? (
-                            <>
-                              <ArrowLeft className="h-3.5 w-3.5" strokeWidth={2.4} />
-                              <span>Models</span>
-                            </>
-                          ) : (
-                            <>
-                              <Sliders className="h-3.5 w-3.5" strokeWidth={2.4} />
-                              <span>{settingsLabel}</span>
-                            </>
-                          )}
-                        </button>
-                      </div>
-                    )}
+                    <div className="sticky top-0 z-10 mb-3 flex h-11 items-center justify-between bg-background/80 px-1 backdrop-blur-xl">
+                      <button type="button" onClick={() => view === "models" ? onOpenChange(false) : setView("models")} className="flex h-9 w-9 items-center justify-center rounded-full border border-foreground/10 bg-foreground/[0.05]" aria-label={view === "models" ? "Close" : "Back"}>
+                        {view === "models" ? <X className="h-5 w-5" /> : <ArrowLeft className="h-5 w-5" />}
+                      </button>
+                      <p className="text-[16px] font-semibold">{view === "settings" && mode !== "images" && mode !== "video" ? "Effort" : view === "settings" ? settingsLabel : view === "more" ? "More models" : "Select model"}</p>
+                      <span className="h-9 w-9" aria-hidden="true" />
+                    </div>
                     <AnimatePresence mode="wait" initial={false}>
                       {view === "settings" && settingsPanel ? (
                         <motion.div
@@ -323,7 +319,7 @@ export default function ComposerModelMenu({
                         Chat models
                       </p>
                       <div className="flex flex-col gap-1">
-                        {CHAT_COMPOSER_MODEL_OPTIONS.map((item) => {
+                        {(view === "more" ? orderedChatOptions : orderedChatOptions.slice(0, 4)).map((item) => {
                           const locked =
                             item.premium && (userPlan === "free" || userPlan === "trial");
                           const active =
@@ -386,12 +382,12 @@ export default function ComposerModelMenu({
                         Image models
                       </p>
                       <div className="flex flex-col gap-1">
-                        {imageOptions.length === 0 && (
+                        {orderedImageOptions.length === 0 && (
                           <p className="px-3 py-2 text-[12.5px] text-foreground/50">
                             {loading ? "Loading models…" : "No models available."}
                           </p>
                         )}
-                        {imageOptions.map((model) => {
+                        {(view === "more" ? orderedImageOptions : orderedImageOptions.slice(0, 4)).map((model) => {
                           const choice = asMediaChoice(model, "images");
                           const active =
                             mode === "images" && mediaModel?.slug === choice.slug;
@@ -458,12 +454,12 @@ export default function ComposerModelMenu({
                         Video models
                       </p>
                       <div className="flex flex-col gap-1">
-                        {videoOptions.length === 0 && (
+                        {orderedVideoOptions.length === 0 && (
                           <p className="px-3 py-2 text-[12.5px] text-foreground/50">
                             {loading ? "Loading models…" : "No models available."}
                           </p>
                         )}
-                        {videoOptions.map((model) => {
+                        {(view === "more" ? orderedVideoOptions : orderedVideoOptions.slice(0, 4)).map((model) => {
                           const choice = asMediaChoice(model, "video");
                           const active =
                             mode === "video" && mediaModel?.slug === choice.slug;
@@ -520,6 +516,23 @@ export default function ComposerModelMenu({
                         })}
                       </div>
                     </div>
+                    )}
+                    {view === "models" && (
+                      <div className="mt-2 space-y-2">
+                        {settingsPanel ? (
+                          <button type="button" onClick={() => setView("settings")} className="flex w-full items-center gap-3 rounded-2xl bg-foreground/[0.045] px-4 py-3 text-start">
+                            <Sliders className="h-4 w-4 text-foreground/65" />
+                            <span className="flex-1 text-[14px] font-semibold">{settingsLabel}</span>
+                            <ChevronRight className="h-4 w-4 text-foreground/40" />
+                          </button>
+                        ) : null}
+                        {(mode === "images" ? orderedImageOptions.length : mode === "video" ? orderedVideoOptions.length : orderedChatOptions.length) > 4 ? (
+                          <button type="button" onClick={() => setView("more")} className="flex w-full items-center gap-3 rounded-2xl bg-foreground/[0.045] px-4 py-3 text-start">
+                            <span className="flex-1 text-[14px] font-semibold">More models</span>
+                            <ChevronRight className="h-4 w-4 text-foreground/40" />
+                          </button>
+                        ) : null}
+                      </div>
                     )}
                         </motion.div>
                       )}
