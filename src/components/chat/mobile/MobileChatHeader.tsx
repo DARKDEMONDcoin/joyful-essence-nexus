@@ -234,7 +234,9 @@ export default function MobileChatHeader({
           <MegsySidebarToggleIcon />
         </button>
 
-        <div className="flex min-w-0 flex-1 items-center justify-center px-1">
+        <div
+          className={`flex min-w-0 flex-1 items-center justify-center px-1 transition-all duration-200 ${modelHidden ? "opacity-0 -translate-y-1 pointer-events-none" : "opacity-100 translate-y-0"}`}
+        >
           {modelSlot}
         </div>
         {!hasConversation && rightSlot ? (
