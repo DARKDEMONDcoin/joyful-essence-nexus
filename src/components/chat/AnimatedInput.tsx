@@ -133,6 +133,9 @@ const AnimatedInput = ({
   const [modelPickerOpen, setModelPickerOpen] = useState(false);
   const [modelQuery, setModelQuery] = useState("");
   const [lastSelectedAgent, setLastSelectedAgent] = useState<AgentDef | null>(null);
+  const [focused, setFocused] = useState(false);
+  const isActive = focused || !!value;
+
 
   useEffect(() => {
     valueRef.current = value;
@@ -286,12 +289,23 @@ const AnimatedInput = ({
         )}
       </AnimatePresence>
       {/* Desktop: liquid-glass surface (no solid card wrapper) */}
-      <div className="md:rounded-[26px]">
-        <div className={`chat-composer-frame chat-mobile-input-glow composer-card pointer-events-auto rounded-[1.35rem] px-4 pt-1 pb-2 relative z-10 md:rounded-[26px] md:px-3.5 md:pt-3.5 md:pb-3 ${chatContext ? "chat-composer-liquid" : ""}`}>
+      <div className="md:rounded-[28px]">
+        <motion.div
+          animate={{ scale: isActive ? 1.01 : 1 }}
+          transition={{ type: "spring", stiffness: 320, damping: 26 }}
+          className={`chat-composer-frame chat-mobile-input-glow composer-card pointer-events-auto rounded-[28px] px-4 pt-2 pb-2 relative z-10 md:rounded-[28px] md:px-4 md:pt-3 md:pb-2.5 border transition-[border-color,box-shadow] duration-200 ${isActive ? "border-foreground/25 shadow-[0_10px_40px_-12px_rgba(0,0,0,0.35)]" : "border-foreground/12"} ${chatContext ? "chat-composer-liquid" : ""}`}
+        >
           {/* Active service strip — fused into the top of the composer card */}
           {headerSlot && (
             <div className="-mx-2 -mt-1 mb-1.5 pointer-events-auto">{headerSlot}</div>
           )}
+          {/* Chips row (model picker, slides template, research depth) — sit ABOVE the input */}
+          {inlineSlot && (
+            <div dir="ltr" className="flex items-center flex-wrap gap-1.5 pb-1.5">
+              {inlineSlot}
+            </div>
+          )}
+
           {/* Textarea — full width, on top */}
           <div className="px-1">
             {/* Inline service chip — lives inside the input box and pushes the textarea down */}
@@ -373,9 +387,10 @@ const AnimatedInput = ({
                 value={value}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
-                onFocus={() => onFocusChange?.(true)}
-                onBlur={() => onFocusChange?.(false)}
+                onFocus={() => { setFocused(true); onFocusChange?.(true); }}
+                onBlur={() => { setFocused(false); onFocusChange?.(false); }}
                 placeholder=""
+
                 rows={1}
                 autoComplete="off"
                 autoCorrect="off"
@@ -412,7 +427,8 @@ const AnimatedInput = ({
             </motion.button>
 
 
-            {inlineSlot}
+            {/* chips moved above the textarea */}
+
 
             <div className="flex-1" />
 
@@ -453,8 +469,9 @@ const AnimatedInput = ({
               ) : null}
             </AnimatePresence>
           </div>
-        </div>
+        </motion.div>
       </div>
+
     </div>
   );
 };
