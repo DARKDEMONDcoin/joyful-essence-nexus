@@ -288,7 +288,7 @@ export default function ComposerModelMenu({
                       <button type="button" onClick={() => view === "models" ? onOpenChange(false) : setView("models")} className="flex h-9 w-9 items-center justify-center rounded-full border border-foreground/10 bg-foreground/[0.05]" aria-label={view === "models" ? "Close" : "Back"}>
                         {view === "models" ? <X className="h-5 w-5" /> : <ArrowLeft className="h-5 w-5" />}
                       </button>
-                      <p className="text-[16px] font-semibold">{view === "settings" ? settingsLabel : view === "more" ? "More models" : "Select model"}</p>
+                      <p className="text-[16px] font-semibold">{view === "settings" && mode !== "images" && mode !== "video" ? "Effort" : view === "settings" ? settingsLabel : view === "more" ? "More models" : "Select model"}</p>
                       <span className="h-9 w-9" aria-hidden="true" />
                     </div>
                     <AnimatePresence mode="wait" initial={false}>
