@@ -87,8 +87,8 @@ const ThinkingLoader = ({ searchStatus }: ThinkingLoaderProps) => {
     return () => window.clearInterval(rot);
   }, [elapsed, searchStatus, steps.length]);
 
-  const starColor = "#5B8DEF";
-  const starClass = "text-[#5B8DEF]";
+  const starColor = "var(--megsy-blue)";
+  const starClass = "text-[var(--megsy-blue)]";
   const thinkingLabel = uiT("thinking", lang);
   const deepLabel = uiT("thinkingDeep", lang);
   const rtl = lang === "ar" || lang === "ar-eg" || lang === "fa" || lang === "he";

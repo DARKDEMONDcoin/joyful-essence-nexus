@@ -31,7 +31,7 @@ export default function MobileServicePanel({ label, Icon, onClose, children, hea
       <div
         className="flex h-7 w-full items-center justify-between gap-2 px-2 text-[12px] font-semibold uppercase tracking-[0.08em]"
         style={{
-          color: "#5B8DEF",
+          color: "var(--megsy-blue)",
           borderBottom: "1px solid hsl(var(--foreground) / 0.08)",
         }}
       >
@@ -41,7 +41,7 @@ export default function MobileServicePanel({ label, Icon, onClose, children, hea
           aria-label={`Close ${label}`}
           onClick={onClose}
           className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-white/10"
-          style={{ color: "#5B8DEF" }}
+          style={{ color: "var(--megsy-blue)" }}
         >
           <X className="h-3.5 w-3.5" />
         </button>

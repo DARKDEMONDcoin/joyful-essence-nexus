@@ -27,7 +27,7 @@ const ARABIC_RE = /[\u0600-\u06ff]/;
 type Phase = "connecting" | "thinking" | "thinking_deep" | "tool" | "tool_done";
 
 const transition = { type: "spring" as const, stiffness: 380, damping: 32, mass: 0.7 };
-const MEGSY_BLUE = "#5B8DEF";
+const MEGSY_BLUE = "var(--megsy-blue)";
 
 const AgentStatusLine = ({ searchStatus, toolActivity, userText }: AgentStatusLineProps) => {
   const lang = useUserLang();
@@ -121,12 +121,12 @@ const AgentStatusLine = ({ searchStatus, toolActivity, userText }: AgentStatusLi
     label = "";
     shimmer = false;
   } else if (phase === "thinking") {
-    icon = <MegsyStar size={16} className="text-[#5B8DEF]" />;
+    icon = <MegsyStar size={16} className="text-[var(--megsy-blue)]" />;
     label = L.thinking;
   } else if (phase === "thinking_deep") {
     icon = (
       <span className="relative inline-flex items-center justify-center w-5 h-5">
-        <MegsyStar size={16} className="text-[#5B8DEF]" />
+        <MegsyStar size={16} className="text-[var(--megsy-blue)]" />
         <Brain
           className="absolute -bottom-1 -right-1 w-3 h-3 animate-pulse"
           style={{ color: MEGSY_BLUE }}
