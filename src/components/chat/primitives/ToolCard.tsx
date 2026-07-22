@@ -27,7 +27,7 @@ const ToolCard = forwardRef<HTMLDivElement, ToolCardProps>(function ToolCard(
       dir={dir}
       className={cn(
         "my-2 w-full max-w-[640px] rounded-ios-lg border border-border/50 p-4 text-card-foreground",
-        "bg-card/80 backdrop-blur-xl shadow-[0_1px_2px_var(--overlay-black-05),0_8px_24px_-12px_var(--overlay-black-15)] dark:bg-card/60",
+        "bg-card/80 backdrop-blur-xl shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.15)] dark:bg-card/60 dark:shadow-[0_1px_2px_rgba(0,0,0,0.3),0_8px_24px_-12px_rgba(0,0,0,0.5)]",
         tone === "muted" && "bg-card/60",
         className,
       )}
