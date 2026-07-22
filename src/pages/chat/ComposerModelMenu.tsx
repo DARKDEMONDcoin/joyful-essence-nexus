@@ -284,8 +284,8 @@ export default function ComposerModelMenu({
                 >
 
                   <div className="px-3 pt-1 pb-4 text-foreground">
-                    <div className="sticky top-0 z-10 mb-3 flex h-11 items-center justify-between bg-background/80 px-1 backdrop-blur-xl">
-                      <button type="button" onClick={() => view === "models" ? onOpenChange(false) : setView("models")} className="flex h-9 w-9 items-center justify-center rounded-full border border-foreground/10 bg-foreground/[0.05]" aria-label={view === "models" ? "Close" : "Back"}>
+                    <div className="sticky top-0 z-10 mb-3 flex h-11 items-center justify-between bg-transparent px-1">
+                      <button type="button" onClick={() => view === "models" ? onOpenChange(false) : setView("models")} className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/10 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.15)] hover:bg-white/15 transition-colors" aria-label={view === "models" ? "Close" : "Back"}>
                         {view === "models" ? <X className="h-5 w-5" /> : <ArrowLeft className="h-5 w-5" />}
                       </button>
                       <p className="text-[16px] font-semibold">{view === "settings" && mode !== "images" && mode !== "video" ? "Effort" : view === "settings" ? settingsLabel : view === "more" ? "More models" : "Select model"}</p>
